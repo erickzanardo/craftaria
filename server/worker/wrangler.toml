@@ -1,0 +1,18 @@
+# Public repo: no account ids or secrets in here.
+# - Account: set CLOUDFLARE_ACCOUNT_ID / CLOUDFLARE_API_TOKEN in your shell or CI.
+# - Secrets: `wrangler secret put AUTH_SECRET` (prod), `.dev.vars` (local).
+name = "craftaria"
+main = "src/index.ts"
+compatibility_date = "2026-10-01"
+
+[vars]
+# Origins allowed to call the HTTP API. Override per environment.
+ALLOWED_ORIGINS = "http://localhost:8080"
+
+[[durable_objects.bindings]]
+name = "ZONE"
+class_name = "Zone"
+
+[[migrations]]
+tag = "v1"
+new_sqlite_classes = ["Zone"]

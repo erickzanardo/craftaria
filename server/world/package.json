@@ -1,0 +1,22 @@
+{
+  "name": "@craftaria/world",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run --coverage",
+    "fixtures": "node --experimental-strip-types scripts/generate_movement_fixture.ts"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.6",
+    "@vitest/coverage-v8": "^5.0.5",
+    "vitest": "^5.0.5"
+  },
+  "dependencies": {
+    "@bufbuild/protobuf": "^2.16.0",
+    "@craftaria/protocol": "workspace:*"
+  }
+}

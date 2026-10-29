@@ -1,0 +1,93 @@
+syntax = "proto3";
+
+package craftaria.v1;
+
+import "craftaria/v1/map.proto";
+
+// Coordinates on the wire are integer sub-pixels (SUBPIXELS_PER_PIXEL = 16)
+// so the client prediction and the server simulation stay bit-identical.
+message Vec2 {
+  sint32 x = 1;
+  sint32 y = 2;
+}
+
+// Every frame sent by the client.
+message ClientMessage {
+  oneof payload {
+    Hello hello = 1;
+    MoveInput move = 2;
+    Ping ping = 3;
+  }
+}
+
+// First message on a socket. The token is sent here instead of in the URL so
+// it never shows up in request logs.
+message Hello {
+  string token = 1;
+  uint32 protocol_version = 2;
+}
+
+// One simulation step of movement intent. dx and dy are -1, 0 or 1.
+message MoveInput {
+  uint32 seq = 1;
+  sint32 dx = 2;
+  sint32 dy = 3;
+}
+
+message Ping {
+  uint64 client_time_ms = 1;
+}
+
+// Every frame sent by the server.
+message ServerMessage {
+  oneof payload {
+    Welcome welcome = 1;
+    Snapshot snapshot = 2;
+    ChunkData chunk = 3;
+    Pong pong = 4;
+    ServerError error = 5;
+  }
+}
+
+message Welcome {
+  string player_id = 1;
+  uint32 tick_rate = 2;
+  Vec2 spawn = 3;
+}
+
+// Full state of the entities around the player. Entities missing from a
+// snapshot have left.
+message Snapshot {
+  uint32 tick = 1;
+
+  // Last MoveInput.seq the server applied for the receiving player.
+  uint32 last_input_seq = 2;
+
+  repeated EntityState entities = 3;
+}
+
+message EntityState {
+  string id = 1;
+  Vec2 position = 2;
+}
+
+message ChunkData {
+  Chunk chunk = 1;
+}
+
+message Pong {
+  uint64 client_time_ms = 1;
+  uint64 server_time_ms = 2;
+}
+
+enum ErrorCode {
+  ERROR_CODE_UNSPECIFIED = 0;
+  ERROR_CODE_UNAUTHORIZED = 1;
+  ERROR_CODE_PROTOCOL_MISMATCH = 2;
+  ERROR_CODE_REPLACED = 3;
+}
+
+message ServerError {
+  ErrorCode code = 1;
+  string message = 2;
+}

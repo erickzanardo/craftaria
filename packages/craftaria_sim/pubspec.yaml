@@ -1,0 +1,16 @@
+name: craftaria_sim
+description: Deterministic movement simulation shared by client prediction (mirrors server/world).
+version: 0.1.0+1
+publish_to: none
+
+environment:
+  sdk: ^3.9.0
+
+resolution: workspace
+dependencies:
+  craftaria_map:
+    path: ../craftaria_map
+  equatable: ^3.0.0
+dev_dependencies:
+  test: ^1.31.1
+  very_good_analysis: ^11.0.0

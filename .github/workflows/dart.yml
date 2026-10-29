@@ -1,0 +1,80 @@
+name: dart
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  package:
+    name: ${{ matrix.package }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - package: apps/game
+            min_coverage: 100
+          - package: packages/auth_repository
+            min_coverage: 100
+          - package: packages/craftaria_map
+            min_coverage: 100
+          # Generated code only; covered through the packages that use it.
+          - package: packages/craftaria_protocol
+            min_coverage: 0
+          - package: packages/craftaria_sim
+            min_coverage: 100
+          - package: packages/game_client
+            min_coverage: 100
+          - package: packages/world_renderer
+            min_coverage: 100
+    defaults:
+      run:
+        working-directory: ${{ matrix.package }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: 3.47.7
+          channel: stable
+          cache: true
+
+      - name: Install dependencies
+        run: flutter pub get
+
+      - name: Check formatting
+        run: dart format --output=none --set-exit-if-changed lib test
+
+      - name: Analyze
+        run: flutter analyze
+
+      - name: Test
+        run: |
+          dart pub global activate very_good_cli
+          very_good test --coverage --min-coverage ${{ matrix.min_coverage }}
+
+  web:
+    name: build web
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: apps/game
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: 3.47.7
+          channel: stable
+          cache: true
+
+      - run: flutter pub get
+      - run: flutter build web --release

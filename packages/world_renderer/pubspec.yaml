@@ -1,0 +1,24 @@
+name: world_renderer
+description: Flame components that render craftaria chunks and entities.
+version: 0.1.0+1
+publish_to: none
+
+environment:
+  sdk: ^3.9.0
+
+resolution: workspace
+
+dependencies:
+  craftaria_map:
+    path: ../craftaria_map
+  flame: ^1.38.2
+  flutter:
+    sdk: flutter
+
+dev_dependencies:
+  canvas_test: ^0.2.0
+  flame_test: ^2.3.1
+  flutter_test:
+    sdk: flutter
+  mocktail: ^1.0.5
+  very_good_analysis: ^11.0.0

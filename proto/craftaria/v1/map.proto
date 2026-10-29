@@ -1,0 +1,63 @@
+syntax = "proto3";
+
+package craftaria.v1;
+
+// A square region of the world, CHUNK_SIZE x CHUNK_SIZE tiles (32x32).
+//
+// The same message is produced by the procedural generator, by the map
+// editor and by edited-chunk storage, so every source of map data shares one
+// format. See docs/map-format.md.
+message Chunk {
+  // Chunk coordinates (world tile = chunk coordinate * CHUNK_SIZE + local).
+  int32 cx = 1;
+  int32 cy = 2;
+
+  // Tile layers ordered bottom to top.
+  repeated TileLayer layers = 3;
+
+  // Collision bitset, one bit per tile in row-major order (bit i of byte
+  // i / 8, least significant bit first). 1 means the tile blocks movement.
+  // Always CHUNK_SIZE * CHUNK_SIZE / 8 bytes long.
+  bytes collision = 4;
+
+  // Objects not bound to the tile grid (trees, chests, spawners, NPCs...).
+  repeated PlacedEntity entities = 5;
+
+  // Sparse per-tile state (growth stage, durability, owner...).
+  repeated TileState tile_states = 6;
+}
+
+message TileLayer {
+  // Stable layer name, e.g. "ground", "decoration", "overlay".
+  string name = 1;
+
+  // Row-major tile ids, CHUNK_SIZE * CHUNK_SIZE entries. 0 means empty.
+  repeated uint32 tiles = 2;
+
+  // When true the layer is drawn above players and entities.
+  bool above_entities = 3;
+}
+
+message PlacedEntity {
+  // Unique within the world.
+  string id = 1;
+
+  // Entity type, e.g. "tree", "chest".
+  string kind = 2;
+
+  // Position in pixels relative to the chunk's top-left corner.
+  int32 x = 3;
+  int32 y = 4;
+
+  map<string, string> properties = 5;
+}
+
+message TileState {
+  // Row-major tile index within the chunk.
+  uint32 index = 1;
+
+  // Name of the layer the state belongs to.
+  string layer = 2;
+
+  map<string, string> properties = 3;
+}

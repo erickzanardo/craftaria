@@ -1,0 +1,7 @@
+packages:
+  - server/*
+
+onlyBuiltDependencies:
+  - "@bufbuild/buf"
+  - esbuild
+  - workerd

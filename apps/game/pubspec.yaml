@@ -1,0 +1,41 @@
+name: craftaria
+description: Craftaria game client.
+version: 0.1.0+1
+publish_to: none
+
+environment:
+  sdk: ^3.9.0
+
+resolution: workspace
+
+dependencies:
+  auth_repository:
+    path: ../../packages/auth_repository
+  bloc: ^9.2.1
+  craftaria_map:
+    path: ../../packages/craftaria_map
+  craftaria_protocol:
+    path: ../../packages/craftaria_protocol
+  craftaria_sim:
+    path: ../../packages/craftaria_sim
+  equatable: ^3.0.0
+  flame: ^1.38.2
+  flutter:
+    sdk: flutter
+  flutter_bloc: ^9.1.1
+  game_client:
+    path: ../../packages/game_client
+  shared_preferences: ^2.5.6
+  world_renderer:
+    path: ../../packages/world_renderer
+
+dev_dependencies:
+  bloc_test: ^10.0.0
+  flame_test: ^2.3.1
+  flutter_test:
+    sdk: flutter
+  mocktail: ^1.0.5
+  very_good_analysis: ^11.0.0
+
+flutter:
+  uses-material-design: true

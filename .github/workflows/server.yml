@@ -1,0 +1,55 @@
+name: server
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm typecheck
+      - run: pnpm test
+
+      - name: Bundle worker
+        run: pnpm --filter @craftaria/worker exec wrangler deploy --dry-run --outdir dist
+
+  # Generated code and the shared movement fixture are committed; make sure
+  # they match their sources.
+  generated:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: 3.47.7
+          channel: stable
+          cache: true
+
+      - run: pnpm install --frozen-lockfile
+      - run: flutter pub get
+      - run: pnpm proto
+      - run: pnpm --filter @craftaria/world fixtures
+      - name: Fail on drift
+        run: git diff --exit-code

@@ -1,0 +1,12 @@
+{
+  "name": "Craftaria",
+  "short_name": "Craftaria",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#000000",
+  "theme_color": "#000000",
+  "description": "Craftaria, a small sandbox MMO.",
+  "orientation": "any",
+  "prefer_related_applications": false,
+  "icons": []
+}
