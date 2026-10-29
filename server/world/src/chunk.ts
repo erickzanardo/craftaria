@@ -68,3 +68,26 @@ export function isBlockedInChunk(
   const index = tileIndex(localX, localY);
   return ((chunk.collision[index >> 3] ?? 0) & (1 << (index & 7))) !== 0;
 }
+
+/**
+ * Sets one tile of the layer named [layer] and its collision bit, in place.
+ * Returns false when the chunk has no such layer.
+ */
+export function setTileInChunk(
+  chunk: Chunk,
+  layer: string,
+  index: number,
+  tileId: number,
+): boolean {
+  const target = chunk.layers.find((candidate) => candidate.name === layer);
+  if (target === undefined) return false;
+  target.tiles[index] = tileId;
+
+  const blocked = chunk.layers.some((candidate) =>
+    isSolidTile(candidate.tiles[index]!),
+  );
+  const mask = 1 << (index & 7);
+  if (blocked) chunk.collision[index >> 3]! |= mask;
+  else chunk.collision[index >> 3]! &= ~mask;
+  return true;
+}

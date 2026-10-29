@@ -50,7 +50,16 @@ Tile ids are part of the format: never renumber an existing id. Defined in
 | 2 | sand | no |
 | 3 | water | yes |
 | 4 | stone | yes |
-| 16 | tree | yes |
+| 16 | pine tree | yes |
+| 17 | birch tree | yes |
+| 18 | ironwood tree | yes |
+| 19 | pine stump | yes |
+| 20 | birch stump | yes |
+| 21 | ironwood stump | yes |
+
+Trees and stumps are resource nodes for woodcutting; see
+[spec/skills/woodcutting.md](../spec/skills/woodcutting.md). Stumps stay
+solid so a tree never regrows on top of a player.
 
 ## Sources
 

@@ -6,6 +6,7 @@ import {
   chunkOfTile,
   isBlockedInChunk,
   isSolidTile,
+  setTileInChunk,
   TileId,
   tileIndex,
   TILES_PER_CHUNK,
@@ -25,7 +26,7 @@ describe("chunk", () => {
     const ground = new Array<number>(TILES_PER_CHUNK).fill(TileId.grass);
     const decoration = new Array<number>(TILES_PER_CHUNK).fill(TileId.empty);
     ground[tileIndex(1, 0)] = TileId.water;
-    decoration[tileIndex(5, 9)] = TileId.tree;
+    decoration[tileIndex(5, 9)] = TileId.pine;
 
     const chunk = buildChunk(3, -4, [
       { name: "ground", tiles: ground },
@@ -45,6 +46,24 @@ describe("chunk", () => {
     const chunk = buildChunk(0, 0, []);
     chunk.collision = new Uint8Array();
     expect(isBlockedInChunk(chunk, 0, 0)).toBe(false);
+  });
+
+  it("setTileInChunk edits a layer and keeps collision from every layer", () => {
+    const ground = new Array<number>(TILES_PER_CHUNK).fill(TileId.grass);
+    ground[tileIndex(2, 0)] = TileId.water;
+    const chunk = buildChunk(0, 0, [
+      { name: "ground", tiles: ground },
+      { name: "decoration", tiles: new Array(TILES_PER_CHUNK).fill(0) },
+    ]);
+
+    expect(setTileInChunk(chunk, "decoration", tileIndex(1, 0), TileId.pine)).toBe(true);
+    expect(isBlockedInChunk(chunk, 1, 0)).toBe(true);
+    expect(setTileInChunk(chunk, "decoration", tileIndex(1, 0), 0)).toBe(true);
+    expect(isBlockedInChunk(chunk, 1, 0)).toBe(false);
+
+    setTileInChunk(chunk, "decoration", tileIndex(2, 0), 0);
+    expect(isBlockedInChunk(chunk, 2, 0)).toBe(true);
+    expect(setTileInChunk(chunk, "missing", 0, TileId.pine)).toBe(false);
   });
 
   it("isSolidTile", () => {

@@ -58,6 +58,8 @@ flutter pub get
 # Server: create a local secret (never committed), then start wrangler.
 cp server/worker/.dev.vars.example server/worker/.dev.vars
 # edit .dev.vars, e.g. AUTH_SECRET=$(openssl rand -base64 48)
+# DEBUG_COMMANDS=1 (in the example) enables the in-game debug panel's
+# item and XP grants; never set it in production.
 npx pnpm@10.34.9 dev                       # http://localhost:8787
 
 # Client, in another terminal. Port 8080 matches ALLOWED_ORIGINS.
