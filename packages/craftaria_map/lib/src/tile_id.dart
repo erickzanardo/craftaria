@@ -17,10 +17,39 @@ abstract final class TileId {
   /// Blocking stone.
   static const stone = 4;
 
-  /// Blocking tree.
-  static const tree = 16;
+  /// Blocking pine tree.
+  static const pine = 16;
 
-  static const Set<int> _solid = {water, stone, tree};
+  /// Blocking birch tree.
+  static const birch = 17;
+
+  /// Blocking ironwood tree.
+  static const ironwood = 18;
+
+  /// Blocking stump of a cut pine.
+  static const pineStump = 19;
+
+  /// Blocking stump of a cut birch.
+  static const birchStump = 20;
+
+  /// Blocking stump of a cut ironwood.
+  static const ironwoodStump = 21;
+
+  static const Set<int> _solid = {
+    water,
+    stone,
+    pine,
+    birch,
+    ironwood,
+    pineStump,
+    birchStump,
+    ironwoodStump,
+  };
+
+  static const Set<int> _trees = {pine, birch, ironwood};
+
+  /// Whether [id] is a tree that can be cut.
+  static bool isTree(int id) => _trees.contains(id);
 
   /// Whether tiles with [id] block movement.
   static bool isSolid(int id) => _solid.contains(id);

@@ -82,7 +82,12 @@ export class ZoneServer {
           this.#reject(connection, ErrorCode.UNAUTHORIZED, "say hello first");
           return;
         }
-        this.sim.queueInput(connection.playerId, payload.value);
+        this.sim.queueInput(connection.playerId, {
+          kind: "move",
+          seq: payload.value.seq,
+          dx: payload.value.dx,
+          dy: payload.value.dy,
+        });
         return;
       case "ping":
         this.#send(connection, {

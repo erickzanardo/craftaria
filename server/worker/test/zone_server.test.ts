@@ -78,7 +78,7 @@ describe("ZoneServer", () => {
   beforeEach(() => {
     host = new FakeHost();
     const world = new World(1);
-    sim = new ZoneSimulation({ isBlocked: () => false });
+    sim = new ZoneSimulation({ isBlocked: () => false, tileAt: () => 0, setTile: () => undefined });
     server = new ZoneServer(host, sim, world, secret);
   });
 

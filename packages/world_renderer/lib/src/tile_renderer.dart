@@ -26,7 +26,12 @@ class DebugTileRenderer implements TileRenderer {
     TileId.sand: Color(0xFFD8C27A),
     TileId.water: Color(0xFF2F5FA8),
     TileId.stone: Color(0xFF6E6E6E),
-    TileId.tree: Color(0xFF1F4A1A),
+    TileId.pine: Color(0xFF1F4A1A),
+    TileId.birch: Color(0xFF8FA86A),
+    TileId.ironwood: Color(0xFF3A3050),
+    TileId.pineStump: Color(0xFF6B4A2B),
+    TileId.birchStump: Color(0xFFB09A78),
+    TileId.ironwoodStump: Color(0xFF4A3A3A),
   };
 
   /// Used for ids missing from the palette so they stand out.

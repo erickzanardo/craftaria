@@ -9,7 +9,11 @@ import {
 } from "../src/index.ts";
 
 const chunksInView = (2 * CHUNK_VIEW_RADIUS + 1) ** 2;
-const openWorld = () => ({ isBlocked: () => false });
+const openWorld = () => ({
+  isBlocked: () => false,
+  tileAt: () => 0,
+  setTile: () => undefined,
+});
 
 describe("ZoneSimulation", () => {
   it("adds and removes players", () => {
@@ -27,7 +31,7 @@ describe("ZoneSimulation", () => {
   it("applies one queued input per tick and tracks the last seq", () => {
     const sim = new ZoneSimulation(openWorld());
     sim.addPlayer("a", { x: 0, y: 0 });
-    sim.queueInput("a", { seq: 1, dx: 1, dy: 0 });
+    sim.queueInput("a", { kind: "move", seq: 1, dx: 1, dy: 0 });
 
     sim.step();
 
@@ -39,12 +43,12 @@ describe("ZoneSimulation", () => {
   it("ignores stale inputs, excess inputs and unknown players", () => {
     const sim = new ZoneSimulation(openWorld());
     sim.addPlayer("a", { x: 0, y: 0 });
-    sim.queueInput("ghost", { seq: 1, dx: 1, dy: 0 });
-    sim.queueInput("a", { seq: 2, dx: 1, dy: 0 });
-    sim.queueInput("a", { seq: 2, dx: 1, dy: 0 });
-    sim.queueInput("a", { seq: 1, dx: 1, dy: 0 });
+    sim.queueInput("ghost", { kind: "move", seq: 1, dx: 1, dy: 0 });
+    sim.queueInput("a", { kind: "move", seq: 2, dx: 1, dy: 0 });
+    sim.queueInput("a", { kind: "move", seq: 2, dx: 1, dy: 0 });
+    sim.queueInput("a", { kind: "move", seq: 1, dx: 1, dy: 0 });
     for (let seq = 3; seq < 3 + MAX_QUEUED_INPUTS * 2; seq++) {
-      sim.queueInput("a", { seq, dx: 1, dy: 0 });
+      sim.queueInput("a", { kind: "move", seq, dx: 1, dy: 0 });
     }
     expect(sim.player("a")!.pendingInputs).toHaveLength(MAX_QUEUED_INPUTS);
   });
@@ -53,7 +57,7 @@ describe("ZoneSimulation", () => {
     const sim = new ZoneSimulation(openWorld());
     sim.addPlayer("a", { x: 0, y: 0 });
     for (let seq = 1; seq <= MAX_QUEUED_INPUTS; seq++) {
-      sim.queueInput("a", { seq, dx: 1, dy: 0 });
+      sim.queueInput("a", { kind: "move", seq, dx: 1, dy: 0 });
     }
 
     sim.step();
