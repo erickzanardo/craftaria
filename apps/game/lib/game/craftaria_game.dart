@@ -1,8 +1,10 @@
 import 'dart:math' as math;
 
 import 'package:craftaria/game/client_world.dart';
+import 'package:craftaria/game/components/action_progress_component.dart';
 import 'package:craftaria/game/components/player_component.dart';
 import 'package:craftaria/game/input/movement_input.dart';
+import 'package:craftaria_map/craftaria_map.dart';
 import 'package:flame/events.dart';
 import 'package:flame/game.dart';
 import 'package:flutter/services.dart';
@@ -14,7 +16,7 @@ import 'package:world_renderer/world_renderer.dart';
 const targetViewHeight = 180.0;
 
 /// Renders a [ClientWorld] and feeds it the player's input.
-class CraftariaGame extends FlameGame with KeyboardEvents {
+class CraftariaGame extends FlameGame with KeyboardEvents, TapCallbacks {
   /// Creates a [CraftariaGame].
   CraftariaGame({
     required this.clientWorld,
@@ -40,6 +42,7 @@ class CraftariaGame extends FlameGame with KeyboardEvents {
 
   PlayerComponent? _localPlayer;
   final _remotePlayers = <String, PlayerComponent>{};
+  final _chunkComponents = <ChunkCoord, List<ChunkComponent>>{};
 
   /// Components of the other players, by id.
   Map<String, PlayerComponent> get remotePlayers =>
@@ -73,6 +76,18 @@ class CraftariaGame extends FlameGame with KeyboardEvents {
   }
 
   @override
+  void onTapUp(TapUpEvent event) => tapAt(event.canvasPosition);
+
+  /// Acts on the world tile under [canvasPosition].
+  void tapAt(Vector2 canvasPosition) {
+    final point = camera.globalToLocal(canvasPosition);
+    clientWorld.interact(
+      (point.x / tileSize).floor(),
+      (point.y / tileSize).floor(),
+    );
+  }
+
+  @override
   KeyEventResult onKeyEvent(
     KeyEvent event,
     Set<LogicalKeyboardKey> keysPressed,
@@ -84,11 +99,15 @@ class CraftariaGame extends FlameGame with KeyboardEvents {
 
   void _addNewChunks() {
     for (final chunk in clientWorld.takeNewChunks()) {
-      ChunkComponent(
+      // A changed chunk is redrawn by replacing its components.
+      for (final old in _chunkComponents[chunk.coord] ?? <ChunkComponent>[]) {
+        old.removeFromParent();
+      }
+      final ground = ChunkComponent(
         chunk: chunk,
         tileRenderer: tileRenderer,
         priority: CraftariaLayers.ground,
-      ).parent = world;
+      )..parent = world;
       final overlay = ChunkComponent(
         chunk: chunk,
         tileRenderer: tileRenderer,
@@ -96,6 +115,7 @@ class CraftariaGame extends FlameGame with KeyboardEvents {
         priority: CraftariaLayers.overlay,
       );
       if (overlay.hasLayers) overlay.parent = world;
+      _chunkComponents[chunk.coord] = [ground, if (overlay.hasLayers) overlay];
     }
   }
 
@@ -107,6 +127,10 @@ class CraftariaGame extends FlameGame with KeyboardEvents {
         locate: () => clientWorld.localRenderPosition,
         color: localPlayerColor,
       )..parent = world;
+      ActionProgressComponent(
+        locate: () => clientWorld.localRenderPosition,
+        progress: () => clientWorld.actionProgress,
+      ).parent = world;
     }
 
     final visible = clientWorld.remotePlayerIds.toSet();

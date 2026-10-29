@@ -47,6 +47,36 @@ void main() {
       expect(message.move, equals(MoveInput(seq: 3, dx: 1, dy: -1)));
     });
 
+    test('sendGather sends a gather with its seq', () {
+      client.sendGather(seq: 4, tileX: -2, tileY: 7);
+      final [message] = sent();
+      expect(message.gather, equals(Gather(seq: 4, tileX: -2, tileY: 7)));
+    });
+
+    test('sendCancelAction and sendEquip', () {
+      client
+        ..sendCancelAction()
+        ..sendEquip(3);
+      final [cancel, equip] = sent();
+      expect(cancel.hasCancelAction(), isTrue);
+      expect(equip.equip.slot, equals(3));
+    });
+
+    test('debug commands', () {
+      client
+        ..sendDebugGrantItem('iron_axe', 1)
+        ..sendDebugGrantXp('woodcutting', 500);
+      final [item, xp] = sent();
+      expect(
+        item.debug.grantItem,
+        equals(GrantItem(itemId: 'iron_axe', count: 1)),
+      );
+      expect(
+        xp.debug.grantXp,
+        equals(GrantXp(skillId: 'woodcutting', amount: 500)),
+      );
+    });
+
     test('ping sends the client time', () {
       client.ping(DateTime.fromMillisecondsSinceEpoch(42));
 
