@@ -90,3 +90,13 @@ This repository is public. Never commit credentials.
 - CI runs gitleaks on every push and pull request.
 
 See [SECURITY.md](SECURITY.md) to report a vulnerability.
+
+## License
+
+- **Code**: [GNU AGPL-3.0-only](LICENSE). Modified versions, including ones
+  only run as a server, must publish their source under the same license.
+- **Art, audio and branding**: all rights reserved, see
+  [ASSETS_LICENSE.md](ASSETS_LICENSE.md). They may not be used in other
+  projects; forks must replace them.
+- **Contributing**: see [CONTRIBUTING.md](CONTRIBUTING.md). Contributors sign
+  the [CLA](CLA.md) once.
