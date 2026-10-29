@@ -2,14 +2,26 @@ import { create, fromBinary, type MessageInitShape, toBinary } from "@bufbuild/p
 import {
   ClientMessageSchema,
   ErrorCode,
+  NoticeCode,
   PROTOCOL_VERSION,
   type ServerMessage,
   ServerMessageSchema,
 } from "@craftaria/protocol";
-import { CHUNK_VIEW_RADIUS, PLAYER_SPEED, SPAWN, TICK_RATE, World, ZoneSimulation } from "@craftaria/world";
+import {
+  CHUNK_VIEW_RADIUS,
+  ITEMS,
+  PLAYER_SPEED,
+  SPAWN,
+  TICK_RATE,
+  TileId,
+  World,
+  xpForLevel,
+  ZoneSimulation,
+} from "@craftaria/world";
 import { beforeEach, describe, expect, it } from "vitest";
 import { issueGuestToken, MIN_SECRET_LENGTH } from "../src/auth.ts";
 import {
+  MAX_DEBUG_GRANT,
   CLOSE_POLICY_VIOLATION,
   CLOSE_REPLACED,
   CLOSE_UNSUPPORTED_DATA,
@@ -78,7 +90,7 @@ describe("ZoneServer", () => {
   beforeEach(() => {
     host = new FakeHost();
     const world = new World(1);
-    sim = new ZoneSimulation({ isBlocked: () => false });
+    sim = new ZoneSimulation({ isBlocked: () => false, tileAt: () => 0, setTile: () => undefined });
     server = new ZoneServer(host, sim, world, secret);
   });
 
@@ -249,5 +261,171 @@ describe("ZoneServer", () => {
   it("does not tick after restoring an empty zone", () => {
     server.restore();
     expect(host.ticking).toBe(false);
+  });
+});
+
+describe("ZoneServer woodcutting", () => {
+  let host: FakeHost;
+  let world: World;
+  let sim: ZoneSimulation;
+
+  // A pine right of the spawn tile, in a world with nothing else around.
+  const pineX = 1;
+  const pineY = 0;
+
+  const join = async (server: ZoneServer, sub = "alice") => {
+    const connection = host.connect();
+    await server.handleMessage(connection, await hello(sub));
+    return connection;
+  };
+
+  beforeEach(() => {
+    host = new FakeHost();
+    world = new World(1);
+    world.setTile(pineX, pineY, "decoration", TileId.pine);
+    sim = new ZoneSimulation(world, { random: () => 0 });
+  });
+
+  it("sends item definitions, the inventory and skills on welcome", async () => {
+    const server = new ZoneServer(host, sim, world, secret);
+    const connection = await join(server);
+    const welcome = connection.payloads("welcome")[0]?.payload.value;
+    expect(welcome).toMatchObject({
+      items: ITEMS.map(({ id, name, maxStack }) => ({ id, name, maxStack })),
+    });
+    expect(connection.payloads("inventory")[0]?.payload.value).toMatchObject({
+      equipped: "stone_axe",
+    });
+    expect(connection.payloads("skill")[0]?.payload.value).toMatchObject({
+      skillId: "woodcutting",
+      level: 1,
+      xp: 0n,
+      levelXp: 0n,
+      nextLevelXp: 80n,
+    });
+
+    // Nothing pending afterwards: the first tick sends no duplicates.
+    server.tick();
+    expect(connection.payloads("inventory")).toHaveLength(1);
+    expect(connection.payloads("skill")).toHaveLength(1);
+  });
+
+  it("requires a hello before any action", async () => {
+    const server = new ZoneServer(host, sim, world, secret);
+    for (const frame of [
+      encode({ case: "gather", value: { seq: 1, tileX: 1, tileY: 0 } }),
+      encode({ case: "cancelAction", value: {} }),
+      encode({ case: "equip", value: { slot: 0 } }),
+    ]) {
+      const connection = host.connect();
+      await server.handleMessage(connection, frame);
+      expect(connection.closed?.code).toBe(CLOSE_POLICY_VIOLATION);
+    }
+  });
+
+  it("chops a tree and streams the results", async () => {
+    const server = new ZoneServer(host, sim, world, secret);
+    const alice = await join(server);
+    const bob = await join(server, "bob");
+    server.tick();
+    alice.sent.length = 0;
+
+    await server.handleMessage(alice, encode({ case: "gather", value: { seq: 1, tileX: pineX, tileY: pineY } }));
+    server.tick();
+    expect(alice.payloads("action").at(-1)?.payload.value).toMatchObject({
+      kind: "gather",
+      tileX: pineX,
+      tileY: pineY,
+      startTick: 1,
+      durationTicks: 80,
+    });
+
+    for (let i = 0; i < 80 * 3; i++) server.tick();
+
+    expect(alice.payloads("inventory").at(-1)?.payload.value).toMatchObject({
+      slots: expect.arrayContaining([expect.objectContaining({ itemId: "pine_log", count: 3 })]),
+    });
+    expect(alice.payloads("skill").at(-1)?.payload.value).toMatchObject({ xp: 75n });
+    expect(alice.payloads("action").at(-1)?.payload.value).toMatchObject({ kind: "" });
+    expect(alice.payloads("notice").at(-1)?.payload.value).toMatchObject({
+      code: NoticeCode.DEPLETED,
+    });
+    for (const connection of [alice, bob]) {
+      expect(connection.payloads("tile")[0]?.payload.value).toMatchObject({
+        cx: 0,
+        cy: 0,
+        layer: "decoration",
+        index: pineX,
+        tileId: TileId.pineStump,
+        blocked: true,
+      });
+    }
+  });
+
+  it("does not send tile updates for chunks a player never loaded", async () => {
+    const server = new ZoneServer(host, sim, world, secret);
+    const alice = await join(server);
+    server.tick();
+    world.setTile(500, 500, "decoration", TileId.pine);
+    sim.addPlayer("far", { x: 500 * 128, y: 499 * 128 });
+    sim.queueInput("far", { kind: "gather", seq: 1, tileX: 500, tileY: 500 });
+    for (let i = 0; i < 1 + 80 * 3; i++) server.tick();
+    expect(alice.payloads("tile")).toEqual([]);
+  });
+
+  it("cancels actions and equips tools", async () => {
+    const server = new ZoneServer(host, sim, world, secret, { debugCommands: true });
+    const alice = await join(server);
+    await server.handleMessage(alice, encode({ case: "gather", value: { seq: 1, tileX: pineX, tileY: pineY } }));
+    server.tick();
+    await server.handleMessage(alice, encode({ case: "cancelAction", value: {} }));
+    expect(sim.player("alice")!.action).toBeUndefined();
+
+    await server.handleMessage(alice, encode({ case: "debug", value: { command: { case: "grantItem", value: { itemId: "bronze_axe", count: 1 } } } }));
+    await server.handleMessage(alice, encode({ case: "equip", value: { slot: 0 } }));
+    server.tick();
+    expect(alice.payloads("notice").at(-1)?.payload.value).toMatchObject({
+      code: NoticeCode.LEVEL_TOO_LOW,
+    });
+
+    await server.handleMessage(alice, encode({ case: "debug", value: { command: { case: "grantXp", value: { skillId: "woodcutting", amount: xpForLevel(20) } } } }));
+    await server.handleMessage(alice, encode({ case: "equip", value: { slot: 0 } }));
+    server.tick();
+    expect(alice.payloads("inventory").at(-1)?.payload.value).toMatchObject({
+      equipped: "bronze_axe",
+      slots: expect.arrayContaining([expect.objectContaining({ itemId: "stone_axe" })]),
+    });
+    expect(alice.payloads("skill").at(-1)?.payload.value).toMatchObject({ level: 20 });
+  });
+
+  it("caps debug grants and ignores unknown skills and empty commands", async () => {
+    const server = new ZoneServer(host, sim, world, secret, { debugCommands: true });
+    const alice = await join(server);
+    await server.handleMessage(alice, encode({ case: "debug", value: { command: { case: "grantItem", value: { itemId: "pine_log", count: 1e6 } } } }));
+    await server.handleMessage(alice, encode({ case: "debug", value: { command: { case: "grantXp", value: { skillId: "juggling", amount: 5 } } } }));
+    await server.handleMessage(alice, encode({ case: "debug", value: {} }));
+    const logs = sim.player("alice")!.inventory.slots.reduce(
+      (total, stack) => total + (stack?.itemId === "pine_log" ? stack.count : 0),
+      0,
+    );
+    expect(logs).toBe(MAX_DEBUG_GRANT);
+    expect(sim.player("alice")!.skills.xp("woodcutting")).toBe(0);
+  });
+
+  it("sends an empty equipped id when no tool is equipped", async () => {
+    const server = new ZoneServer(host, sim, world, secret);
+    const alice = await join(server);
+    sim.player("alice")!.inventory.equipped = undefined;
+    sim.grantItem("alice", "pine_log", 1);
+    server.tick();
+    expect(alice.payloads("inventory").at(-1)?.payload.value).toMatchObject({ equipped: "" });
+  });
+
+  it("ignores debug commands unless enabled", async () => {
+    const server = new ZoneServer(host, sim, world, secret);
+    const alice = await join(server);
+    await server.handleMessage(alice, encode({ case: "debug", value: { command: { case: "grantXp", value: { skillId: "woodcutting", amount: 500 } } } }));
+    expect(sim.player("alice")!.skills.xp("woodcutting")).toBe(0);
+    expect(alice.closed).toBeUndefined();
   });
 });

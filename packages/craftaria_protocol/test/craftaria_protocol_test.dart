@@ -3,8 +3,8 @@ import 'package:test/test.dart';
 
 void main() {
   group('craftaria_protocol', () {
-    test('protocolVersion is 1', () {
-      expect(protocolVersion, equals(1));
+    test('protocolVersion is 2', () {
+      expect(protocolVersion, equals(2));
     });
 
     test('ClientMessage round trips through the binary format', () {

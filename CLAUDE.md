@@ -2,7 +2,9 @@
 
 Read [docs/decisions.md](docs/decisions.md) for why things are the way they
 are and [docs/roadmap.md](docs/roadmap.md) for current state and next steps.
-Update both when that changes.
+Update both when that changes. Game rules and mechanics (skills, items,
+numbers) live in [spec/](spec/README.md); change the spec and the code
+together.
 
 - **Never create graphical assets** (sprites, tiles, icons, placeholder or
   golden images). All art is drawn by the author. Render with debug shapes and
@@ -26,6 +28,10 @@ Update both when that changes.
   (`ZoneServer`, `ZoneSimulation`).
 - Run pnpm as `npx pnpm@10.34.9 …` (the `packageManager` version); update
   the docs if that version changes.
+- **Game content data** (items, skills, trees, XP curve) is owned by the
+  server (`server/world/src/skills/`, `server/world/src/items/`) and must
+  match `spec/`. The client gets display data from the server and never
+  duplicates the tables.
 - Platform-specific code hides behind interfaces (`GameTransport`,
   `TokenStorage`, `MovementInput`) so mobile can be added later.
 

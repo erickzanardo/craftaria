@@ -41,6 +41,10 @@ class PredictedPlayer {
     return input;
   }
 
+  /// Takes the next sequence number for a non-movement input (such as a
+  /// gather) that must stay ordered with the moves.
+  int reserveSeq() => ++_seq;
+
   /// Marks a tick without movement, so render interpolation settles.
   void hold() => _previous = _position;
 

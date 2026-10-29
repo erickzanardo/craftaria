@@ -155,6 +155,38 @@ class MapChunk extends Equatable {
     return collision[byte] & (1 << (index & 7)) != 0;
   }
 
+  /// A copy with tile [index] of the layer named [layer] set to [tileId] and
+  /// its collision bit set to [blocked]. A missing layer is left alone.
+  MapChunk withTile({
+    required String layer,
+    required int index,
+    required int tileId,
+    required bool blocked,
+  }) {
+    final bits = Uint8List.fromList(collision);
+    final mask = 1 << (index & 7);
+    bits[index >> 3] = blocked
+        ? bits[index >> 3] | mask
+        : bits[index >> 3] & ~mask;
+    return MapChunk(
+      coord: coord,
+      layers: [
+        for (final current in layers)
+          if (current.name == layer)
+            ChunkLayer(
+              name: current.name,
+              tiles: List.of(current.tiles)..[index] = tileId,
+              aboveEntities: current.aboveEntities,
+            )
+          else
+            current,
+      ],
+      collision: bits,
+      entities: entities,
+      tileStates: tileStates,
+    );
+  }
+
   /// Converts to the protobuf representation.
   pb.Chunk toProto() => pb.Chunk(
     cx: coord.cx,

@@ -21,6 +21,16 @@ void main() {
       expect(player.pending, hasLength(2));
     });
 
+    test('reserveSeq keeps seqs increasing across moves', () {
+      final player = PredictedPlayer(
+        position: const Position(0, 0),
+        isBlocked: _open,
+      )..apply(const MoveIntent(1, 0));
+      expect(player.reserveSeq(), equals(2));
+      expect(player.apply(const MoveIntent(1, 0)).seq, equals(3));
+      expect(player.pending, hasLength(2));
+    });
+
     test('hold settles the previous position', () {
       final player =
           PredictedPlayer(position: const Position(0, 0), isBlocked: _open)

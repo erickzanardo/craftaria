@@ -62,6 +62,7 @@ export class Zone extends DurableObject<Env> {
       new ZoneSimulation(world),
       world,
       env.AUTH_SECRET ?? "",
+      { debugCommands: env.DEBUG_COMMANDS === "1" },
     );
     this.#server.restore();
   }

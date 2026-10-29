@@ -7,7 +7,12 @@ export const TileId = {
   sand: 2,
   water: 3,
   stone: 4,
-  tree: 16,
+  pine: 16,
+  birch: 17,
+  ironwood: 18,
+  pineStump: 19,
+  birchStump: 20,
+  ironwoodStump: 21,
 } as const;
 
 export type TileId = (typeof TileId)[keyof typeof TileId];
@@ -15,7 +20,12 @@ export type TileId = (typeof TileId)[keyof typeof TileId];
 const solidTiles: ReadonlySet<number> = new Set([
   TileId.water,
   TileId.stone,
-  TileId.tree,
+  TileId.pine,
+  TileId.birch,
+  TileId.ironwood,
+  TileId.pineStump,
+  TileId.birchStump,
+  TileId.ironwoodStump,
 ]);
 
 export function isSolidTile(id: number): boolean {

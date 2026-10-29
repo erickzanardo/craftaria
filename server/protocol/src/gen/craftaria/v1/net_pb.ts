@@ -12,7 +12,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file craftaria/v1/net.proto.
  */
 export const file_craftaria_v1_net: GenFile = /*@__PURE__*/
-  fileDesc("ChZjcmFmdGFyaWEvdjEvbmV0LnByb3RvEgxjcmFmdGFyaWEudjEiHAoEVmVjMhIJCgF4GAEgASgREgkKAXkYAiABKBEijQEKDUNsaWVudE1lc3NhZ2USJAoFaGVsbG8YASABKAsyEy5jcmFmdGFyaWEudjEuSGVsbG9IABInCgRtb3ZlGAIgASgLMhcuY3JhZnRhcmlhLnYxLk1vdmVJbnB1dEgAEiIKBHBpbmcYAyABKAsyEi5jcmFmdGFyaWEudjEuUGluZ0gAQgkKB3BheWxvYWQiMAoFSGVsbG8SDQoFdG9rZW4YASABKAkSGAoQcHJvdG9jb2xfdmVyc2lvbhgCIAEoDSIwCglNb3ZlSW5wdXQSCwoDc2VxGAEgASgNEgoKAmR4GAIgASgREgoKAmR5GAMgASgRIh4KBFBpbmcSFgoOY2xpZW50X3RpbWVfbXMYASABKAQi6gEKDVNlcnZlck1lc3NhZ2USKAoHd2VsY29tZRgBIAEoCzIVLmNyYWZ0YXJpYS52MS5XZWxjb21lSAASKgoIc25hcHNob3QYAiABKAsyFi5jcmFmdGFyaWEudjEuU25hcHNob3RIABIoCgVjaHVuaxgDIAEoCzIXLmNyYWZ0YXJpYS52MS5DaHVua0RhdGFIABIiCgRwb25nGAQgASgLMhIuY3JhZnRhcmlhLnYxLlBvbmdIABIqCgVlcnJvchgFIAEoCzIZLmNyYWZ0YXJpYS52MS5TZXJ2ZXJFcnJvckgAQgkKB3BheWxvYWQiUgoHV2VsY29tZRIRCglwbGF5ZXJfaWQYASABKAkSEQoJdGlja19yYXRlGAIgASgNEiEKBXNwYXduGAMgASgLMhIuY3JhZnRhcmlhLnYxLlZlYzIiXQoIU25hcHNob3QSDAoEdGljaxgBIAEoDRIWCg5sYXN0X2lucHV0X3NlcRgCIAEoDRIrCghlbnRpdGllcxgDIAMoCzIZLmNyYWZ0YXJpYS52MS5FbnRpdHlTdGF0ZSI/CgtFbnRpdHlTdGF0ZRIKCgJpZBgBIAEoCRIkCghwb3NpdGlvbhgCIAEoCzISLmNyYWZ0YXJpYS52MS5WZWMyIi8KCUNodW5rRGF0YRIiCgVjaHVuaxgBIAEoCzITLmNyYWZ0YXJpYS52MS5DaHVuayI2CgRQb25nEhYKDmNsaWVudF90aW1lX21zGAEgASgEEhYKDnNlcnZlcl90aW1lX21zGAIgASgEIkUKC1NlcnZlckVycm9yEiUKBGNvZGUYASABKA4yFy5jcmFmdGFyaWEudjEuRXJyb3JDb2RlEg8KB21lc3NhZ2UYAiABKAkqfwoJRXJyb3JDb2RlEhoKFkVSUk9SX0NPREVfVU5TUEVDSUZJRUQQABIbChdFUlJPUl9DT0RFX1VOQVVUSE9SSVpFRBABEiAKHEVSUk9SX0NPREVfUFJPVE9DT0xfTUlTTUFUQ0gQAhIXChNFUlJPUl9DT0RFX1JFUExBQ0VEEANiBnByb3RvMw", [file_craftaria_v1_map]);
+  fileDesc("ChZjcmFmdGFyaWEvdjEvbmV0LnByb3RvEgxjcmFmdGFyaWEudjEiHAoEVmVjMhIJCgF4GAEgASgREgkKAXkYAiABKBEiwQIKDUNsaWVudE1lc3NhZ2USJAoFaGVsbG8YASABKAsyEy5jcmFmdGFyaWEudjEuSGVsbG9IABInCgRtb3ZlGAIgASgLMhcuY3JhZnRhcmlhLnYxLk1vdmVJbnB1dEgAEiIKBHBpbmcYAyABKAsyEi5jcmFmdGFyaWEudjEuUGluZ0gAEiYKBmdhdGhlchgEIAEoCzIULmNyYWZ0YXJpYS52MS5HYXRoZXJIABIzCg1jYW5jZWxfYWN0aW9uGAUgASgLMhouY3JhZnRhcmlhLnYxLkNhbmNlbEFjdGlvbkgAEigKBWVxdWlwGAYgASgLMhcuY3JhZnRhcmlhLnYxLkVxdWlwSXRlbUgAEisKBWRlYnVnGAcgASgLMhouY3JhZnRhcmlhLnYxLkRlYnVnQ29tbWFuZEgAQgkKB3BheWxvYWQiMAoFSGVsbG8SDQoFdG9rZW4YASABKAkSGAoQcHJvdG9jb2xfdmVyc2lvbhgCIAEoDSIwCglNb3ZlSW5wdXQSCwoDc2VxGAEgASgNEgoKAmR4GAIgASgREgoKAmR5GAMgASgRIh4KBFBpbmcSFgoOY2xpZW50X3RpbWVfbXMYASABKAQiNQoGR2F0aGVyEgsKA3NlcRgBIAEoDRIOCgZ0aWxlX3gYAiABKBESDgoGdGlsZV95GAMgASgRIg4KDENhbmNlbEFjdGlvbiIZCglFcXVpcEl0ZW0SDAoEc2xvdBgBIAEoDSJzCgxEZWJ1Z0NvbW1hbmQSLQoKZ3JhbnRfaXRlbRgBIAEoCzIXLmNyYWZ0YXJpYS52MS5HcmFudEl0ZW1IABIpCghncmFudF94cBgCIAEoCzIVLmNyYWZ0YXJpYS52MS5HcmFudFhwSABCCQoHY29tbWFuZCIrCglHcmFudEl0ZW0SDwoHaXRlbV9pZBgBIAEoCRINCgVjb3VudBgCIAEoDSIrCgdHcmFudFhwEhAKCHNraWxsX2lkGAEgASgJEg4KBmFtb3VudBgCIAEoDSLJAwoNU2VydmVyTWVzc2FnZRIoCgd3ZWxjb21lGAEgASgLMhUuY3JhZnRhcmlhLnYxLldlbGNvbWVIABIqCghzbmFwc2hvdBgCIAEoCzIWLmNyYWZ0YXJpYS52MS5TbmFwc2hvdEgAEigKBWNodW5rGAMgASgLMhcuY3JhZnRhcmlhLnYxLkNodW5rRGF0YUgAEiIKBHBvbmcYBCABKAsyEi5jcmFmdGFyaWEudjEuUG9uZ0gAEioKBWVycm9yGAUgASgLMhkuY3JhZnRhcmlhLnYxLlNlcnZlckVycm9ySAASMgoJaW52ZW50b3J5GAYgASgLMh0uY3JhZnRhcmlhLnYxLkludmVudG9yeVVwZGF0ZUgAEioKBXNraWxsGAcgASgLMhkuY3JhZnRhcmlhLnYxLlNraWxsVXBkYXRlSAASKwoGYWN0aW9uGAggASgLMhkuY3JhZnRhcmlhLnYxLkFjdGlvblN0YXRlSAASKAoEdGlsZRgJIAEoCzIYLmNyYWZ0YXJpYS52MS5UaWxlVXBkYXRlSAASJgoGbm90aWNlGAogASgLMhQuY3JhZnRhcmlhLnYxLk5vdGljZUgAQgkKB3BheWxvYWQifwoHV2VsY29tZRIRCglwbGF5ZXJfaWQYASABKAkSEQoJdGlja19yYXRlGAIgASgNEiEKBXNwYXduGAMgASgLMhIuY3JhZnRhcmlhLnYxLlZlYzISKwoFaXRlbXMYBCADKAsyHC5jcmFmdGFyaWEudjEuSXRlbURlZmluaXRpb24iPQoOSXRlbURlZmluaXRpb24SCgoCaWQYASABKAkSDAoEbmFtZRgCIAEoCRIRCgltYXhfc3RhY2sYAyABKA0iSwoPSW52ZW50b3J5VXBkYXRlEiYKBXNsb3RzGAEgAygLMhcuY3JhZnRhcmlhLnYxLkl0ZW1TdGFjaxIQCghlcXVpcHBlZBgCIAEoCSIrCglJdGVtU3RhY2sSDwoHaXRlbV9pZBgBIAEoCRINCgVjb3VudBgCIAEoDSJjCgtTa2lsbFVwZGF0ZRIQCghza2lsbF9pZBgBIAEoCRINCgVsZXZlbBgCIAEoDRIKCgJ4cBgDIAEoBBIQCghsZXZlbF94cBgEIAEoBBIVCg1uZXh0X2xldmVsX3hwGAUgASgEImcKC0FjdGlvblN0YXRlEgwKBGtpbmQYASABKAkSDgoGdGlsZV94GAIgASgREg4KBnRpbGVfeRgDIAEoERISCgpzdGFydF90aWNrGAQgASgNEhYKDmR1cmF0aW9uX3RpY2tzGAUgASgNImQKClRpbGVVcGRhdGUSCgoCY3gYASABKBESCgoCY3kYAiABKBESDQoFbGF5ZXIYAyABKAkSDQoFaW5kZXgYBCABKA0SDwoHdGlsZV9pZBgFIAEoDRIPCgdibG9ja2VkGAYgASgIIjAKBk5vdGljZRImCgRjb2RlGAEgASgOMhguY3JhZnRhcmlhLnYxLk5vdGljZUNvZGUiXQoIU25hcHNob3QSDAoEdGljaxgBIAEoDRIWCg5sYXN0X2lucHV0X3NlcRgCIAEoDRIrCghlbnRpdGllcxgDIAMoCzIZLmNyYWZ0YXJpYS52MS5FbnRpdHlTdGF0ZSI/CgtFbnRpdHlTdGF0ZRIKCgJpZBgBIAEoCRIkCghwb3NpdGlvbhgCIAEoCzISLmNyYWZ0YXJpYS52MS5WZWMyIi8KCUNodW5rRGF0YRIiCgVjaHVuaxgBIAEoCzITLmNyYWZ0YXJpYS52MS5DaHVuayI2CgRQb25nEhYKDmNsaWVudF90aW1lX21zGAEgASgEEhYKDnNlcnZlcl90aW1lX21zGAIgASgEIkUKC1NlcnZlckVycm9yEiUKBGNvZGUYASABKA4yFy5jcmFmdGFyaWEudjEuRXJyb3JDb2RlEg8KB21lc3NhZ2UYAiABKAkq+wEKCk5vdGljZUNvZGUSGwoXTk9USUNFX0NPREVfVU5TUEVDSUZJRUQQABIhCh1OT1RJQ0VfQ09ERV9OT1RISU5HX1RPX0dBVEhFUhABEhwKGE5PVElDRV9DT0RFX09VVF9PRl9SRUFDSBACEhcKE05PVElDRV9DT0RFX05PX1RPT0wQAxIdChlOT1RJQ0VfQ09ERV9UT09MX1RPT19XRUFLEAQSHQoZTk9USUNFX0NPREVfTEVWRUxfVE9PX0xPVxAFEh4KGk5PVElDRV9DT0RFX0lOVkVOVE9SWV9GVUxMEAYSGAoUTk9USUNFX0NPREVfREVQTEVURUQQByp/CglFcnJvckNvZGUSGgoWRVJST1JfQ09ERV9VTlNQRUNJRklFRBAAEhsKF0VSUk9SX0NPREVfVU5BVVRIT1JJWkVEEAESIAocRVJST1JfQ09ERV9QUk9UT0NPTF9NSVNNQVRDSBACEhcKE0VSUk9SX0NPREVfUkVQTEFDRUQQA2IGcHJvdG8z", [file_craftaria_v1_map]);
 
 /**
  * Coordinates on the wire are integer sub-pixels (SUBPIXELS_PER_PIXEL = 16)
@@ -66,6 +66,30 @@ export type ClientMessage = Message<"craftaria.v1.ClientMessage"> & {
      */
     value: Ping;
     case: "ping";
+  } | {
+    /**
+     * @generated from field: craftaria.v1.Gather gather = 4;
+     */
+    value: Gather;
+    case: "gather";
+  } | {
+    /**
+     * @generated from field: craftaria.v1.CancelAction cancel_action = 5;
+     */
+    value: CancelAction;
+    case: "cancelAction";
+  } | {
+    /**
+     * @generated from field: craftaria.v1.EquipItem equip = 6;
+     */
+    value: EquipItem;
+    case: "equip";
+  } | {
+    /**
+     * @generated from field: craftaria.v1.DebugCommand debug = 7;
+     */
+    value: DebugCommand;
+    case: "debug";
   } | { case: undefined; value?: undefined };
 };
 
@@ -148,6 +172,146 @@ export const PingSchema: GenMessage<Ping> = /*@__PURE__*/
   messageDesc(file_craftaria_v1_net, 4);
 
 /**
+ * Start gathering from the resource node on a world tile. Shares the
+ * MoveInput seq space so the server applies it after the moves sent before
+ * it.
+ *
+ * @generated from message craftaria.v1.Gather
+ */
+export type Gather = Message<"craftaria.v1.Gather"> & {
+  /**
+   * @generated from field: uint32 seq = 1;
+   */
+  seq: number;
+
+  /**
+   * @generated from field: sint32 tile_x = 2;
+   */
+  tileX: number;
+
+  /**
+   * @generated from field: sint32 tile_y = 3;
+   */
+  tileY: number;
+};
+
+/**
+ * Describes the message craftaria.v1.Gather.
+ * Use `create(GatherSchema)` to create a new message.
+ */
+export const GatherSchema: GenMessage<Gather> = /*@__PURE__*/
+  messageDesc(file_craftaria_v1_net, 5);
+
+/**
+ * Stop the current action.
+ *
+ * @generated from message craftaria.v1.CancelAction
+ */
+export type CancelAction = Message<"craftaria.v1.CancelAction"> & {
+};
+
+/**
+ * Describes the message craftaria.v1.CancelAction.
+ * Use `create(CancelActionSchema)` to create a new message.
+ */
+export const CancelActionSchema: GenMessage<CancelAction> = /*@__PURE__*/
+  messageDesc(file_craftaria_v1_net, 6);
+
+/**
+ * Equip the tool in an inventory slot.
+ *
+ * @generated from message craftaria.v1.EquipItem
+ */
+export type EquipItem = Message<"craftaria.v1.EquipItem"> & {
+  /**
+   * @generated from field: uint32 slot = 1;
+   */
+  slot: number;
+};
+
+/**
+ * Describes the message craftaria.v1.EquipItem.
+ * Use `create(EquipItemSchema)` to create a new message.
+ */
+export const EquipItemSchema: GenMessage<EquipItem> = /*@__PURE__*/
+  messageDesc(file_craftaria_v1_net, 7);
+
+/**
+ * Development only: ignored unless the server enables debug commands.
+ *
+ * @generated from message craftaria.v1.DebugCommand
+ */
+export type DebugCommand = Message<"craftaria.v1.DebugCommand"> & {
+  /**
+   * @generated from oneof craftaria.v1.DebugCommand.command
+   */
+  command: {
+    /**
+     * @generated from field: craftaria.v1.GrantItem grant_item = 1;
+     */
+    value: GrantItem;
+    case: "grantItem";
+  } | {
+    /**
+     * @generated from field: craftaria.v1.GrantXp grant_xp = 2;
+     */
+    value: GrantXp;
+    case: "grantXp";
+  } | { case: undefined; value?: undefined };
+};
+
+/**
+ * Describes the message craftaria.v1.DebugCommand.
+ * Use `create(DebugCommandSchema)` to create a new message.
+ */
+export const DebugCommandSchema: GenMessage<DebugCommand> = /*@__PURE__*/
+  messageDesc(file_craftaria_v1_net, 8);
+
+/**
+ * @generated from message craftaria.v1.GrantItem
+ */
+export type GrantItem = Message<"craftaria.v1.GrantItem"> & {
+  /**
+   * @generated from field: string item_id = 1;
+   */
+  itemId: string;
+
+  /**
+   * @generated from field: uint32 count = 2;
+   */
+  count: number;
+};
+
+/**
+ * Describes the message craftaria.v1.GrantItem.
+ * Use `create(GrantItemSchema)` to create a new message.
+ */
+export const GrantItemSchema: GenMessage<GrantItem> = /*@__PURE__*/
+  messageDesc(file_craftaria_v1_net, 9);
+
+/**
+ * @generated from message craftaria.v1.GrantXp
+ */
+export type GrantXp = Message<"craftaria.v1.GrantXp"> & {
+  /**
+   * @generated from field: string skill_id = 1;
+   */
+  skillId: string;
+
+  /**
+   * @generated from field: uint32 amount = 2;
+   */
+  amount: number;
+};
+
+/**
+ * Describes the message craftaria.v1.GrantXp.
+ * Use `create(GrantXpSchema)` to create a new message.
+ */
+export const GrantXpSchema: GenMessage<GrantXp> = /*@__PURE__*/
+  messageDesc(file_craftaria_v1_net, 10);
+
+/**
  * Every frame sent by the server.
  *
  * @generated from message craftaria.v1.ServerMessage
@@ -186,6 +350,36 @@ export type ServerMessage = Message<"craftaria.v1.ServerMessage"> & {
      */
     value: ServerError;
     case: "error";
+  } | {
+    /**
+     * @generated from field: craftaria.v1.InventoryUpdate inventory = 6;
+     */
+    value: InventoryUpdate;
+    case: "inventory";
+  } | {
+    /**
+     * @generated from field: craftaria.v1.SkillUpdate skill = 7;
+     */
+    value: SkillUpdate;
+    case: "skill";
+  } | {
+    /**
+     * @generated from field: craftaria.v1.ActionState action = 8;
+     */
+    value: ActionState;
+    case: "action";
+  } | {
+    /**
+     * @generated from field: craftaria.v1.TileUpdate tile = 9;
+     */
+    value: TileUpdate;
+    case: "tile";
+  } | {
+    /**
+     * @generated from field: craftaria.v1.Notice notice = 10;
+     */
+    value: Notice;
+    case: "notice";
   } | { case: undefined; value?: undefined };
 };
 
@@ -194,7 +388,7 @@ export type ServerMessage = Message<"craftaria.v1.ServerMessage"> & {
  * Use `create(ServerMessageSchema)` to create a new message.
  */
 export const ServerMessageSchema: GenMessage<ServerMessage> = /*@__PURE__*/
-  messageDesc(file_craftaria_v1_net, 5);
+  messageDesc(file_craftaria_v1_net, 11);
 
 /**
  * @generated from message craftaria.v1.Welcome
@@ -214,6 +408,13 @@ export type Welcome = Message<"craftaria.v1.Welcome"> & {
    * @generated from field: craftaria.v1.Vec2 spawn = 3;
    */
   spawn?: Vec2 | undefined;
+
+  /**
+   * Display data for every item, so the client never hardcodes content.
+   *
+   * @generated from field: repeated craftaria.v1.ItemDefinition items = 4;
+   */
+  items: ItemDefinition[];
 };
 
 /**
@@ -221,7 +422,237 @@ export type Welcome = Message<"craftaria.v1.Welcome"> & {
  * Use `create(WelcomeSchema)` to create a new message.
  */
 export const WelcomeSchema: GenMessage<Welcome> = /*@__PURE__*/
-  messageDesc(file_craftaria_v1_net, 6);
+  messageDesc(file_craftaria_v1_net, 12);
+
+/**
+ * @generated from message craftaria.v1.ItemDefinition
+ */
+export type ItemDefinition = Message<"craftaria.v1.ItemDefinition"> & {
+  /**
+   * Stable item id, e.g. "pine_log".
+   *
+   * @generated from field: string id = 1;
+   */
+  id: string;
+
+  /**
+   * @generated from field: string name = 2;
+   */
+  name: string;
+
+  /**
+   * @generated from field: uint32 max_stack = 3;
+   */
+  maxStack: number;
+};
+
+/**
+ * Describes the message craftaria.v1.ItemDefinition.
+ * Use `create(ItemDefinitionSchema)` to create a new message.
+ */
+export const ItemDefinitionSchema: GenMessage<ItemDefinition> = /*@__PURE__*/
+  messageDesc(file_craftaria_v1_net, 13);
+
+/**
+ * The player's whole inventory, sent when it changes.
+ *
+ * @generated from message craftaria.v1.InventoryUpdate
+ */
+export type InventoryUpdate = Message<"craftaria.v1.InventoryUpdate"> & {
+  /**
+   * One entry per slot; empty slots have an empty item_id.
+   *
+   * @generated from field: repeated craftaria.v1.ItemStack slots = 1;
+   */
+  slots: ItemStack[];
+
+  /**
+   * Item id of the equipped tool, empty when none.
+   *
+   * @generated from field: string equipped = 2;
+   */
+  equipped: string;
+};
+
+/**
+ * Describes the message craftaria.v1.InventoryUpdate.
+ * Use `create(InventoryUpdateSchema)` to create a new message.
+ */
+export const InventoryUpdateSchema: GenMessage<InventoryUpdate> = /*@__PURE__*/
+  messageDesc(file_craftaria_v1_net, 14);
+
+/**
+ * @generated from message craftaria.v1.ItemStack
+ */
+export type ItemStack = Message<"craftaria.v1.ItemStack"> & {
+  /**
+   * @generated from field: string item_id = 1;
+   */
+  itemId: string;
+
+  /**
+   * @generated from field: uint32 count = 2;
+   */
+  count: number;
+};
+
+/**
+ * Describes the message craftaria.v1.ItemStack.
+ * Use `create(ItemStackSchema)` to create a new message.
+ */
+export const ItemStackSchema: GenMessage<ItemStack> = /*@__PURE__*/
+  messageDesc(file_craftaria_v1_net, 15);
+
+/**
+ * Progress in one skill, sent when it changes.
+ *
+ * @generated from message craftaria.v1.SkillUpdate
+ */
+export type SkillUpdate = Message<"craftaria.v1.SkillUpdate"> & {
+  /**
+   * Stable skill id, e.g. "woodcutting".
+   *
+   * @generated from field: string skill_id = 1;
+   */
+  skillId: string;
+
+  /**
+   * @generated from field: uint32 level = 2;
+   */
+  level: number;
+
+  /**
+   * @generated from field: uint64 xp = 3;
+   */
+  xp: bigint;
+
+  /**
+   * Total XP at which the current level started and the next one starts.
+   *
+   * @generated from field: uint64 level_xp = 4;
+   */
+  levelXp: bigint;
+
+  /**
+   * @generated from field: uint64 next_level_xp = 5;
+   */
+  nextLevelXp: bigint;
+};
+
+/**
+ * Describes the message craftaria.v1.SkillUpdate.
+ * Use `create(SkillUpdateSchema)` to create a new message.
+ */
+export const SkillUpdateSchema: GenMessage<SkillUpdate> = /*@__PURE__*/
+  messageDesc(file_craftaria_v1_net, 16);
+
+/**
+ * The player's current action. Idle when kind is empty.
+ *
+ * @generated from message craftaria.v1.ActionState
+ */
+export type ActionState = Message<"craftaria.v1.ActionState"> & {
+  /**
+   * e.g. "gather".
+   *
+   * @generated from field: string kind = 1;
+   */
+  kind: string;
+
+  /**
+   * @generated from field: sint32 tile_x = 2;
+   */
+  tileX: number;
+
+  /**
+   * @generated from field: sint32 tile_y = 3;
+   */
+  tileY: number;
+
+  /**
+   * Server tick the current cycle started on, and how long it takes.
+   *
+   * @generated from field: uint32 start_tick = 4;
+   */
+  startTick: number;
+
+  /**
+   * @generated from field: uint32 duration_ticks = 5;
+   */
+  durationTicks: number;
+};
+
+/**
+ * Describes the message craftaria.v1.ActionState.
+ * Use `create(ActionStateSchema)` to create a new message.
+ */
+export const ActionStateSchema: GenMessage<ActionState> = /*@__PURE__*/
+  messageDesc(file_craftaria_v1_net, 17);
+
+/**
+ * One edited tile in a chunk the player has loaded.
+ *
+ * @generated from message craftaria.v1.TileUpdate
+ */
+export type TileUpdate = Message<"craftaria.v1.TileUpdate"> & {
+  /**
+   * @generated from field: sint32 cx = 1;
+   */
+  cx: number;
+
+  /**
+   * @generated from field: sint32 cy = 2;
+   */
+  cy: number;
+
+  /**
+   * @generated from field: string layer = 3;
+   */
+  layer: string;
+
+  /**
+   * Row-major tile index within the chunk.
+   *
+   * @generated from field: uint32 index = 4;
+   */
+  index: number;
+
+  /**
+   * @generated from field: uint32 tile_id = 5;
+   */
+  tileId: number;
+
+  /**
+   * @generated from field: bool blocked = 6;
+   */
+  blocked: boolean;
+};
+
+/**
+ * Describes the message craftaria.v1.TileUpdate.
+ * Use `create(TileUpdateSchema)` to create a new message.
+ */
+export const TileUpdateSchema: GenMessage<TileUpdate> = /*@__PURE__*/
+  messageDesc(file_craftaria_v1_net, 18);
+
+/**
+ * Something the player should be told, e.g. why gathering stopped.
+ *
+ * @generated from message craftaria.v1.Notice
+ */
+export type Notice = Message<"craftaria.v1.Notice"> & {
+  /**
+   * @generated from field: craftaria.v1.NoticeCode code = 1;
+   */
+  code: NoticeCode;
+};
+
+/**
+ * Describes the message craftaria.v1.Notice.
+ * Use `create(NoticeSchema)` to create a new message.
+ */
+export const NoticeSchema: GenMessage<Notice> = /*@__PURE__*/
+  messageDesc(file_craftaria_v1_net, 19);
 
 /**
  * Full state of the entities around the player. Entities missing from a
@@ -253,7 +684,7 @@ export type Snapshot = Message<"craftaria.v1.Snapshot"> & {
  * Use `create(SnapshotSchema)` to create a new message.
  */
 export const SnapshotSchema: GenMessage<Snapshot> = /*@__PURE__*/
-  messageDesc(file_craftaria_v1_net, 7);
+  messageDesc(file_craftaria_v1_net, 20);
 
 /**
  * @generated from message craftaria.v1.EntityState
@@ -275,7 +706,7 @@ export type EntityState = Message<"craftaria.v1.EntityState"> & {
  * Use `create(EntityStateSchema)` to create a new message.
  */
 export const EntityStateSchema: GenMessage<EntityState> = /*@__PURE__*/
-  messageDesc(file_craftaria_v1_net, 8);
+  messageDesc(file_craftaria_v1_net, 21);
 
 /**
  * @generated from message craftaria.v1.ChunkData
@@ -292,7 +723,7 @@ export type ChunkData = Message<"craftaria.v1.ChunkData"> & {
  * Use `create(ChunkDataSchema)` to create a new message.
  */
 export const ChunkDataSchema: GenMessage<ChunkData> = /*@__PURE__*/
-  messageDesc(file_craftaria_v1_net, 9);
+  messageDesc(file_craftaria_v1_net, 22);
 
 /**
  * @generated from message craftaria.v1.Pong
@@ -314,7 +745,7 @@ export type Pong = Message<"craftaria.v1.Pong"> & {
  * Use `create(PongSchema)` to create a new message.
  */
 export const PongSchema: GenMessage<Pong> = /*@__PURE__*/
-  messageDesc(file_craftaria_v1_net, 10);
+  messageDesc(file_craftaria_v1_net, 23);
 
 /**
  * @generated from message craftaria.v1.ServerError
@@ -336,7 +767,58 @@ export type ServerError = Message<"craftaria.v1.ServerError"> & {
  * Use `create(ServerErrorSchema)` to create a new message.
  */
 export const ServerErrorSchema: GenMessage<ServerError> = /*@__PURE__*/
-  messageDesc(file_craftaria_v1_net, 11);
+  messageDesc(file_craftaria_v1_net, 24);
+
+/**
+ * @generated from enum craftaria.v1.NoticeCode
+ */
+export enum NoticeCode {
+  /**
+   * @generated from enum value: NOTICE_CODE_UNSPECIFIED = 0;
+   */
+  UNSPECIFIED = 0,
+
+  /**
+   * @generated from enum value: NOTICE_CODE_NOTHING_TO_GATHER = 1;
+   */
+  NOTHING_TO_GATHER = 1,
+
+  /**
+   * @generated from enum value: NOTICE_CODE_OUT_OF_REACH = 2;
+   */
+  OUT_OF_REACH = 2,
+
+  /**
+   * @generated from enum value: NOTICE_CODE_NO_TOOL = 3;
+   */
+  NO_TOOL = 3,
+
+  /**
+   * @generated from enum value: NOTICE_CODE_TOOL_TOO_WEAK = 4;
+   */
+  TOOL_TOO_WEAK = 4,
+
+  /**
+   * @generated from enum value: NOTICE_CODE_LEVEL_TOO_LOW = 5;
+   */
+  LEVEL_TOO_LOW = 5,
+
+  /**
+   * @generated from enum value: NOTICE_CODE_INVENTORY_FULL = 6;
+   */
+  INVENTORY_FULL = 6,
+
+  /**
+   * @generated from enum value: NOTICE_CODE_DEPLETED = 7;
+   */
+  DEPLETED = 7,
+}
+
+/**
+ * Describes the enum craftaria.v1.NoticeCode.
+ */
+export const NoticeCodeSchema: GenEnum<NoticeCode> = /*@__PURE__*/
+  enumDesc(file_craftaria_v1_net, 0);
 
 /**
  * @generated from enum craftaria.v1.ErrorCode
@@ -367,5 +849,5 @@ export enum ErrorCode {
  * Describes the enum craftaria.v1.ErrorCode.
  */
 export const ErrorCodeSchema: GenEnum<ErrorCode> = /*@__PURE__*/
-  enumDesc(file_craftaria_v1_net, 0);
+  enumDesc(file_craftaria_v1_net, 1);
 

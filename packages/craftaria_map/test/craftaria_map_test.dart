@@ -58,7 +58,24 @@ void main() {
       expect(TileId.isSolid(TileId.empty), isFalse);
       expect(TileId.isSolid(TileId.water), isTrue);
       expect(TileId.isSolid(TileId.stone), isTrue);
-      expect(TileId.isSolid(TileId.tree), isTrue);
+      for (final id in [
+        TileId.pine,
+        TileId.birch,
+        TileId.ironwood,
+        TileId.pineStump,
+        TileId.birchStump,
+        TileId.ironwoodStump,
+      ]) {
+        expect(TileId.isSolid(id), isTrue);
+      }
+    });
+
+    test('isTree', () {
+      expect(TileId.isTree(TileId.pine), isTrue);
+      expect(TileId.isTree(TileId.birch), isTrue);
+      expect(TileId.isTree(TileId.ironwood), isTrue);
+      expect(TileId.isTree(TileId.pineStump), isFalse);
+      expect(TileId.isTree(TileId.grass), isFalse);
     });
   });
 
@@ -87,6 +104,30 @@ void main() {
       expect(chunk.isBlocked(5, 5), isFalse);
     });
 
+    test('withTile changes one tile and its collision bit', () {
+      final chunk = _chunk();
+      final blocked = chunk.withTile(
+        layer: 'overlay',
+        index: 5,
+        tileId: 16,
+        blocked: true,
+      );
+      expect(blocked.layers[1].tiles[5], equals(16));
+      expect(blocked.layers[0], equals(chunk.layers[0]));
+      expect(blocked.isBlocked(5, 0), isTrue);
+      expect(chunk.layers[1].tiles[5], equals(0));
+      expect(blocked.entities, equals(chunk.entities));
+      expect(blocked.tileStates, equals(chunk.tileStates));
+
+      final cleared = blocked.withTile(
+        layer: 'overlay',
+        index: 5,
+        tileId: 0,
+        blocked: false,
+      );
+      expect(cleared, equals(chunk));
+    });
+
     test('round trips through the binary format', () {
       final chunk = _chunk(coord: const ChunkCoord(-3, 7));
       expect(MapChunk.decode(chunk.encode()), equals(chunk));
@@ -113,6 +154,38 @@ void main() {
       expect(map.isBlocked(-chunkSize + 1, 0), isTrue);
       expect(map.isBlocked(0, 0), isFalse);
       expect(map.isBlocked(0, chunkSize), isFalse);
+    });
+
+    test('reads tiles by layer in world tiles', () {
+      final map = ChunkMap()..put(_chunk(coord: const ChunkCoord(-1, 0)));
+      expect(map.tileAt(-chunkSize + 1, 0, layer: 'ground'), equals(2));
+      expect(map.tileAt(-chunkSize, 0, layer: 'ground'), equals(1));
+      expect(map.tileAt(-chunkSize, 0, layer: 'missing'), equals(0));
+      expect(map.tileAt(0, 0, layer: 'ground'), equals(0));
+    });
+
+    test('setTile updates a loaded chunk', () {
+      final map = ChunkMap()..put(_chunk());
+      final updated = map.setTile(
+        const ChunkCoord(0, 0),
+        layer: 'ground',
+        index: 4,
+        tileId: 19,
+        blocked: true,
+      );
+      expect(map[const ChunkCoord(0, 0)], same(updated));
+      expect(map.tileAt(4, 0, layer: 'ground'), equals(19));
+      expect(map.isBlocked(4, 0), isTrue);
+      expect(
+        map.setTile(
+          const ChunkCoord(5, 5),
+          layer: 'ground',
+          index: 0,
+          tileId: 1,
+          blocked: false,
+        ),
+        isNull,
+      );
     });
   });
 }
