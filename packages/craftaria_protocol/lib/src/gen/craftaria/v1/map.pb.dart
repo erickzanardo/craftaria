@@ -8,7 +8,7 @@
 // ignore_for_file: constant_identifier_names
 // ignore_for_file: curly_braces_in_flow_control_structures
 // ignore_for_file: deprecated_member_use_from_same_package, library_prefixes
-// ignore_for_file: non_constant_identifier_names
+// ignore_for_file: non_constant_identifier_names, prefer_relative_imports
 
 import 'dart:core' as $core;
 
@@ -30,7 +30,7 @@ class Chunk extends $pb.GeneratedMessage {
     $core.Iterable<PlacedEntity>? entities,
     $core.Iterable<TileState>? tileStates,
   }) {
-    final result = create();
+    final result = Chunk._();
     if (cx != null) result.cx = cx;
     if (cy != null) result.cy = cy;
     if (layers != null) result.layers.addAll(layers);
@@ -44,29 +44,29 @@ class Chunk extends $pb.GeneratedMessage {
 
   factory Chunk.fromBuffer($core.List<$core.int> data,
           [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromBuffer(data, registry);
+      Chunk()..mergeFromBuffer(data, registry);
   factory Chunk.fromJson($core.String json,
           [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromJson(json, registry);
+      Chunk()..mergeFromJson(json, registry);
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(
       _omitMessageNames ? '' : 'Chunk',
       package: const $pb.PackageName(_omitMessageNames ? '' : 'craftaria.v1'),
-      createEmptyInstance: create)
-    ..a<$core.int>(1, _omitFieldNames ? '' : 'cx', $pb.PbFieldType.O3)
-    ..a<$core.int>(2, _omitFieldNames ? '' : 'cy', $pb.PbFieldType.O3)
-    ..pc<TileLayer>(3, _omitFieldNames ? '' : 'layers', $pb.PbFieldType.PM,
-        subBuilder: TileLayer.create)
+      createEmptyInstance: Chunk.$_createMessage)
+    ..aI(1, _omitFieldNames ? '' : 'cx')
+    ..aI(2, _omitFieldNames ? '' : 'cy')
+    ..pPM<TileLayer>(3, _omitFieldNames ? '' : 'layers',
+        subBuilder: TileLayer.$_createMessage)
     ..a<$core.List<$core.int>>(
         4, _omitFieldNames ? '' : 'collision', $pb.PbFieldType.OY)
-    ..pc<PlacedEntity>(5, _omitFieldNames ? '' : 'entities', $pb.PbFieldType.PM,
-        subBuilder: PlacedEntity.create)
-    ..pc<TileState>(6, _omitFieldNames ? '' : 'tileStates', $pb.PbFieldType.PM,
-        subBuilder: TileState.create)
+    ..pPM<PlacedEntity>(5, _omitFieldNames ? '' : 'entities',
+        subBuilder: PlacedEntity.$_createMessage)
+    ..pPM<TileState>(6, _omitFieldNames ? '' : 'tileStates',
+        subBuilder: TileState.$_createMessage)
     ..hasRequiredFields = false;
 
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
-  Chunk clone() => Chunk()..mergeFromMessage(this);
+  Chunk clone() => deepCopy();
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
   Chunk copyWith(void Function(Chunk) updates) =>
       super.copyWith((message) => updates(message as Chunk)) as Chunk;
@@ -75,13 +75,14 @@ class Chunk extends $pb.GeneratedMessage {
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
+  @$core.Deprecated('Use Chunk() / Chunk.new instead')
   static Chunk create() => Chunk._();
+  static $pb.GeneratedMessage $_createMessage() => Chunk._();
   @$core.override
-  Chunk createEmptyInstance() => create();
-  static $pb.PbList<Chunk> createRepeated() => $pb.PbList<Chunk>();
+  Chunk createEmptyInstance() => Chunk._();
   @$core.pragma('dart2js:noInline')
-  static Chunk getDefault() =>
-      _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<Chunk>(create);
+  static Chunk getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<Chunk>(Chunk.$_createMessage);
   static Chunk? _defaultInstance;
 
   /// Chunk coordinates (world tile = chunk coordinate * CHUNK_SIZE + local).
@@ -134,7 +135,7 @@ class TileLayer extends $pb.GeneratedMessage {
     $core.Iterable<$core.int>? tiles,
     $core.bool? aboveEntities,
   }) {
-    final result = create();
+    final result = TileLayer._();
     if (name != null) result.name = name;
     if (tiles != null) result.tiles.addAll(tiles);
     if (aboveEntities != null) result.aboveEntities = aboveEntities;
@@ -145,22 +146,22 @@ class TileLayer extends $pb.GeneratedMessage {
 
   factory TileLayer.fromBuffer($core.List<$core.int> data,
           [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromBuffer(data, registry);
+      TileLayer()..mergeFromBuffer(data, registry);
   factory TileLayer.fromJson($core.String json,
           [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromJson(json, registry);
+      TileLayer()..mergeFromJson(json, registry);
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(
       _omitMessageNames ? '' : 'TileLayer',
       package: const $pb.PackageName(_omitMessageNames ? '' : 'craftaria.v1'),
-      createEmptyInstance: create)
+      createEmptyInstance: TileLayer.$_createMessage)
     ..aOS(1, _omitFieldNames ? '' : 'name')
     ..p<$core.int>(2, _omitFieldNames ? '' : 'tiles', $pb.PbFieldType.KU3)
     ..aOB(3, _omitFieldNames ? '' : 'aboveEntities')
     ..hasRequiredFields = false;
 
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
-  TileLayer clone() => TileLayer()..mergeFromMessage(this);
+  TileLayer clone() => deepCopy();
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
   TileLayer copyWith(void Function(TileLayer) updates) =>
       super.copyWith((message) => updates(message as TileLayer)) as TileLayer;
@@ -169,13 +170,14 @@ class TileLayer extends $pb.GeneratedMessage {
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
+  @$core.Deprecated('Use TileLayer() / TileLayer.new instead')
   static TileLayer create() => TileLayer._();
+  static $pb.GeneratedMessage $_createMessage() => TileLayer._();
   @$core.override
-  TileLayer createEmptyInstance() => create();
-  static $pb.PbList<TileLayer> createRepeated() => $pb.PbList<TileLayer>();
+  TileLayer createEmptyInstance() => TileLayer._();
   @$core.pragma('dart2js:noInline')
-  static TileLayer getDefault() =>
-      _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<TileLayer>(create);
+  static TileLayer getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<TileLayer>(TileLayer.$_createMessage);
   static TileLayer? _defaultInstance;
 
   /// Stable layer name, e.g. "ground", "decoration", "overlay".
@@ -211,7 +213,7 @@ class PlacedEntity extends $pb.GeneratedMessage {
     $core.int? y,
     $core.Iterable<$core.MapEntry<$core.String, $core.String>>? properties,
   }) {
-    final result = create();
+    final result = PlacedEntity._();
     if (id != null) result.id = id;
     if (kind != null) result.kind = kind;
     if (x != null) result.x = x;
@@ -224,19 +226,19 @@ class PlacedEntity extends $pb.GeneratedMessage {
 
   factory PlacedEntity.fromBuffer($core.List<$core.int> data,
           [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromBuffer(data, registry);
+      PlacedEntity()..mergeFromBuffer(data, registry);
   factory PlacedEntity.fromJson($core.String json,
           [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromJson(json, registry);
+      PlacedEntity()..mergeFromJson(json, registry);
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(
       _omitMessageNames ? '' : 'PlacedEntity',
       package: const $pb.PackageName(_omitMessageNames ? '' : 'craftaria.v1'),
-      createEmptyInstance: create)
+      createEmptyInstance: PlacedEntity.$_createMessage)
     ..aOS(1, _omitFieldNames ? '' : 'id')
     ..aOS(2, _omitFieldNames ? '' : 'kind')
-    ..a<$core.int>(3, _omitFieldNames ? '' : 'x', $pb.PbFieldType.O3)
-    ..a<$core.int>(4, _omitFieldNames ? '' : 'y', $pb.PbFieldType.O3)
+    ..aI(3, _omitFieldNames ? '' : 'x')
+    ..aI(4, _omitFieldNames ? '' : 'y')
     ..m<$core.String, $core.String>(5, _omitFieldNames ? '' : 'properties',
         entryClassName: 'PlacedEntity.PropertiesEntry',
         keyFieldType: $pb.PbFieldType.OS,
@@ -245,7 +247,7 @@ class PlacedEntity extends $pb.GeneratedMessage {
     ..hasRequiredFields = false;
 
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
-  PlacedEntity clone() => PlacedEntity()..mergeFromMessage(this);
+  PlacedEntity clone() => deepCopy();
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
   PlacedEntity copyWith(void Function(PlacedEntity) updates) =>
       super.copyWith((message) => updates(message as PlacedEntity))
@@ -255,14 +257,15 @@ class PlacedEntity extends $pb.GeneratedMessage {
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
+  @$core.Deprecated('Use PlacedEntity() / PlacedEntity.new instead')
   static PlacedEntity create() => PlacedEntity._();
+  static $pb.GeneratedMessage $_createMessage() => PlacedEntity._();
   @$core.override
-  PlacedEntity createEmptyInstance() => create();
-  static $pb.PbList<PlacedEntity> createRepeated() =>
-      $pb.PbList<PlacedEntity>();
+  PlacedEntity createEmptyInstance() => PlacedEntity._();
   @$core.pragma('dart2js:noInline')
-  static PlacedEntity getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<PlacedEntity>(create);
+  static PlacedEntity getDefault() =>
+      _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<PlacedEntity>(
+          PlacedEntity.$_createMessage);
   static PlacedEntity? _defaultInstance;
 
   /// Unique within the world.
@@ -314,7 +317,7 @@ class TileState extends $pb.GeneratedMessage {
     $core.String? layer,
     $core.Iterable<$core.MapEntry<$core.String, $core.String>>? properties,
   }) {
-    final result = create();
+    final result = TileState._();
     if (index != null) result.index = index;
     if (layer != null) result.layer = layer;
     if (properties != null) result.properties.addEntries(properties);
@@ -325,16 +328,16 @@ class TileState extends $pb.GeneratedMessage {
 
   factory TileState.fromBuffer($core.List<$core.int> data,
           [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromBuffer(data, registry);
+      TileState()..mergeFromBuffer(data, registry);
   factory TileState.fromJson($core.String json,
           [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromJson(json, registry);
+      TileState()..mergeFromJson(json, registry);
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(
       _omitMessageNames ? '' : 'TileState',
       package: const $pb.PackageName(_omitMessageNames ? '' : 'craftaria.v1'),
-      createEmptyInstance: create)
-    ..a<$core.int>(1, _omitFieldNames ? '' : 'index', $pb.PbFieldType.OU3)
+      createEmptyInstance: TileState.$_createMessage)
+    ..aI(1, _omitFieldNames ? '' : 'index', fieldType: $pb.PbFieldType.OU3)
     ..aOS(2, _omitFieldNames ? '' : 'layer')
     ..m<$core.String, $core.String>(3, _omitFieldNames ? '' : 'properties',
         entryClassName: 'TileState.PropertiesEntry',
@@ -344,7 +347,7 @@ class TileState extends $pb.GeneratedMessage {
     ..hasRequiredFields = false;
 
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
-  TileState clone() => TileState()..mergeFromMessage(this);
+  TileState clone() => deepCopy();
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
   TileState copyWith(void Function(TileState) updates) =>
       super.copyWith((message) => updates(message as TileState)) as TileState;
@@ -353,13 +356,14 @@ class TileState extends $pb.GeneratedMessage {
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
+  @$core.Deprecated('Use TileState() / TileState.new instead')
   static TileState create() => TileState._();
+  static $pb.GeneratedMessage $_createMessage() => TileState._();
   @$core.override
-  TileState createEmptyInstance() => create();
-  static $pb.PbList<TileState> createRepeated() => $pb.PbList<TileState>();
+  TileState createEmptyInstance() => TileState._();
   @$core.pragma('dart2js:noInline')
-  static TileState getDefault() =>
-      _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<TileState>(create);
+  static TileState getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<TileState>(TileState.$_createMessage);
   static TileState? _defaultInstance;
 
   /// Row-major tile index within the chunk.
