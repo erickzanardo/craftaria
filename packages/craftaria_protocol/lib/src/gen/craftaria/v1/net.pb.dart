@@ -8,7 +8,7 @@
 // ignore_for_file: constant_identifier_names
 // ignore_for_file: curly_braces_in_flow_control_structures
 // ignore_for_file: deprecated_member_use_from_same_package, library_prefixes
-// ignore_for_file: non_constant_identifier_names
+// ignore_for_file: non_constant_identifier_names, prefer_relative_imports
 
 import 'dart:core' as $core;
 
@@ -29,7 +29,7 @@ class Vec2 extends $pb.GeneratedMessage {
     $core.int? x,
     $core.int? y,
   }) {
-    final result = create();
+    final result = Vec2._();
     if (x != null) result.x = x;
     if (y != null) result.y = y;
     return result;
@@ -39,21 +39,21 @@ class Vec2 extends $pb.GeneratedMessage {
 
   factory Vec2.fromBuffer($core.List<$core.int> data,
           [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromBuffer(data, registry);
+      Vec2()..mergeFromBuffer(data, registry);
   factory Vec2.fromJson($core.String json,
           [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromJson(json, registry);
+      Vec2()..mergeFromJson(json, registry);
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(
       _omitMessageNames ? '' : 'Vec2',
       package: const $pb.PackageName(_omitMessageNames ? '' : 'craftaria.v1'),
-      createEmptyInstance: create)
-    ..a<$core.int>(1, _omitFieldNames ? '' : 'x', $pb.PbFieldType.OS3)
-    ..a<$core.int>(2, _omitFieldNames ? '' : 'y', $pb.PbFieldType.OS3)
+      createEmptyInstance: Vec2.$_createMessage)
+    ..aI(1, _omitFieldNames ? '' : 'x', fieldType: $pb.PbFieldType.OS3)
+    ..aI(2, _omitFieldNames ? '' : 'y', fieldType: $pb.PbFieldType.OS3)
     ..hasRequiredFields = false;
 
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
-  Vec2 clone() => Vec2()..mergeFromMessage(this);
+  Vec2 clone() => deepCopy();
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
   Vec2 copyWith(void Function(Vec2) updates) =>
       super.copyWith((message) => updates(message as Vec2)) as Vec2;
@@ -62,13 +62,14 @@ class Vec2 extends $pb.GeneratedMessage {
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
+  @$core.Deprecated('Use Vec2() / Vec2.new instead')
   static Vec2 create() => Vec2._();
+  static $pb.GeneratedMessage $_createMessage() => Vec2._();
   @$core.override
-  Vec2 createEmptyInstance() => create();
-  static $pb.PbList<Vec2> createRepeated() => $pb.PbList<Vec2>();
+  Vec2 createEmptyInstance() => Vec2._();
   @$core.pragma('dart2js:noInline')
-  static Vec2 getDefault() =>
-      _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<Vec2>(create);
+  static Vec2 getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<Vec2>(Vec2.$_createMessage);
   static Vec2? _defaultInstance;
 
   @$pb.TagNumber(1)
@@ -99,7 +100,7 @@ class ClientMessage extends $pb.GeneratedMessage {
     MoveInput? move,
     Ping? ping,
   }) {
-    final result = create();
+    final result = ClientMessage._();
     if (hello != null) result.hello = hello;
     if (move != null) result.move = move;
     if (ping != null) result.ping = ping;
@@ -110,10 +111,10 @@ class ClientMessage extends $pb.GeneratedMessage {
 
   factory ClientMessage.fromBuffer($core.List<$core.int> data,
           [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromBuffer(data, registry);
+      ClientMessage()..mergeFromBuffer(data, registry);
   factory ClientMessage.fromJson($core.String json,
           [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromJson(json, registry);
+      ClientMessage()..mergeFromJson(json, registry);
 
   static const $core.Map<$core.int, ClientMessage_Payload>
       _ClientMessage_PayloadByTag = {
@@ -125,16 +126,18 @@ class ClientMessage extends $pb.GeneratedMessage {
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(
       _omitMessageNames ? '' : 'ClientMessage',
       package: const $pb.PackageName(_omitMessageNames ? '' : 'craftaria.v1'),
-      createEmptyInstance: create)
+      createEmptyInstance: ClientMessage.$_createMessage)
     ..oo(0, [1, 2, 3])
-    ..aOM<Hello>(1, _omitFieldNames ? '' : 'hello', subBuilder: Hello.create)
+    ..aOM<Hello>(1, _omitFieldNames ? '' : 'hello',
+        subBuilder: Hello.$_createMessage)
     ..aOM<MoveInput>(2, _omitFieldNames ? '' : 'move',
-        subBuilder: MoveInput.create)
-    ..aOM<Ping>(3, _omitFieldNames ? '' : 'ping', subBuilder: Ping.create)
+        subBuilder: MoveInput.$_createMessage)
+    ..aOM<Ping>(3, _omitFieldNames ? '' : 'ping',
+        subBuilder: Ping.$_createMessage)
     ..hasRequiredFields = false;
 
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
-  ClientMessage clone() => ClientMessage()..mergeFromMessage(this);
+  ClientMessage clone() => deepCopy();
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
   ClientMessage copyWith(void Function(ClientMessage) updates) =>
       super.copyWith((message) => updates(message as ClientMessage))
@@ -144,18 +147,25 @@ class ClientMessage extends $pb.GeneratedMessage {
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
+  @$core.Deprecated('Use ClientMessage() / ClientMessage.new instead')
   static ClientMessage create() => ClientMessage._();
+  static $pb.GeneratedMessage $_createMessage() => ClientMessage._();
   @$core.override
-  ClientMessage createEmptyInstance() => create();
-  static $pb.PbList<ClientMessage> createRepeated() =>
-      $pb.PbList<ClientMessage>();
+  ClientMessage createEmptyInstance() => ClientMessage._();
   @$core.pragma('dart2js:noInline')
-  static ClientMessage getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<ClientMessage>(create);
+  static ClientMessage getDefault() =>
+      _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<ClientMessage>(
+          ClientMessage.$_createMessage);
   static ClientMessage? _defaultInstance;
 
+  @$pb.TagNumber(1)
+  @$pb.TagNumber(2)
+  @$pb.TagNumber(3)
   ClientMessage_Payload whichPayload() =>
       _ClientMessage_PayloadByTag[$_whichOneof(0)]!;
+  @$pb.TagNumber(1)
+  @$pb.TagNumber(2)
+  @$pb.TagNumber(3)
   void clearPayload() => $_clearField($_whichOneof(0));
 
   @$pb.TagNumber(1)
@@ -199,7 +209,7 @@ class Hello extends $pb.GeneratedMessage {
     $core.String? token,
     $core.int? protocolVersion,
   }) {
-    final result = create();
+    final result = Hello._();
     if (token != null) result.token = token;
     if (protocolVersion != null) result.protocolVersion = protocolVersion;
     return result;
@@ -209,22 +219,22 @@ class Hello extends $pb.GeneratedMessage {
 
   factory Hello.fromBuffer($core.List<$core.int> data,
           [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromBuffer(data, registry);
+      Hello()..mergeFromBuffer(data, registry);
   factory Hello.fromJson($core.String json,
           [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromJson(json, registry);
+      Hello()..mergeFromJson(json, registry);
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(
       _omitMessageNames ? '' : 'Hello',
       package: const $pb.PackageName(_omitMessageNames ? '' : 'craftaria.v1'),
-      createEmptyInstance: create)
+      createEmptyInstance: Hello.$_createMessage)
     ..aOS(1, _omitFieldNames ? '' : 'token')
-    ..a<$core.int>(
-        2, _omitFieldNames ? '' : 'protocolVersion', $pb.PbFieldType.OU3)
+    ..aI(2, _omitFieldNames ? '' : 'protocolVersion',
+        fieldType: $pb.PbFieldType.OU3)
     ..hasRequiredFields = false;
 
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
-  Hello clone() => Hello()..mergeFromMessage(this);
+  Hello clone() => deepCopy();
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
   Hello copyWith(void Function(Hello) updates) =>
       super.copyWith((message) => updates(message as Hello)) as Hello;
@@ -233,13 +243,14 @@ class Hello extends $pb.GeneratedMessage {
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
+  @$core.Deprecated('Use Hello() / Hello.new instead')
   static Hello create() => Hello._();
+  static $pb.GeneratedMessage $_createMessage() => Hello._();
   @$core.override
-  Hello createEmptyInstance() => create();
-  static $pb.PbList<Hello> createRepeated() => $pb.PbList<Hello>();
+  Hello createEmptyInstance() => Hello._();
   @$core.pragma('dart2js:noInline')
-  static Hello getDefault() =>
-      _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<Hello>(create);
+  static Hello getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<Hello>(Hello.$_createMessage);
   static Hello? _defaultInstance;
 
   @$pb.TagNumber(1)
@@ -268,7 +279,7 @@ class MoveInput extends $pb.GeneratedMessage {
     $core.int? dx,
     $core.int? dy,
   }) {
-    final result = create();
+    final result = MoveInput._();
     if (seq != null) result.seq = seq;
     if (dx != null) result.dx = dx;
     if (dy != null) result.dy = dy;
@@ -279,22 +290,22 @@ class MoveInput extends $pb.GeneratedMessage {
 
   factory MoveInput.fromBuffer($core.List<$core.int> data,
           [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromBuffer(data, registry);
+      MoveInput()..mergeFromBuffer(data, registry);
   factory MoveInput.fromJson($core.String json,
           [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromJson(json, registry);
+      MoveInput()..mergeFromJson(json, registry);
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(
       _omitMessageNames ? '' : 'MoveInput',
       package: const $pb.PackageName(_omitMessageNames ? '' : 'craftaria.v1'),
-      createEmptyInstance: create)
-    ..a<$core.int>(1, _omitFieldNames ? '' : 'seq', $pb.PbFieldType.OU3)
-    ..a<$core.int>(2, _omitFieldNames ? '' : 'dx', $pb.PbFieldType.OS3)
-    ..a<$core.int>(3, _omitFieldNames ? '' : 'dy', $pb.PbFieldType.OS3)
+      createEmptyInstance: MoveInput.$_createMessage)
+    ..aI(1, _omitFieldNames ? '' : 'seq', fieldType: $pb.PbFieldType.OU3)
+    ..aI(2, _omitFieldNames ? '' : 'dx', fieldType: $pb.PbFieldType.OS3)
+    ..aI(3, _omitFieldNames ? '' : 'dy', fieldType: $pb.PbFieldType.OS3)
     ..hasRequiredFields = false;
 
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
-  MoveInput clone() => MoveInput()..mergeFromMessage(this);
+  MoveInput clone() => deepCopy();
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
   MoveInput copyWith(void Function(MoveInput) updates) =>
       super.copyWith((message) => updates(message as MoveInput)) as MoveInput;
@@ -303,13 +314,14 @@ class MoveInput extends $pb.GeneratedMessage {
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
+  @$core.Deprecated('Use MoveInput() / MoveInput.new instead')
   static MoveInput create() => MoveInput._();
+  static $pb.GeneratedMessage $_createMessage() => MoveInput._();
   @$core.override
-  MoveInput createEmptyInstance() => create();
-  static $pb.PbList<MoveInput> createRepeated() => $pb.PbList<MoveInput>();
+  MoveInput createEmptyInstance() => MoveInput._();
   @$core.pragma('dart2js:noInline')
-  static MoveInput getDefault() =>
-      _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<MoveInput>(create);
+  static MoveInput getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<MoveInput>(MoveInput.$_createMessage);
   static MoveInput? _defaultInstance;
 
   @$pb.TagNumber(1)
@@ -344,7 +356,7 @@ class Ping extends $pb.GeneratedMessage {
   factory Ping({
     $fixnum.Int64? clientTimeMs,
   }) {
-    final result = create();
+    final result = Ping._();
     if (clientTimeMs != null) result.clientTimeMs = clientTimeMs;
     return result;
   }
@@ -353,22 +365,22 @@ class Ping extends $pb.GeneratedMessage {
 
   factory Ping.fromBuffer($core.List<$core.int> data,
           [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromBuffer(data, registry);
+      Ping()..mergeFromBuffer(data, registry);
   factory Ping.fromJson($core.String json,
           [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromJson(json, registry);
+      Ping()..mergeFromJson(json, registry);
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(
       _omitMessageNames ? '' : 'Ping',
       package: const $pb.PackageName(_omitMessageNames ? '' : 'craftaria.v1'),
-      createEmptyInstance: create)
+      createEmptyInstance: Ping.$_createMessage)
     ..a<$fixnum.Int64>(
         1, _omitFieldNames ? '' : 'clientTimeMs', $pb.PbFieldType.OU6,
         defaultOrMaker: $fixnum.Int64.ZERO)
     ..hasRequiredFields = false;
 
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
-  Ping clone() => Ping()..mergeFromMessage(this);
+  Ping clone() => deepCopy();
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
   Ping copyWith(void Function(Ping) updates) =>
       super.copyWith((message) => updates(message as Ping)) as Ping;
@@ -377,13 +389,14 @@ class Ping extends $pb.GeneratedMessage {
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
+  @$core.Deprecated('Use Ping() / Ping.new instead')
   static Ping create() => Ping._();
+  static $pb.GeneratedMessage $_createMessage() => Ping._();
   @$core.override
-  Ping createEmptyInstance() => create();
-  static $pb.PbList<Ping> createRepeated() => $pb.PbList<Ping>();
+  Ping createEmptyInstance() => Ping._();
   @$core.pragma('dart2js:noInline')
-  static Ping getDefault() =>
-      _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<Ping>(create);
+  static Ping getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<Ping>(Ping.$_createMessage);
   static Ping? _defaultInstance;
 
   @$pb.TagNumber(1)
@@ -407,7 +420,7 @@ class ServerMessage extends $pb.GeneratedMessage {
     Pong? pong,
     ServerError? error,
   }) {
-    final result = create();
+    final result = ServerMessage._();
     if (welcome != null) result.welcome = welcome;
     if (snapshot != null) result.snapshot = snapshot;
     if (chunk != null) result.chunk = chunk;
@@ -420,10 +433,10 @@ class ServerMessage extends $pb.GeneratedMessage {
 
   factory ServerMessage.fromBuffer($core.List<$core.int> data,
           [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromBuffer(data, registry);
+      ServerMessage()..mergeFromBuffer(data, registry);
   factory ServerMessage.fromJson($core.String json,
           [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromJson(json, registry);
+      ServerMessage()..mergeFromJson(json, registry);
 
   static const $core.Map<$core.int, ServerMessage_Payload>
       _ServerMessage_PayloadByTag = {
@@ -437,21 +450,22 @@ class ServerMessage extends $pb.GeneratedMessage {
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(
       _omitMessageNames ? '' : 'ServerMessage',
       package: const $pb.PackageName(_omitMessageNames ? '' : 'craftaria.v1'),
-      createEmptyInstance: create)
+      createEmptyInstance: ServerMessage.$_createMessage)
     ..oo(0, [1, 2, 3, 4, 5])
     ..aOM<Welcome>(1, _omitFieldNames ? '' : 'welcome',
-        subBuilder: Welcome.create)
+        subBuilder: Welcome.$_createMessage)
     ..aOM<Snapshot>(2, _omitFieldNames ? '' : 'snapshot',
-        subBuilder: Snapshot.create)
+        subBuilder: Snapshot.$_createMessage)
     ..aOM<ChunkData>(3, _omitFieldNames ? '' : 'chunk',
-        subBuilder: ChunkData.create)
-    ..aOM<Pong>(4, _omitFieldNames ? '' : 'pong', subBuilder: Pong.create)
+        subBuilder: ChunkData.$_createMessage)
+    ..aOM<Pong>(4, _omitFieldNames ? '' : 'pong',
+        subBuilder: Pong.$_createMessage)
     ..aOM<ServerError>(5, _omitFieldNames ? '' : 'error',
-        subBuilder: ServerError.create)
+        subBuilder: ServerError.$_createMessage)
     ..hasRequiredFields = false;
 
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
-  ServerMessage clone() => ServerMessage()..mergeFromMessage(this);
+  ServerMessage clone() => deepCopy();
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
   ServerMessage copyWith(void Function(ServerMessage) updates) =>
       super.copyWith((message) => updates(message as ServerMessage))
@@ -461,18 +475,29 @@ class ServerMessage extends $pb.GeneratedMessage {
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
+  @$core.Deprecated('Use ServerMessage() / ServerMessage.new instead')
   static ServerMessage create() => ServerMessage._();
+  static $pb.GeneratedMessage $_createMessage() => ServerMessage._();
   @$core.override
-  ServerMessage createEmptyInstance() => create();
-  static $pb.PbList<ServerMessage> createRepeated() =>
-      $pb.PbList<ServerMessage>();
+  ServerMessage createEmptyInstance() => ServerMessage._();
   @$core.pragma('dart2js:noInline')
-  static ServerMessage getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<ServerMessage>(create);
+  static ServerMessage getDefault() =>
+      _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<ServerMessage>(
+          ServerMessage.$_createMessage);
   static ServerMessage? _defaultInstance;
 
+  @$pb.TagNumber(1)
+  @$pb.TagNumber(2)
+  @$pb.TagNumber(3)
+  @$pb.TagNumber(4)
+  @$pb.TagNumber(5)
   ServerMessage_Payload whichPayload() =>
       _ServerMessage_PayloadByTag[$_whichOneof(0)]!;
+  @$pb.TagNumber(1)
+  @$pb.TagNumber(2)
+  @$pb.TagNumber(3)
+  @$pb.TagNumber(4)
+  @$pb.TagNumber(5)
   void clearPayload() => $_clearField($_whichOneof(0));
 
   @$pb.TagNumber(1)
@@ -537,7 +562,7 @@ class Welcome extends $pb.GeneratedMessage {
     $core.int? tickRate,
     Vec2? spawn,
   }) {
-    final result = create();
+    final result = Welcome._();
     if (playerId != null) result.playerId = playerId;
     if (tickRate != null) result.tickRate = tickRate;
     if (spawn != null) result.spawn = spawn;
@@ -548,22 +573,23 @@ class Welcome extends $pb.GeneratedMessage {
 
   factory Welcome.fromBuffer($core.List<$core.int> data,
           [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromBuffer(data, registry);
+      Welcome()..mergeFromBuffer(data, registry);
   factory Welcome.fromJson($core.String json,
           [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromJson(json, registry);
+      Welcome()..mergeFromJson(json, registry);
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(
       _omitMessageNames ? '' : 'Welcome',
       package: const $pb.PackageName(_omitMessageNames ? '' : 'craftaria.v1'),
-      createEmptyInstance: create)
+      createEmptyInstance: Welcome.$_createMessage)
     ..aOS(1, _omitFieldNames ? '' : 'playerId')
-    ..a<$core.int>(2, _omitFieldNames ? '' : 'tickRate', $pb.PbFieldType.OU3)
-    ..aOM<Vec2>(3, _omitFieldNames ? '' : 'spawn', subBuilder: Vec2.create)
+    ..aI(2, _omitFieldNames ? '' : 'tickRate', fieldType: $pb.PbFieldType.OU3)
+    ..aOM<Vec2>(3, _omitFieldNames ? '' : 'spawn',
+        subBuilder: Vec2.$_createMessage)
     ..hasRequiredFields = false;
 
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
-  Welcome clone() => Welcome()..mergeFromMessage(this);
+  Welcome clone() => deepCopy();
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
   Welcome copyWith(void Function(Welcome) updates) =>
       super.copyWith((message) => updates(message as Welcome)) as Welcome;
@@ -572,13 +598,14 @@ class Welcome extends $pb.GeneratedMessage {
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
+  @$core.Deprecated('Use Welcome() / Welcome.new instead')
   static Welcome create() => Welcome._();
+  static $pb.GeneratedMessage $_createMessage() => Welcome._();
   @$core.override
-  Welcome createEmptyInstance() => create();
-  static $pb.PbList<Welcome> createRepeated() => $pb.PbList<Welcome>();
+  Welcome createEmptyInstance() => Welcome._();
   @$core.pragma('dart2js:noInline')
-  static Welcome getDefault() =>
-      _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<Welcome>(create);
+  static Welcome getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<Welcome>(Welcome.$_createMessage);
   static Welcome? _defaultInstance;
 
   @$pb.TagNumber(1)
@@ -619,7 +646,7 @@ class Snapshot extends $pb.GeneratedMessage {
     $core.int? lastInputSeq,
     $core.Iterable<EntityState>? entities,
   }) {
-    final result = create();
+    final result = Snapshot._();
     if (tick != null) result.tick = tick;
     if (lastInputSeq != null) result.lastInputSeq = lastInputSeq;
     if (entities != null) result.entities.addAll(entities);
@@ -630,24 +657,24 @@ class Snapshot extends $pb.GeneratedMessage {
 
   factory Snapshot.fromBuffer($core.List<$core.int> data,
           [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromBuffer(data, registry);
+      Snapshot()..mergeFromBuffer(data, registry);
   factory Snapshot.fromJson($core.String json,
           [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromJson(json, registry);
+      Snapshot()..mergeFromJson(json, registry);
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(
       _omitMessageNames ? '' : 'Snapshot',
       package: const $pb.PackageName(_omitMessageNames ? '' : 'craftaria.v1'),
-      createEmptyInstance: create)
-    ..a<$core.int>(1, _omitFieldNames ? '' : 'tick', $pb.PbFieldType.OU3)
-    ..a<$core.int>(
-        2, _omitFieldNames ? '' : 'lastInputSeq', $pb.PbFieldType.OU3)
-    ..pc<EntityState>(3, _omitFieldNames ? '' : 'entities', $pb.PbFieldType.PM,
-        subBuilder: EntityState.create)
+      createEmptyInstance: Snapshot.$_createMessage)
+    ..aI(1, _omitFieldNames ? '' : 'tick', fieldType: $pb.PbFieldType.OU3)
+    ..aI(2, _omitFieldNames ? '' : 'lastInputSeq',
+        fieldType: $pb.PbFieldType.OU3)
+    ..pPM<EntityState>(3, _omitFieldNames ? '' : 'entities',
+        subBuilder: EntityState.$_createMessage)
     ..hasRequiredFields = false;
 
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
-  Snapshot clone() => Snapshot()..mergeFromMessage(this);
+  Snapshot clone() => deepCopy();
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
   Snapshot copyWith(void Function(Snapshot) updates) =>
       super.copyWith((message) => updates(message as Snapshot)) as Snapshot;
@@ -656,13 +683,14 @@ class Snapshot extends $pb.GeneratedMessage {
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
+  @$core.Deprecated('Use Snapshot() / Snapshot.new instead')
   static Snapshot create() => Snapshot._();
+  static $pb.GeneratedMessage $_createMessage() => Snapshot._();
   @$core.override
-  Snapshot createEmptyInstance() => create();
-  static $pb.PbList<Snapshot> createRepeated() => $pb.PbList<Snapshot>();
+  Snapshot createEmptyInstance() => Snapshot._();
   @$core.pragma('dart2js:noInline')
-  static Snapshot getDefault() =>
-      _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<Snapshot>(create);
+  static Snapshot getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<Snapshot>(Snapshot.$_createMessage);
   static Snapshot? _defaultInstance;
 
   @$pb.TagNumber(1)
@@ -693,7 +721,7 @@ class EntityState extends $pb.GeneratedMessage {
     $core.String? id,
     Vec2? position,
   }) {
-    final result = create();
+    final result = EntityState._();
     if (id != null) result.id = id;
     if (position != null) result.position = position;
     return result;
@@ -703,21 +731,22 @@ class EntityState extends $pb.GeneratedMessage {
 
   factory EntityState.fromBuffer($core.List<$core.int> data,
           [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromBuffer(data, registry);
+      EntityState()..mergeFromBuffer(data, registry);
   factory EntityState.fromJson($core.String json,
           [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromJson(json, registry);
+      EntityState()..mergeFromJson(json, registry);
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(
       _omitMessageNames ? '' : 'EntityState',
       package: const $pb.PackageName(_omitMessageNames ? '' : 'craftaria.v1'),
-      createEmptyInstance: create)
+      createEmptyInstance: EntityState.$_createMessage)
     ..aOS(1, _omitFieldNames ? '' : 'id')
-    ..aOM<Vec2>(2, _omitFieldNames ? '' : 'position', subBuilder: Vec2.create)
+    ..aOM<Vec2>(2, _omitFieldNames ? '' : 'position',
+        subBuilder: Vec2.$_createMessage)
     ..hasRequiredFields = false;
 
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
-  EntityState clone() => EntityState()..mergeFromMessage(this);
+  EntityState clone() => deepCopy();
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
   EntityState copyWith(void Function(EntityState) updates) =>
       super.copyWith((message) => updates(message as EntityState))
@@ -727,13 +756,15 @@ class EntityState extends $pb.GeneratedMessage {
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
+  @$core.Deprecated('Use EntityState() / EntityState.new instead')
   static EntityState create() => EntityState._();
+  static $pb.GeneratedMessage $_createMessage() => EntityState._();
   @$core.override
-  EntityState createEmptyInstance() => create();
-  static $pb.PbList<EntityState> createRepeated() => $pb.PbList<EntityState>();
+  EntityState createEmptyInstance() => EntityState._();
   @$core.pragma('dart2js:noInline')
-  static EntityState getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<EntityState>(create);
+  static EntityState getDefault() =>
+      _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<EntityState>(
+          EntityState.$_createMessage);
   static EntityState? _defaultInstance;
 
   @$pb.TagNumber(1)
@@ -761,7 +792,7 @@ class ChunkData extends $pb.GeneratedMessage {
   factory ChunkData({
     $0.Chunk? chunk,
   }) {
-    final result = create();
+    final result = ChunkData._();
     if (chunk != null) result.chunk = chunk;
     return result;
   }
@@ -770,21 +801,21 @@ class ChunkData extends $pb.GeneratedMessage {
 
   factory ChunkData.fromBuffer($core.List<$core.int> data,
           [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromBuffer(data, registry);
+      ChunkData()..mergeFromBuffer(data, registry);
   factory ChunkData.fromJson($core.String json,
           [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromJson(json, registry);
+      ChunkData()..mergeFromJson(json, registry);
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(
       _omitMessageNames ? '' : 'ChunkData',
       package: const $pb.PackageName(_omitMessageNames ? '' : 'craftaria.v1'),
-      createEmptyInstance: create)
+      createEmptyInstance: ChunkData.$_createMessage)
     ..aOM<$0.Chunk>(1, _omitFieldNames ? '' : 'chunk',
-        subBuilder: $0.Chunk.create)
+        subBuilder: $0.Chunk.$_createMessage)
     ..hasRequiredFields = false;
 
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
-  ChunkData clone() => ChunkData()..mergeFromMessage(this);
+  ChunkData clone() => deepCopy();
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
   ChunkData copyWith(void Function(ChunkData) updates) =>
       super.copyWith((message) => updates(message as ChunkData)) as ChunkData;
@@ -793,13 +824,14 @@ class ChunkData extends $pb.GeneratedMessage {
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
+  @$core.Deprecated('Use ChunkData() / ChunkData.new instead')
   static ChunkData create() => ChunkData._();
+  static $pb.GeneratedMessage $_createMessage() => ChunkData._();
   @$core.override
-  ChunkData createEmptyInstance() => create();
-  static $pb.PbList<ChunkData> createRepeated() => $pb.PbList<ChunkData>();
+  ChunkData createEmptyInstance() => ChunkData._();
   @$core.pragma('dart2js:noInline')
-  static ChunkData getDefault() =>
-      _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<ChunkData>(create);
+  static ChunkData getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<ChunkData>(ChunkData.$_createMessage);
   static ChunkData? _defaultInstance;
 
   @$pb.TagNumber(1)
@@ -819,7 +851,7 @@ class Pong extends $pb.GeneratedMessage {
     $fixnum.Int64? clientTimeMs,
     $fixnum.Int64? serverTimeMs,
   }) {
-    final result = create();
+    final result = Pong._();
     if (clientTimeMs != null) result.clientTimeMs = clientTimeMs;
     if (serverTimeMs != null) result.serverTimeMs = serverTimeMs;
     return result;
@@ -829,15 +861,15 @@ class Pong extends $pb.GeneratedMessage {
 
   factory Pong.fromBuffer($core.List<$core.int> data,
           [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromBuffer(data, registry);
+      Pong()..mergeFromBuffer(data, registry);
   factory Pong.fromJson($core.String json,
           [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromJson(json, registry);
+      Pong()..mergeFromJson(json, registry);
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(
       _omitMessageNames ? '' : 'Pong',
       package: const $pb.PackageName(_omitMessageNames ? '' : 'craftaria.v1'),
-      createEmptyInstance: create)
+      createEmptyInstance: Pong.$_createMessage)
     ..a<$fixnum.Int64>(
         1, _omitFieldNames ? '' : 'clientTimeMs', $pb.PbFieldType.OU6,
         defaultOrMaker: $fixnum.Int64.ZERO)
@@ -847,7 +879,7 @@ class Pong extends $pb.GeneratedMessage {
     ..hasRequiredFields = false;
 
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
-  Pong clone() => Pong()..mergeFromMessage(this);
+  Pong clone() => deepCopy();
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
   Pong copyWith(void Function(Pong) updates) =>
       super.copyWith((message) => updates(message as Pong)) as Pong;
@@ -856,13 +888,14 @@ class Pong extends $pb.GeneratedMessage {
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
+  @$core.Deprecated('Use Pong() / Pong.new instead')
   static Pong create() => Pong._();
+  static $pb.GeneratedMessage $_createMessage() => Pong._();
   @$core.override
-  Pong createEmptyInstance() => create();
-  static $pb.PbList<Pong> createRepeated() => $pb.PbList<Pong>();
+  Pong createEmptyInstance() => Pong._();
   @$core.pragma('dart2js:noInline')
-  static Pong getDefault() =>
-      _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<Pong>(create);
+  static Pong getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<Pong>(Pong.$_createMessage);
   static Pong? _defaultInstance;
 
   @$pb.TagNumber(1)
@@ -889,7 +922,7 @@ class ServerError extends $pb.GeneratedMessage {
     ErrorCode? code,
     $core.String? message,
   }) {
-    final result = create();
+    final result = ServerError._();
     if (code != null) result.code = code;
     if (message != null) result.message = message;
     return result;
@@ -899,24 +932,22 @@ class ServerError extends $pb.GeneratedMessage {
 
   factory ServerError.fromBuffer($core.List<$core.int> data,
           [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromBuffer(data, registry);
+      ServerError()..mergeFromBuffer(data, registry);
   factory ServerError.fromJson($core.String json,
           [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromJson(json, registry);
+      ServerError()..mergeFromJson(json, registry);
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(
       _omitMessageNames ? '' : 'ServerError',
       package: const $pb.PackageName(_omitMessageNames ? '' : 'craftaria.v1'),
-      createEmptyInstance: create)
-    ..e<ErrorCode>(1, _omitFieldNames ? '' : 'code', $pb.PbFieldType.OE,
-        defaultOrMaker: ErrorCode.ERROR_CODE_UNSPECIFIED,
-        valueOf: ErrorCode.valueOf,
+      createEmptyInstance: ServerError.$_createMessage)
+    ..aE<ErrorCode>(1, _omitFieldNames ? '' : 'code',
         enumValues: ErrorCode.values)
     ..aOS(2, _omitFieldNames ? '' : 'message')
     ..hasRequiredFields = false;
 
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
-  ServerError clone() => ServerError()..mergeFromMessage(this);
+  ServerError clone() => deepCopy();
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
   ServerError copyWith(void Function(ServerError) updates) =>
       super.copyWith((message) => updates(message as ServerError))
@@ -926,13 +957,15 @@ class ServerError extends $pb.GeneratedMessage {
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
+  @$core.Deprecated('Use ServerError() / ServerError.new instead')
   static ServerError create() => ServerError._();
+  static $pb.GeneratedMessage $_createMessage() => ServerError._();
   @$core.override
-  ServerError createEmptyInstance() => create();
-  static $pb.PbList<ServerError> createRepeated() => $pb.PbList<ServerError>();
+  ServerError createEmptyInstance() => ServerError._();
   @$core.pragma('dart2js:noInline')
-  static ServerError getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<ServerError>(create);
+  static ServerError getDefault() =>
+      _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<ServerError>(
+          ServerError.$_createMessage);
   static ServerError? _defaultInstance;
 
   @$pb.TagNumber(1)

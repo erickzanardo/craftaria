@@ -27,12 +27,12 @@ See the [README](README.md) for setup. Before opening a pull request:
 
 - Dart: `dart format`, `flutter analyze` and
   `very_good test --coverage --min-coverage 100` in every package you touched.
-- Server: `pnpm typecheck` and `pnpm test`.
-- Protocol changes go in `proto/`, followed by `pnpm proto`. Never edit
+- Server: `npx pnpm@10.34.9 typecheck` and `npx pnpm@10.34.9 test`.
+- Protocol changes go in `proto/`, followed by `npx pnpm@10.34.9 proto`. Never edit
   generated code by hand.
 - Movement rules exist in both `packages/craftaria_sim` and `server/world`.
   Change both, then regenerate `fixtures/` with
-  `pnpm --filter @craftaria/world fixtures`.
+  `npx pnpm@10.34.9 --filter @craftaria/world fixtures`.
 
 ## Secrets
 
