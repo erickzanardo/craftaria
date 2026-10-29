@@ -12,6 +12,27 @@ changed; don't silently rewrite history.
   the editor exists, the area within 8 tiles of the origin is forced to open
   grass as a stand-in hub.
 
+## Game rules and skills
+
+- Game rules live in `spec/` as markdown, separate from `docs/` (which is
+  about the code). The spec is the source of truth for rules; the code must
+  match, and both change in the same commit.
+- Progression is per skill, built around gathering and crafting. No overall
+  character level. Levels 1–100 on an exponential curve (XP per level
+  doubles every 10 levels).
+- Gathering skills share one model: a **tool** (tier, level requirement,
+  speed) and **resource nodes** (minimum tool tier, XP, yield range,
+  depleted form, regrow time). Action time shrinks with both level and tool
+  speed. New gathering skills should reuse it rather than invent their own.
+- Content tables (items, tools, nodes, XP curve) live in server code only.
+  The client gets display data (item names, XP for the next level, action
+  durations) from the server, so the tables are never duplicated in Dart.
+- Interaction is click-to-act: the client pathfinds next to the target with
+  normal movement inputs, then sends the action. The action shares the
+  movement input queue so the server applies it after the walk.
+- Depleted resource nodes stay solid (stumps block like trees), so a node
+  never regrows on top of a player.
+
 ## Art
 
 - All art is drawn by the author in Aseprite. **Never generate or commit
