@@ -15,4 +15,4 @@ workspace:
 
 dev_dependencies:
   # Provides protoc-gen-dart for `buf generate` without a global install.
-  protoc_plugin: ^22.0.0
+  protoc_plugin: ^25.1.0
