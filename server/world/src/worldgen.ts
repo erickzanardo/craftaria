@@ -51,6 +51,24 @@ function groundFor(height: number): number {
   return TileId.stone;
 }
 
+/** Tree rings: better trees grow further from the origin (spec/skills/woodcutting.md). */
+export const BIRCH_DISTANCE = 48;
+export const IRONWOOD_DISTANCE = 128;
+
+/** Tree tile for a world tile, given a roll in [0, 1). */
+export function treeFor(tileX: number, tileY: number, roll: number): number {
+  const distanceSquared = tileX * tileX + tileY * tileY;
+  if (distanceSquared >= IRONWOOD_DISTANCE * IRONWOOD_DISTANCE) {
+    if (roll < 0.2) return TileId.ironwood;
+    if (roll < 0.5) return TileId.birch;
+    return TileId.pine;
+  }
+  if (distanceSquared >= BIRCH_DISTANCE * BIRCH_DISTANCE && roll < 0.3) {
+    return TileId.birch;
+  }
+  return TileId.pine;
+}
+
 export function generateChunk(seed: number, cx: number, cy: number): Chunk {
   const ground = new Array<number>(TILES_PER_CHUNK);
   const decoration = new Array<number>(TILES_PER_CHUNK).fill(TileId.empty);
@@ -65,7 +83,7 @@ export function generateChunk(seed: number, cx: number, cy: number): Chunk {
       const tile = inHub ? TileId.grass : groundFor(heightAt(seed, tx, ty));
       ground[index] = tile;
       if (!inHub && tile === TileId.grass && random01(seed + 2, tx, ty) < 0.04) {
-        decoration[index] = TileId.tree;
+        decoration[index] = treeFor(tx, ty, random01(seed + 3, tx, ty));
       }
     }
   }

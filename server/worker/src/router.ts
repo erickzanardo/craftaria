@@ -6,6 +6,8 @@ export interface Env {
   AUTH_SECRET?: string;
   /** Comma separated origins allowed to call the HTTP API, or "*". */
   ALLOWED_ORIGINS?: string;
+  /** "1" enables debug commands (granting items and XP). Never in prod. */
+  DEBUG_COMMANDS?: string;
 }
 
 /** Zones that exist. Each one is a Durable Object named after it. */

@@ -1,11 +1,14 @@
 import 'dart:async';
 
+import 'package:craftaria/game/components/action_progress_component.dart';
 import 'package:craftaria/game/components/player_component.dart';
 import 'package:craftaria/game/game.dart';
 import 'package:craftaria_map/craftaria_map.dart';
 import 'package:craftaria_protocol/craftaria_protocol.dart';
 import 'package:flame/components.dart';
+import 'package:flame/events.dart';
 import 'package:flame_test/flame_test.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -13,22 +16,29 @@ import 'package:world_renderer/world_renderer.dart';
 
 import '../helpers/helpers.dart';
 
-ServerMessage _chunk({required bool withOverlay}) => ServerMessage(
-  chunk: ChunkData(
-    chunk: Chunk(
-      collision: Uint8List(tilesPerChunk ~/ 8),
-      layers: [
-        TileLayer(name: 'ground', tiles: List.filled(tilesPerChunk, 1)),
-        if (withOverlay)
-          TileLayer(
-            name: 'overlay',
-            tiles: List.filled(tilesPerChunk, 0),
-            aboveEntities: true,
-          ),
-      ],
-    ),
-  ),
-);
+ServerMessage _chunk({required bool withOverlay, int cx = 0, int? treeAt}) =>
+    ServerMessage(
+      chunk: ChunkData(
+        chunk: Chunk(
+          cx: cx,
+          collision: Uint8List(tilesPerChunk ~/ 8),
+          layers: [
+            TileLayer(name: 'ground', tiles: List.filled(tilesPerChunk, 1)),
+            if (treeAt != null)
+              TileLayer(
+                name: resourceLayer,
+                tiles: List.filled(tilesPerChunk, 0)..[treeAt] = TileId.pine,
+              ),
+            if (withOverlay)
+              TileLayer(
+                name: 'overlay',
+                tiles: List.filled(tilesPerChunk, 0),
+                aboveEntities: true,
+              ),
+          ],
+        ),
+      ),
+    );
 
 void main() {
   late ClientWorld clientWorld;
@@ -58,13 +68,71 @@ void main() {
     ) async {
       clientWorld
         ..handle(_chunk(withOverlay: false))
-        ..handle(_chunk(withOverlay: true));
+        ..handle(_chunk(withOverlay: true, cx: 1));
       game.update(0);
       await game.ready();
 
       final chunks = game.world.children.whereType<ChunkComponent>();
       expect(chunks.where((c) => !c.overlay), hasLength(2));
       expect(chunks.where((c) => c.overlay), hasLength(1));
+    });
+
+    testWithGame('replaces the components of a changed chunk', createGame, (
+      game,
+    ) async {
+      clientWorld.handle(_chunk(withOverlay: true));
+      game.update(0);
+      await game.ready();
+      clientWorld.handle(_chunk(withOverlay: false));
+      game.update(0);
+      await game.ready();
+
+      final chunks = game.world.children.whereType<ChunkComponent>();
+      expect(chunks, hasLength(1));
+      expect(chunks.single.overlay, isFalse);
+    });
+
+    testWithGame('taps act on the world tile under them', createGame, (
+      game,
+    ) async {
+      game.onGameResize(Vector2(320, 180));
+      clientWorld
+        ..handle(welcome())
+        ..handle(_chunk(withOverlay: false, treeAt: 3));
+      game.update(0);
+      await game.ready();
+      game.update(0);
+
+      // The camera centers on the player at (4, 4) px with zoom 1.
+      final tree = Vector2(160 + 3 * 8 + 4 - 4, 90);
+      game.onTapUp(
+        TapUpEvent(
+          1,
+          game,
+          TapUpDetails(
+            kind: PointerDeviceKind.mouse,
+            globalPosition: tree.toOffset(),
+            localPosition: tree.toOffset(),
+          ),
+        ),
+      );
+      expect(clientWorld.isWalking, isTrue);
+
+      game.tapAt(Vector2(0, 0));
+      expect(clientWorld.isWalking, isFalse);
+    });
+
+    testWithGame('shows action progress over the local player', createGame, (
+      game,
+    ) async {
+      clientWorld.handle(welcome());
+      game.update(0);
+      await game.ready();
+      final bar = game.world.children
+          .whereType<ActionProgressComponent>()
+          .single;
+      expect(bar.progress(), isNull);
+      expect(bar.locate(), equals(clientWorld.localRenderPosition));
     });
 
     testWithGame('spawns the local player and follows it', createGame, (

@@ -15,6 +15,29 @@ import 'dart:convert' as $convert;
 import 'dart:core' as $core;
 import 'dart:typed_data' as $typed_data;
 
+@$core.Deprecated('Use noticeCodeDescriptor instead')
+const NoticeCode$json = {
+  '1': 'NoticeCode',
+  '2': [
+    {'1': 'NOTICE_CODE_UNSPECIFIED', '2': 0},
+    {'1': 'NOTICE_CODE_NOTHING_TO_GATHER', '2': 1},
+    {'1': 'NOTICE_CODE_OUT_OF_REACH', '2': 2},
+    {'1': 'NOTICE_CODE_NO_TOOL', '2': 3},
+    {'1': 'NOTICE_CODE_TOOL_TOO_WEAK', '2': 4},
+    {'1': 'NOTICE_CODE_LEVEL_TOO_LOW', '2': 5},
+    {'1': 'NOTICE_CODE_INVENTORY_FULL', '2': 6},
+    {'1': 'NOTICE_CODE_DEPLETED', '2': 7},
+  ],
+};
+
+/// Descriptor for `NoticeCode`. Decode as a `google.protobuf.EnumDescriptorProto`.
+final $typed_data.Uint8List noticeCodeDescriptor = $convert.base64Decode(
+    'CgpOb3RpY2VDb2RlEhsKF05PVElDRV9DT0RFX1VOU1BFQ0lGSUVEEAASIQodTk9USUNFX0NPRE'
+    'VfTk9USElOR19UT19HQVRIRVIQARIcChhOT1RJQ0VfQ09ERV9PVVRfT0ZfUkVBQ0gQAhIXChNO'
+    'T1RJQ0VfQ09ERV9OT19UT09MEAMSHQoZTk9USUNFX0NPREVfVE9PTF9UT09fV0VBSxAEEh0KGU'
+    '5PVElDRV9DT0RFX0xFVkVMX1RPT19MT1cQBRIeChpOT1RJQ0VfQ09ERV9JTlZFTlRPUllfRlVM'
+    'TBAGEhgKFE5PVElDRV9DT0RFX0RFUExFVEVEEAc=');
+
 @$core.Deprecated('Use errorCodeDescriptor instead')
 const ErrorCode$json = {
   '1': 'ErrorCode',
@@ -76,6 +99,42 @@ const ClientMessage$json = {
       '9': 0,
       '10': 'ping'
     },
+    {
+      '1': 'gather',
+      '3': 4,
+      '4': 1,
+      '5': 11,
+      '6': '.craftaria.v1.Gather',
+      '9': 0,
+      '10': 'gather'
+    },
+    {
+      '1': 'cancel_action',
+      '3': 5,
+      '4': 1,
+      '5': 11,
+      '6': '.craftaria.v1.CancelAction',
+      '9': 0,
+      '10': 'cancelAction'
+    },
+    {
+      '1': 'equip',
+      '3': 6,
+      '4': 1,
+      '5': 11,
+      '6': '.craftaria.v1.EquipItem',
+      '9': 0,
+      '10': 'equip'
+    },
+    {
+      '1': 'debug',
+      '3': 7,
+      '4': 1,
+      '5': 11,
+      '6': '.craftaria.v1.DebugCommand',
+      '9': 0,
+      '10': 'debug'
+    },
   ],
   '8': [
     {'1': 'payload'},
@@ -86,7 +145,11 @@ const ClientMessage$json = {
 final $typed_data.Uint8List clientMessageDescriptor = $convert.base64Decode(
     'Cg1DbGllbnRNZXNzYWdlEisKBWhlbGxvGAEgASgLMhMuY3JhZnRhcmlhLnYxLkhlbGxvSABSBW'
     'hlbGxvEi0KBG1vdmUYAiABKAsyFy5jcmFmdGFyaWEudjEuTW92ZUlucHV0SABSBG1vdmUSKAoE'
-    'cGluZxgDIAEoCzISLmNyYWZ0YXJpYS52MS5QaW5nSABSBHBpbmdCCQoHcGF5bG9hZA==');
+    'cGluZxgDIAEoCzISLmNyYWZ0YXJpYS52MS5QaW5nSABSBHBpbmcSLgoGZ2F0aGVyGAQgASgLMh'
+    'QuY3JhZnRhcmlhLnYxLkdhdGhlckgAUgZnYXRoZXISQQoNY2FuY2VsX2FjdGlvbhgFIAEoCzIa'
+    'LmNyYWZ0YXJpYS52MS5DYW5jZWxBY3Rpb25IAFIMY2FuY2VsQWN0aW9uEi8KBWVxdWlwGAYgAS'
+    'gLMhcuY3JhZnRhcmlhLnYxLkVxdWlwSXRlbUgAUgVlcXVpcBIyCgVkZWJ1ZxgHIAEoCzIaLmNy'
+    'YWZ0YXJpYS52MS5EZWJ1Z0NvbW1hbmRIAFIFZGVidWdCCQoHcGF5bG9hZA==');
 
 @$core.Deprecated('Use helloDescriptor instead')
 const Hello$json = {
@@ -128,6 +191,104 @@ const Ping$json = {
 /// Descriptor for `Ping`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List pingDescriptor = $convert.base64Decode(
     'CgRQaW5nEiQKDmNsaWVudF90aW1lX21zGAEgASgEUgxjbGllbnRUaW1lTXM=');
+
+@$core.Deprecated('Use gatherDescriptor instead')
+const Gather$json = {
+  '1': 'Gather',
+  '2': [
+    {'1': 'seq', '3': 1, '4': 1, '5': 13, '10': 'seq'},
+    {'1': 'tile_x', '3': 2, '4': 1, '5': 17, '10': 'tileX'},
+    {'1': 'tile_y', '3': 3, '4': 1, '5': 17, '10': 'tileY'},
+  ],
+};
+
+/// Descriptor for `Gather`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List gatherDescriptor = $convert.base64Decode(
+    'CgZHYXRoZXISEAoDc2VxGAEgASgNUgNzZXESFQoGdGlsZV94GAIgASgRUgV0aWxlWBIVCgZ0aW'
+    'xlX3kYAyABKBFSBXRpbGVZ');
+
+@$core.Deprecated('Use cancelActionDescriptor instead')
+const CancelAction$json = {
+  '1': 'CancelAction',
+};
+
+/// Descriptor for `CancelAction`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List cancelActionDescriptor =
+    $convert.base64Decode('CgxDYW5jZWxBY3Rpb24=');
+
+@$core.Deprecated('Use equipItemDescriptor instead')
+const EquipItem$json = {
+  '1': 'EquipItem',
+  '2': [
+    {'1': 'slot', '3': 1, '4': 1, '5': 13, '10': 'slot'},
+  ],
+};
+
+/// Descriptor for `EquipItem`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List equipItemDescriptor =
+    $convert.base64Decode('CglFcXVpcEl0ZW0SEgoEc2xvdBgBIAEoDVIEc2xvdA==');
+
+@$core.Deprecated('Use debugCommandDescriptor instead')
+const DebugCommand$json = {
+  '1': 'DebugCommand',
+  '2': [
+    {
+      '1': 'grant_item',
+      '3': 1,
+      '4': 1,
+      '5': 11,
+      '6': '.craftaria.v1.GrantItem',
+      '9': 0,
+      '10': 'grantItem'
+    },
+    {
+      '1': 'grant_xp',
+      '3': 2,
+      '4': 1,
+      '5': 11,
+      '6': '.craftaria.v1.GrantXp',
+      '9': 0,
+      '10': 'grantXp'
+    },
+  ],
+  '8': [
+    {'1': 'command'},
+  ],
+};
+
+/// Descriptor for `DebugCommand`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List debugCommandDescriptor = $convert.base64Decode(
+    'CgxEZWJ1Z0NvbW1hbmQSOAoKZ3JhbnRfaXRlbRgBIAEoCzIXLmNyYWZ0YXJpYS52MS5HcmFudE'
+    'l0ZW1IAFIJZ3JhbnRJdGVtEjIKCGdyYW50X3hwGAIgASgLMhUuY3JhZnRhcmlhLnYxLkdyYW50'
+    'WHBIAFIHZ3JhbnRYcEIJCgdjb21tYW5k');
+
+@$core.Deprecated('Use grantItemDescriptor instead')
+const GrantItem$json = {
+  '1': 'GrantItem',
+  '2': [
+    {'1': 'item_id', '3': 1, '4': 1, '5': 9, '10': 'itemId'},
+    {'1': 'count', '3': 2, '4': 1, '5': 13, '10': 'count'},
+  ],
+};
+
+/// Descriptor for `GrantItem`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List grantItemDescriptor = $convert.base64Decode(
+    'CglHcmFudEl0ZW0SFwoHaXRlbV9pZBgBIAEoCVIGaXRlbUlkEhQKBWNvdW50GAIgASgNUgVjb3'
+    'VudA==');
+
+@$core.Deprecated('Use grantXpDescriptor instead')
+const GrantXp$json = {
+  '1': 'GrantXp',
+  '2': [
+    {'1': 'skill_id', '3': 1, '4': 1, '5': 9, '10': 'skillId'},
+    {'1': 'amount', '3': 2, '4': 1, '5': 13, '10': 'amount'},
+  ],
+};
+
+/// Descriptor for `GrantXp`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List grantXpDescriptor = $convert.base64Decode(
+    'CgdHcmFudFhwEhkKCHNraWxsX2lkGAEgASgJUgdza2lsbElkEhYKBmFtb3VudBgCIAEoDVIGYW'
+    '1vdW50');
 
 @$core.Deprecated('Use serverMessageDescriptor instead')
 const ServerMessage$json = {
@@ -178,6 +339,51 @@ const ServerMessage$json = {
       '9': 0,
       '10': 'error'
     },
+    {
+      '1': 'inventory',
+      '3': 6,
+      '4': 1,
+      '5': 11,
+      '6': '.craftaria.v1.InventoryUpdate',
+      '9': 0,
+      '10': 'inventory'
+    },
+    {
+      '1': 'skill',
+      '3': 7,
+      '4': 1,
+      '5': 11,
+      '6': '.craftaria.v1.SkillUpdate',
+      '9': 0,
+      '10': 'skill'
+    },
+    {
+      '1': 'action',
+      '3': 8,
+      '4': 1,
+      '5': 11,
+      '6': '.craftaria.v1.ActionState',
+      '9': 0,
+      '10': 'action'
+    },
+    {
+      '1': 'tile',
+      '3': 9,
+      '4': 1,
+      '5': 11,
+      '6': '.craftaria.v1.TileUpdate',
+      '9': 0,
+      '10': 'tile'
+    },
+    {
+      '1': 'notice',
+      '3': 10,
+      '4': 1,
+      '5': 11,
+      '6': '.craftaria.v1.Notice',
+      '9': 0,
+      '10': 'notice'
+    },
   ],
   '8': [
     {'1': 'payload'},
@@ -190,7 +396,12 @@ final $typed_data.Uint8List serverMessageDescriptor = $convert.base64Decode(
     'gAUgd3ZWxjb21lEjQKCHNuYXBzaG90GAIgASgLMhYuY3JhZnRhcmlhLnYxLlNuYXBzaG90SABS'
     'CHNuYXBzaG90Ei8KBWNodW5rGAMgASgLMhcuY3JhZnRhcmlhLnYxLkNodW5rRGF0YUgAUgVjaH'
     'VuaxIoCgRwb25nGAQgASgLMhIuY3JhZnRhcmlhLnYxLlBvbmdIAFIEcG9uZxIxCgVlcnJvchgF'
-    'IAEoCzIZLmNyYWZ0YXJpYS52MS5TZXJ2ZXJFcnJvckgAUgVlcnJvckIJCgdwYXlsb2Fk');
+    'IAEoCzIZLmNyYWZ0YXJpYS52MS5TZXJ2ZXJFcnJvckgAUgVlcnJvchI9CglpbnZlbnRvcnkYBi'
+    'ABKAsyHS5jcmFmdGFyaWEudjEuSW52ZW50b3J5VXBkYXRlSABSCWludmVudG9yeRIxCgVza2ls'
+    'bBgHIAEoCzIZLmNyYWZ0YXJpYS52MS5Ta2lsbFVwZGF0ZUgAUgVza2lsbBIzCgZhY3Rpb24YCC'
+    'ABKAsyGS5jcmFmdGFyaWEudjEuQWN0aW9uU3RhdGVIAFIGYWN0aW9uEi4KBHRpbGUYCSABKAsy'
+    'GC5jcmFmdGFyaWEudjEuVGlsZVVwZGF0ZUgAUgR0aWxlEi4KBm5vdGljZRgKIAEoCzIULmNyYW'
+    'Z0YXJpYS52MS5Ob3RpY2VIAFIGbm90aWNlQgkKB3BheWxvYWQ=');
 
 @$core.Deprecated('Use welcomeDescriptor instead')
 const Welcome$json = {
@@ -206,13 +417,146 @@ const Welcome$json = {
       '6': '.craftaria.v1.Vec2',
       '10': 'spawn'
     },
+    {
+      '1': 'items',
+      '3': 4,
+      '4': 3,
+      '5': 11,
+      '6': '.craftaria.v1.ItemDefinition',
+      '10': 'items'
+    },
   ],
 };
 
 /// Descriptor for `Welcome`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List welcomeDescriptor = $convert.base64Decode(
     'CgdXZWxjb21lEhsKCXBsYXllcl9pZBgBIAEoCVIIcGxheWVySWQSGwoJdGlja19yYXRlGAIgAS'
-    'gNUgh0aWNrUmF0ZRIoCgVzcGF3bhgDIAEoCzISLmNyYWZ0YXJpYS52MS5WZWMyUgVzcGF3bg==');
+    'gNUgh0aWNrUmF0ZRIoCgVzcGF3bhgDIAEoCzISLmNyYWZ0YXJpYS52MS5WZWMyUgVzcGF3bhIy'
+    'CgVpdGVtcxgEIAMoCzIcLmNyYWZ0YXJpYS52MS5JdGVtRGVmaW5pdGlvblIFaXRlbXM=');
+
+@$core.Deprecated('Use itemDefinitionDescriptor instead')
+const ItemDefinition$json = {
+  '1': 'ItemDefinition',
+  '2': [
+    {'1': 'id', '3': 1, '4': 1, '5': 9, '10': 'id'},
+    {'1': 'name', '3': 2, '4': 1, '5': 9, '10': 'name'},
+    {'1': 'max_stack', '3': 3, '4': 1, '5': 13, '10': 'maxStack'},
+  ],
+};
+
+/// Descriptor for `ItemDefinition`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List itemDefinitionDescriptor = $convert.base64Decode(
+    'Cg5JdGVtRGVmaW5pdGlvbhIOCgJpZBgBIAEoCVICaWQSEgoEbmFtZRgCIAEoCVIEbmFtZRIbCg'
+    'ltYXhfc3RhY2sYAyABKA1SCG1heFN0YWNr');
+
+@$core.Deprecated('Use inventoryUpdateDescriptor instead')
+const InventoryUpdate$json = {
+  '1': 'InventoryUpdate',
+  '2': [
+    {
+      '1': 'slots',
+      '3': 1,
+      '4': 3,
+      '5': 11,
+      '6': '.craftaria.v1.ItemStack',
+      '10': 'slots'
+    },
+    {'1': 'equipped', '3': 2, '4': 1, '5': 9, '10': 'equipped'},
+  ],
+};
+
+/// Descriptor for `InventoryUpdate`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List inventoryUpdateDescriptor = $convert.base64Decode(
+    'Cg9JbnZlbnRvcnlVcGRhdGUSLQoFc2xvdHMYASADKAsyFy5jcmFmdGFyaWEudjEuSXRlbVN0YW'
+    'NrUgVzbG90cxIaCghlcXVpcHBlZBgCIAEoCVIIZXF1aXBwZWQ=');
+
+@$core.Deprecated('Use itemStackDescriptor instead')
+const ItemStack$json = {
+  '1': 'ItemStack',
+  '2': [
+    {'1': 'item_id', '3': 1, '4': 1, '5': 9, '10': 'itemId'},
+    {'1': 'count', '3': 2, '4': 1, '5': 13, '10': 'count'},
+  ],
+};
+
+/// Descriptor for `ItemStack`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List itemStackDescriptor = $convert.base64Decode(
+    'CglJdGVtU3RhY2sSFwoHaXRlbV9pZBgBIAEoCVIGaXRlbUlkEhQKBWNvdW50GAIgASgNUgVjb3'
+    'VudA==');
+
+@$core.Deprecated('Use skillUpdateDescriptor instead')
+const SkillUpdate$json = {
+  '1': 'SkillUpdate',
+  '2': [
+    {'1': 'skill_id', '3': 1, '4': 1, '5': 9, '10': 'skillId'},
+    {'1': 'level', '3': 2, '4': 1, '5': 13, '10': 'level'},
+    {'1': 'xp', '3': 3, '4': 1, '5': 4, '10': 'xp'},
+    {'1': 'level_xp', '3': 4, '4': 1, '5': 4, '10': 'levelXp'},
+    {'1': 'next_level_xp', '3': 5, '4': 1, '5': 4, '10': 'nextLevelXp'},
+  ],
+};
+
+/// Descriptor for `SkillUpdate`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List skillUpdateDescriptor = $convert.base64Decode(
+    'CgtTa2lsbFVwZGF0ZRIZCghza2lsbF9pZBgBIAEoCVIHc2tpbGxJZBIUCgVsZXZlbBgCIAEoDV'
+    'IFbGV2ZWwSDgoCeHAYAyABKARSAnhwEhkKCGxldmVsX3hwGAQgASgEUgdsZXZlbFhwEiIKDW5l'
+    'eHRfbGV2ZWxfeHAYBSABKARSC25leHRMZXZlbFhw');
+
+@$core.Deprecated('Use actionStateDescriptor instead')
+const ActionState$json = {
+  '1': 'ActionState',
+  '2': [
+    {'1': 'kind', '3': 1, '4': 1, '5': 9, '10': 'kind'},
+    {'1': 'tile_x', '3': 2, '4': 1, '5': 17, '10': 'tileX'},
+    {'1': 'tile_y', '3': 3, '4': 1, '5': 17, '10': 'tileY'},
+    {'1': 'start_tick', '3': 4, '4': 1, '5': 13, '10': 'startTick'},
+    {'1': 'duration_ticks', '3': 5, '4': 1, '5': 13, '10': 'durationTicks'},
+  ],
+};
+
+/// Descriptor for `ActionState`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List actionStateDescriptor = $convert.base64Decode(
+    'CgtBY3Rpb25TdGF0ZRISCgRraW5kGAEgASgJUgRraW5kEhUKBnRpbGVfeBgCIAEoEVIFdGlsZV'
+    'gSFQoGdGlsZV95GAMgASgRUgV0aWxlWRIdCgpzdGFydF90aWNrGAQgASgNUglzdGFydFRpY2sS'
+    'JQoOZHVyYXRpb25fdGlja3MYBSABKA1SDWR1cmF0aW9uVGlja3M=');
+
+@$core.Deprecated('Use tileUpdateDescriptor instead')
+const TileUpdate$json = {
+  '1': 'TileUpdate',
+  '2': [
+    {'1': 'cx', '3': 1, '4': 1, '5': 17, '10': 'cx'},
+    {'1': 'cy', '3': 2, '4': 1, '5': 17, '10': 'cy'},
+    {'1': 'layer', '3': 3, '4': 1, '5': 9, '10': 'layer'},
+    {'1': 'index', '3': 4, '4': 1, '5': 13, '10': 'index'},
+    {'1': 'tile_id', '3': 5, '4': 1, '5': 13, '10': 'tileId'},
+    {'1': 'blocked', '3': 6, '4': 1, '5': 8, '10': 'blocked'},
+  ],
+};
+
+/// Descriptor for `TileUpdate`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List tileUpdateDescriptor = $convert.base64Decode(
+    'CgpUaWxlVXBkYXRlEg4KAmN4GAEgASgRUgJjeBIOCgJjeRgCIAEoEVICY3kSFAoFbGF5ZXIYAy'
+    'ABKAlSBWxheWVyEhQKBWluZGV4GAQgASgNUgVpbmRleBIXCgd0aWxlX2lkGAUgASgNUgZ0aWxl'
+    'SWQSGAoHYmxvY2tlZBgGIAEoCFIHYmxvY2tlZA==');
+
+@$core.Deprecated('Use noticeDescriptor instead')
+const Notice$json = {
+  '1': 'Notice',
+  '2': [
+    {
+      '1': 'code',
+      '3': 1,
+      '4': 1,
+      '5': 14,
+      '6': '.craftaria.v1.NoticeCode',
+      '10': 'code'
+    },
+  ],
+};
+
+/// Descriptor for `Notice`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List noticeDescriptor = $convert.base64Decode(
+    'CgZOb3RpY2USLAoEY29kZRgBIAEoDjIYLmNyYWZ0YXJpYS52MS5Ob3RpY2VDb2RlUgRjb2Rl');
 
 @$core.Deprecated('Use snapshotDescriptor instead')
 const Snapshot$json = {

@@ -17,6 +17,10 @@ message ClientMessage {
     Hello hello = 1;
     MoveInput move = 2;
     Ping ping = 3;
+    Gather gather = 4;
+    CancelAction cancel_action = 5;
+    EquipItem equip = 6;
+    DebugCommand debug = 7;
   }
 }
 
@@ -38,6 +42,41 @@ message Ping {
   uint64 client_time_ms = 1;
 }
 
+// Start gathering from the resource node on a world tile. Shares the
+// MoveInput seq space so the server applies it after the moves sent before
+// it.
+message Gather {
+  uint32 seq = 1;
+  sint32 tile_x = 2;
+  sint32 tile_y = 3;
+}
+
+// Stop the current action.
+message CancelAction {}
+
+// Equip the tool in an inventory slot.
+message EquipItem {
+  uint32 slot = 1;
+}
+
+// Development only: ignored unless the server enables debug commands.
+message DebugCommand {
+  oneof command {
+    GrantItem grant_item = 1;
+    GrantXp grant_xp = 2;
+  }
+}
+
+message GrantItem {
+  string item_id = 1;
+  uint32 count = 2;
+}
+
+message GrantXp {
+  string skill_id = 1;
+  uint32 amount = 2;
+}
+
 // Every frame sent by the server.
 message ServerMessage {
   oneof payload {
@@ -46,6 +85,11 @@ message ServerMessage {
     ChunkData chunk = 3;
     Pong pong = 4;
     ServerError error = 5;
+    InventoryUpdate inventory = 6;
+    SkillUpdate skill = 7;
+    ActionState action = 8;
+    TileUpdate tile = 9;
+    Notice notice = 10;
   }
 }
 
@@ -53,6 +97,78 @@ message Welcome {
   string player_id = 1;
   uint32 tick_rate = 2;
   Vec2 spawn = 3;
+
+  // Display data for every item, so the client never hardcodes content.
+  repeated ItemDefinition items = 4;
+}
+
+message ItemDefinition {
+  // Stable item id, e.g. "pine_log".
+  string id = 1;
+  string name = 2;
+  uint32 max_stack = 3;
+}
+
+// The player's whole inventory, sent when it changes.
+message InventoryUpdate {
+  // One entry per slot; empty slots have an empty item_id.
+  repeated ItemStack slots = 1;
+  // Item id of the equipped tool, empty when none.
+  string equipped = 2;
+}
+
+message ItemStack {
+  string item_id = 1;
+  uint32 count = 2;
+}
+
+// Progress in one skill, sent when it changes.
+message SkillUpdate {
+  // Stable skill id, e.g. "woodcutting".
+  string skill_id = 1;
+  uint32 level = 2;
+  uint64 xp = 3;
+  // Total XP at which the current level started and the next one starts.
+  uint64 level_xp = 4;
+  uint64 next_level_xp = 5;
+}
+
+// The player's current action. Idle when kind is empty.
+message ActionState {
+  // e.g. "gather".
+  string kind = 1;
+  sint32 tile_x = 2;
+  sint32 tile_y = 3;
+  // Server tick the current cycle started on, and how long it takes.
+  uint32 start_tick = 4;
+  uint32 duration_ticks = 5;
+}
+
+// One edited tile in a chunk the player has loaded.
+message TileUpdate {
+  sint32 cx = 1;
+  sint32 cy = 2;
+  string layer = 3;
+  // Row-major tile index within the chunk.
+  uint32 index = 4;
+  uint32 tile_id = 5;
+  bool blocked = 6;
+}
+
+enum NoticeCode {
+  NOTICE_CODE_UNSPECIFIED = 0;
+  NOTICE_CODE_NOTHING_TO_GATHER = 1;
+  NOTICE_CODE_OUT_OF_REACH = 2;
+  NOTICE_CODE_NO_TOOL = 3;
+  NOTICE_CODE_TOOL_TOO_WEAK = 4;
+  NOTICE_CODE_LEVEL_TOO_LOW = 5;
+  NOTICE_CODE_INVENTORY_FULL = 6;
+  NOTICE_CODE_DEPLETED = 7;
+}
+
+// Something the player should be told, e.g. why gathering stopped.
+message Notice {
+  NoticeCode code = 1;
 }
 
 // Full state of the entities around the player. Entities missing from a
