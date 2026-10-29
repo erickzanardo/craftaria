@@ -98,5 +98,5 @@ See [SECURITY.md](SECURITY.md) to report a vulnerability.
 - **Art, audio and branding**: all rights reserved, see
   [ASSETS_LICENSE.md](ASSETS_LICENSE.md). They may not be used in other
   projects; forks must replace them.
-- **Contributing**: see [CONTRIBUTING.md](CONTRIBUTING.md). Contributors sign
-  the [CLA](CLA.md) once.
+- **Contributing**: see [CONTRIBUTING.md](CONTRIBUTING.md). Contributions are
+  accepted under AGPL-3.0-only.

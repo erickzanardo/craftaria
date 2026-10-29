@@ -11,9 +11,8 @@ welcome.
   complete source under the AGPL.
 - **Art and audio** are proprietary, see [ASSETS_LICENSE.md](ASSETS_LICENSE.md).
   They cannot be used outside Craftaria. Forks must replace them.
-- **Contributions** require signing the [CLA](CLA.md) once. A bot comments on
-  your first pull request with instructions. You keep the copyright in your
-  work; the CLA lets the maintainer relicense the project in the future.
+- **Contributions** are accepted under the project's AGPL-3.0-only license.
+  You keep the copyright in your work.
 
 ## Art
 

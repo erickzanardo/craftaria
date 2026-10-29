@@ -4,7 +4,7 @@
   golden images). All art is drawn by the author. Render with debug shapes and
   colors in code until real assets exist.
 - **Licensing**: code is AGPL-3.0-only, assets are all rights reserved
-  (`ASSETS_LICENSE.md`), contributions need the CLA. Don't add dependencies
+  (`ASSETS_LICENSE.md`), contributions come in under AGPL. Don't add dependencies
   with licenses incompatible with AGPL-3.0.
 - **Public repo: no secrets.** Secrets go in wrangler secrets or gitignored
   `.dev.vars`; no account ids in `wrangler.toml`.
