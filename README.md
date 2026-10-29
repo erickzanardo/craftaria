@@ -44,19 +44,21 @@ docs/                   design notes
 ## Prerequisites
 
 - Flutter (stable, see `.github/workflows/dart.yml` for the pinned version)
-- Node 22+ with Corepack (`corepack enable` or prefix commands with `corepack`)
+- Node 22+. pnpm runs through `npx`, pinned to the version in
+  `package.json` (`packageManager`): always use `npx pnpm@10.34.9`. Plain
+  `npx pnpm` fetches the latest pnpm, which refuses to run in this repo.
 - [very_good_cli](https://cli.vgv.dev) for coverage-gated tests (optional)
 
 ## Running locally
 
 ```sh
-pnpm install
+npx pnpm@10.34.9 install
 flutter pub get
 
 # Server: create a local secret (never committed), then start wrangler.
 cp server/worker/.dev.vars.example server/worker/.dev.vars
 # edit .dev.vars, e.g. AUTH_SECRET=$(openssl rand -base64 48)
-pnpm dev                                   # http://localhost:8787
+npx pnpm@10.34.9 dev                       # http://localhost:8787
 
 # Client, in another terminal. Port 8080 matches ALLOWED_ORIGINS.
 cd apps/game
@@ -66,15 +68,17 @@ flutter run -d chrome --web-port 8080
 Point the client somewhere else with
 `--dart-define=CRAFTARIA_API_URL=https://your-worker.example/`.
 
-Open two browser tabs to see two players.
+To see two players, open `http://localhost:8080` in a private window or a
+second browser too. Tabs of the same browser share the guest token, so a
+second tab replaces the first player.
 
 ## Common tasks
 
 | Task | Command |
 | --- | --- |
-| Regenerate protobuf code (Dart + TS) | `pnpm proto` |
-| Regenerate movement fixtures | `pnpm --filter @craftaria/world fixtures` |
-| Server tests / typecheck | `pnpm test` / `pnpm typecheck` |
+| Regenerate protobuf code (Dart + TS) | `npx pnpm@10.34.9 proto` |
+| Regenerate movement fixtures | `npx pnpm@10.34.9 --filter @craftaria/world fixtures` |
+| Server tests / typecheck | `npx pnpm@10.34.9 test` / `npx pnpm@10.34.9 typecheck` |
 | Dart package tests | `very_good test --coverage --min-coverage 100` in the package |
 
 ## Secrets

@@ -11,8 +11,8 @@
 - **Keep the two simulations identical.** `packages/craftaria_sim` mirrors
   `server/world/src/movement.ts`; constants mirror `server/world/src/constants.ts`
   and tile ids mirror `server/world/src/tiles.ts`. Change both sides together,
-  then run `pnpm --filter @craftaria/world fixtures` and both test suites.
-- **Protocol changes** go in `proto/`, then `pnpm proto`. Bump
+  then run `npx pnpm@10.34.9 --filter @craftaria/world fixtures` and both test suites.
+- **Protocol changes** go in `proto/`, then `npx pnpm@10.34.9 proto`. Bump
   `PROTOCOL_VERSION` / `protocolVersion` on breaking changes. Never hand-edit
   generated code.
 - **Dart standards**: very_good_analysis, bloc, layered packages, 100% test
@@ -20,5 +20,7 @@
 - **Server standards**: strict TypeScript, vitest with 100% coverage on logic.
   Durable Object glue stays thin; logic lives in testable classes
   (`ZoneServer`, `ZoneSimulation`).
+- Run pnpm as `npx pnpm@10.34.9 …` (the `packageManager` version); update
+  the docs if that version changes.
 - Platform-specific code hides behind interfaces (`GameTransport`,
   `TokenStorage`, `MovementInput`) so mobile can be added later.
