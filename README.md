@@ -24,7 +24,7 @@ server/                 TypeScript, one pnpm workspace
   worker/               Worker (HTTP API) + Zone Durable Object
 proto/                  .proto sources of truth for the wire and map format
 fixtures/               cross-language test vectors
-docs/                   design notes
+docs/                   design notes: decisions.md, roadmap.md, map-format.md
 ```
 
 ## How it fits together

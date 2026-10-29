@@ -1,5 +1,9 @@
 # Craftaria: notes for coding agents
 
+Read [docs/decisions.md](docs/decisions.md) for why things are the way they
+are and [docs/roadmap.md](docs/roadmap.md) for current state and next steps.
+Update both when that changes.
+
 - **Never create graphical assets** (sprites, tiles, icons, placeholder or
   golden images). All art is drawn by the author. Render with debug shapes and
   colors in code until real assets exist.
@@ -24,3 +28,19 @@
   the docs if that version changes.
 - Platform-specific code hides behind interfaces (`GameTransport`,
   `TokenStorage`, `MovementInput`) so mobile can be added later.
+
+## Workflow gotchas
+
+- **Dependabot bumps of `protobuf` / `protoc_plugin`** need the generated code
+  regenerated (`npx pnpm@10.34.9 proto`) and committed on the PR branch,
+  otherwise nothing compiles and the `generated` check fails.
+- **Adding or renaming a Dart package or CI job**: update the matrix in
+  `.github/workflows/dart.yml` *and* the required status checks of the `main`
+  branch protection (`gh api repos/erickzanardo/craftaria/branches/main/protection`).
+  Check names are the job names (`apps/game`, `packages/...`, `build web`,
+  `test`, `generated`, `gitleaks`).
+- **Squash merges** mean `git branch -d` refuses merged branches; compare the
+  trees, then use `-D`.
+- **Testing multiplayer locally**: tabs of the same browser share the guest
+  token and replace each other; use a private window or a second browser.
+- The local client must run on `--web-port 8080` to match `ALLOWED_ORIGINS`.
