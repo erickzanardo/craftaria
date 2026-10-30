@@ -1,5 +1,6 @@
 import 'dart:math' as math;
 
+import 'package:craftaria/game/character/character_sprites.dart';
 import 'package:craftaria/game/client_world.dart';
 import 'package:craftaria/game/components/action_progress_component.dart';
 import 'package:craftaria/game/components/player_component.dart';
@@ -25,11 +26,8 @@ class CraftariaGame extends FlameGame with KeyboardEvents, TapCallbacks {
   }) : input = input ?? KeyboardMovementInput(),
        tileRenderer = tileRenderer ?? DebugTileRenderer();
 
-  /// Local color of the player until sprites exist.
-  static const localPlayerColor = Color(0xFFFFE066);
-
-  /// Color of other players until sprites exist.
-  static const remotePlayerColor = Color(0xFFE06666);
+  /// Sprite sheet of the characters, under `assets/images/`.
+  static const charactersSheet = 'characters.png';
 
   /// State being rendered.
   final ClientWorld clientWorld;
@@ -40,6 +38,8 @@ class CraftariaGame extends FlameGame with KeyboardEvents, TapCallbacks {
   /// Draws tiles.
   final TileRenderer tileRenderer;
 
+  /// Tinted character sprites, once loaded.
+  late final CharacterSprites characterSprites;
   PlayerComponent? _localPlayer;
   final _remotePlayers = <String, PlayerComponent>{};
   final _chunkComponents = <ChunkCoord, List<ChunkComponent>>{};
@@ -47,6 +47,14 @@ class CraftariaGame extends FlameGame with KeyboardEvents, TapCallbacks {
   /// Components of the other players, by id.
   Map<String, PlayerComponent> get remotePlayers =>
       Map.unmodifiable(_remotePlayers);
+
+  @override
+  Future<void> onLoad() async {
+    characterSprites = await CharacterSprites.load(
+      await images.load(charactersSheet),
+      palette: () => clientWorld.status.palette,
+    );
+  }
 
   @override
   Color backgroundColor() => const Color(0xFF000000);
@@ -125,7 +133,8 @@ class CraftariaGame extends FlameGame with KeyboardEvents, TapCallbacks {
       _localPlayer = PlayerComponent(
         playerId: localId,
         locate: () => clientWorld.localRenderPosition,
-        color: localPlayerColor,
+        look: () => clientWorld.lookOf(localId),
+        sprites: characterSprites,
       )..parent = world;
       ActionProgressComponent(
         locate: () => clientWorld.localRenderPosition,
@@ -144,7 +153,8 @@ class CraftariaGame extends FlameGame with KeyboardEvents, TapCallbacks {
         return PlayerComponent(
           playerId: id,
           locate: () => clientWorld.remotePosition(id),
-          color: remotePlayerColor,
+          look: () => clientWorld.lookOf(id),
+          sprites: characterSprites,
         )..parent = world;
       });
     }

@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:craftaria/game/character/character_look.dart';
 import 'package:craftaria/game/player_status.dart';
 import 'package:craftaria_map/craftaria_map.dart';
 import 'package:craftaria_protocol/craftaria_protocol.dart';
@@ -34,6 +35,7 @@ class ClientWorld {
 
   final _newChunks = <MapChunk>[];
   final _remotes = <String, InterpolationBuffer>{};
+  final _remoteLooks = <String, CharacterLook>{};
   final _statusChanges = StreamController<PlayerStatus>.broadcast();
   final _notices = StreamController<NoticeCode>.broadcast();
   PredictedPlayer? _localPlayer;
@@ -72,8 +74,10 @@ class ClientWorld {
   /// The predicted local player, once welcomed.
   PredictedPlayer? get localPlayer => _localPlayer;
 
-  /// Ids of the other players currently visible.
-  Iterable<String> get remotePlayerIds => _remotes.keys;
+  /// Ids of the other players currently visible: those who have created
+  /// their character.
+  Iterable<String> get remotePlayerIds =>
+      _remotes.keys.where(_remoteLooks.containsKey);
 
   /// Chunks received or changed since the last call. A changed chunk
   /// replaces the one with the same coordinates.
@@ -96,6 +100,22 @@ class ClientWorld {
 
   /// Where to draw the remote player [id] now.
   Position? remotePosition(String id) => _remotes[id]?.sample(_clock.elapsed);
+
+  /// How to draw the player [id]. For the local player, the look being
+  /// previewed wins over the created one.
+  CharacterLook? lookOf(String id) =>
+      id == _localPlayerId ? previewLook ?? _status.look : _remoteLooks[id];
+
+  /// Look shown on the local player while their character is created,
+  /// without telling anyone.
+  CharacterLook? previewLook;
+
+  /// Creates or changes the local player's character.
+  void createCharacter(CharacterLook look) {
+    previewLook = null;
+    _client.sendAppearance(look.toProto());
+    _setStatus(_status.copyWith(look: () => look));
+  }
 
   /// Acts on the world tile ([tileX], [tileY]), as when it is clicked: a tree
   /// is walked to and gathered from, anything else cancels what the player
@@ -195,6 +215,11 @@ class ClientWorld {
         );
         _setStatus(
           _status.copyWith(
+            palette: List.unmodifiable(welcome.palette),
+            skinColors: List.unmodifiable(welcome.skinColors),
+            look: () => welcome.hasAppearance()
+                ? CharacterLook.fromProto(welcome.appearance)
+                : null,
             items: {
               for (final item in welcome.items)
                 item.id: ItemInfo(
@@ -279,8 +304,12 @@ class ClientWorld {
       _remotes
           .putIfAbsent(entity.id, InterpolationBuffer.new)
           .add(now, position);
+      if (entity.hasAppearance()) {
+        _remoteLooks[entity.id] = CharacterLook.fromProto(entity.appearance);
+      }
     }
     _remotes.removeWhere((id, _) => !seen.contains(id));
+    _remoteLooks.removeWhere((id, _) => !seen.contains(id));
   }
 
   /// Stops listening to the server.

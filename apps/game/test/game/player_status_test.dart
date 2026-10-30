@@ -1,3 +1,4 @@
+import 'package:craftaria/game/character/character_look.dart';
 import 'package:craftaria/game/player_status.dart';
 import 'package:craftaria_protocol/craftaria_protocol.dart';
 import 'package:fixnum/fixnum.dart';
@@ -69,6 +70,18 @@ void main() {
       expect(changed.slots, hasLength(2));
       expect(changed.skills.keys, equals(['woodcutting']));
       expect(changed.items['a']!.maxStack, equals(5));
+
+      final created = status.copyWith(
+        palette: const [0x000000, 0x111111, 0x222222, 0x333333],
+        skinColors: const [1, 2],
+        look: () => const CharacterLook(skin: 1, shirt: 0, pants: 3),
+      );
+      expect(
+        created.look,
+        equals(const CharacterLook(skin: 1, shirt: 0, pants: 3)),
+      );
+      expect(created.clothingColors, equals([0, 3]));
+      expect(created.copyWith(look: () => null).look, isNull);
     });
   });
 }

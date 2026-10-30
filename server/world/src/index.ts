@@ -1,3 +1,4 @@
+export * from "./appearance.ts";
 export * from "./chunk.ts";
 export * from "./constants.ts";
 export * from "./content.ts";

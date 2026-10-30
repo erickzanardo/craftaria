@@ -62,6 +62,12 @@ void main() {
       expect(equip.equip.slot, equals(3));
     });
 
+    test('sendAppearance', () {
+      final appearance = Appearance(skin: 12, shirt: 0, pants: 1);
+      client.sendAppearance(appearance);
+      expect(sent().single.setAppearance.appearance, equals(appearance));
+    });
+
     test('debug commands', () {
       client
         ..sendDebugGrantItem('iron_axe', 1)

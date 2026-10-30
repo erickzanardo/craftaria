@@ -20,6 +20,7 @@ number changes, change the spec and the code in the same commit.
 
 ## Index
 
+- [characters.md](characters.md): creating a character and its colors.
 - [skills.md](skills.md): skills, XP and levels, and the gathering model
   every gathering skill follows.
 - [skills/woodcutting.md](skills/woodcutting.md): axes and trees.

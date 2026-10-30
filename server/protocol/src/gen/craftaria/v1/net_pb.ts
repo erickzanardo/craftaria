@@ -12,7 +12,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file craftaria/v1/net.proto.
  */
 export const file_craftaria_v1_net: GenFile = /*@__PURE__*/
-  fileDesc("ChZjcmFmdGFyaWEvdjEvbmV0LnByb3RvEgxjcmFmdGFyaWEudjEiHAoEVmVjMhIJCgF4GAEgASgREgkKAXkYAiABKBEiwQIKDUNsaWVudE1lc3NhZ2USJAoFaGVsbG8YASABKAsyEy5jcmFmdGFyaWEudjEuSGVsbG9IABInCgRtb3ZlGAIgASgLMhcuY3JhZnRhcmlhLnYxLk1vdmVJbnB1dEgAEiIKBHBpbmcYAyABKAsyEi5jcmFmdGFyaWEudjEuUGluZ0gAEiYKBmdhdGhlchgEIAEoCzIULmNyYWZ0YXJpYS52MS5HYXRoZXJIABIzCg1jYW5jZWxfYWN0aW9uGAUgASgLMhouY3JhZnRhcmlhLnYxLkNhbmNlbEFjdGlvbkgAEigKBWVxdWlwGAYgASgLMhcuY3JhZnRhcmlhLnYxLkVxdWlwSXRlbUgAEisKBWRlYnVnGAcgASgLMhouY3JhZnRhcmlhLnYxLkRlYnVnQ29tbWFuZEgAQgkKB3BheWxvYWQiMAoFSGVsbG8SDQoFdG9rZW4YASABKAkSGAoQcHJvdG9jb2xfdmVyc2lvbhgCIAEoDSIwCglNb3ZlSW5wdXQSCwoDc2VxGAEgASgNEgoKAmR4GAIgASgREgoKAmR5GAMgASgRIh4KBFBpbmcSFgoOY2xpZW50X3RpbWVfbXMYASABKAQiNQoGR2F0aGVyEgsKA3NlcRgBIAEoDRIOCgZ0aWxlX3gYAiABKBESDgoGdGlsZV95GAMgASgRIg4KDENhbmNlbEFjdGlvbiIZCglFcXVpcEl0ZW0SDAoEc2xvdBgBIAEoDSJzCgxEZWJ1Z0NvbW1hbmQSLQoKZ3JhbnRfaXRlbRgBIAEoCzIXLmNyYWZ0YXJpYS52MS5HcmFudEl0ZW1IABIpCghncmFudF94cBgCIAEoCzIVLmNyYWZ0YXJpYS52MS5HcmFudFhwSABCCQoHY29tbWFuZCIrCglHcmFudEl0ZW0SDwoHaXRlbV9pZBgBIAEoCRINCgVjb3VudBgCIAEoDSIrCgdHcmFudFhwEhAKCHNraWxsX2lkGAEgASgJEg4KBmFtb3VudBgCIAEoDSLJAwoNU2VydmVyTWVzc2FnZRIoCgd3ZWxjb21lGAEgASgLMhUuY3JhZnRhcmlhLnYxLldlbGNvbWVIABIqCghzbmFwc2hvdBgCIAEoCzIWLmNyYWZ0YXJpYS52MS5TbmFwc2hvdEgAEigKBWNodW5rGAMgASgLMhcuY3JhZnRhcmlhLnYxLkNodW5rRGF0YUgAEiIKBHBvbmcYBCABKAsyEi5jcmFmdGFyaWEudjEuUG9uZ0gAEioKBWVycm9yGAUgASgLMhkuY3JhZnRhcmlhLnYxLlNlcnZlckVycm9ySAASMgoJaW52ZW50b3J5GAYgASgLMh0uY3JhZnRhcmlhLnYxLkludmVudG9yeVVwZGF0ZUgAEioKBXNraWxsGAcgASgLMhkuY3JhZnRhcmlhLnYxLlNraWxsVXBkYXRlSAASKwoGYWN0aW9uGAggASgLMhkuY3JhZnRhcmlhLnYxLkFjdGlvblN0YXRlSAASKAoEdGlsZRgJIAEoCzIYLmNyYWZ0YXJpYS52MS5UaWxlVXBkYXRlSAASJgoGbm90aWNlGAogASgLMhQuY3JhZnRhcmlhLnYxLk5vdGljZUgAQgkKB3BheWxvYWQifwoHV2VsY29tZRIRCglwbGF5ZXJfaWQYASABKAkSEQoJdGlja19yYXRlGAIgASgNEiEKBXNwYXduGAMgASgLMhIuY3JhZnRhcmlhLnYxLlZlYzISKwoFaXRlbXMYBCADKAsyHC5jcmFmdGFyaWEudjEuSXRlbURlZmluaXRpb24iPQoOSXRlbURlZmluaXRpb24SCgoCaWQYASABKAkSDAoEbmFtZRgCIAEoCRIRCgltYXhfc3RhY2sYAyABKA0iSwoPSW52ZW50b3J5VXBkYXRlEiYKBXNsb3RzGAEgAygLMhcuY3JhZnRhcmlhLnYxLkl0ZW1TdGFjaxIQCghlcXVpcHBlZBgCIAEoCSIrCglJdGVtU3RhY2sSDwoHaXRlbV9pZBgBIAEoCRINCgVjb3VudBgCIAEoDSJjCgtTa2lsbFVwZGF0ZRIQCghza2lsbF9pZBgBIAEoCRINCgVsZXZlbBgCIAEoDRIKCgJ4cBgDIAEoBBIQCghsZXZlbF94cBgEIAEoBBIVCg1uZXh0X2xldmVsX3hwGAUgASgEImcKC0FjdGlvblN0YXRlEgwKBGtpbmQYASABKAkSDgoGdGlsZV94GAIgASgREg4KBnRpbGVfeRgDIAEoERISCgpzdGFydF90aWNrGAQgASgNEhYKDmR1cmF0aW9uX3RpY2tzGAUgASgNImQKClRpbGVVcGRhdGUSCgoCY3gYASABKBESCgoCY3kYAiABKBESDQoFbGF5ZXIYAyABKAkSDQoFaW5kZXgYBCABKA0SDwoHdGlsZV9pZBgFIAEoDRIPCgdibG9ja2VkGAYgASgIIjAKBk5vdGljZRImCgRjb2RlGAEgASgOMhguY3JhZnRhcmlhLnYxLk5vdGljZUNvZGUiXQoIU25hcHNob3QSDAoEdGljaxgBIAEoDRIWCg5sYXN0X2lucHV0X3NlcRgCIAEoDRIrCghlbnRpdGllcxgDIAMoCzIZLmNyYWZ0YXJpYS52MS5FbnRpdHlTdGF0ZSI/CgtFbnRpdHlTdGF0ZRIKCgJpZBgBIAEoCRIkCghwb3NpdGlvbhgCIAEoCzISLmNyYWZ0YXJpYS52MS5WZWMyIi8KCUNodW5rRGF0YRIiCgVjaHVuaxgBIAEoCzITLmNyYWZ0YXJpYS52MS5DaHVuayI2CgRQb25nEhYKDmNsaWVudF90aW1lX21zGAEgASgEEhYKDnNlcnZlcl90aW1lX21zGAIgASgEIkUKC1NlcnZlckVycm9yEiUKBGNvZGUYASABKA4yFy5jcmFmdGFyaWEudjEuRXJyb3JDb2RlEg8KB21lc3NhZ2UYAiABKAkq+wEKCk5vdGljZUNvZGUSGwoXTk9USUNFX0NPREVfVU5TUEVDSUZJRUQQABIhCh1OT1RJQ0VfQ09ERV9OT1RISU5HX1RPX0dBVEhFUhABEhwKGE5PVElDRV9DT0RFX09VVF9PRl9SRUFDSBACEhcKE05PVElDRV9DT0RFX05PX1RPT0wQAxIdChlOT1RJQ0VfQ09ERV9UT09MX1RPT19XRUFLEAQSHQoZTk9USUNFX0NPREVfTEVWRUxfVE9PX0xPVxAFEh4KGk5PVElDRV9DT0RFX0lOVkVOVE9SWV9GVUxMEAYSGAoUTk9USUNFX0NPREVfREVQTEVURUQQByp/CglFcnJvckNvZGUSGgoWRVJST1JfQ09ERV9VTlNQRUNJRklFRBAAEhsKF0VSUk9SX0NPREVfVU5BVVRIT1JJWkVEEAESIAocRVJST1JfQ09ERV9QUk9UT0NPTF9NSVNNQVRDSBACEhcKE0VSUk9SX0NPREVfUkVQTEFDRUQQA2IGcHJvdG8z", [file_craftaria_v1_map]);
+  fileDesc("ChZjcmFmdGFyaWEvdjEvbmV0LnByb3RvEgxjcmFmdGFyaWEudjEiHAoEVmVjMhIJCgF4GAEgASgREgkKAXkYAiABKBEi+AIKDUNsaWVudE1lc3NhZ2USJAoFaGVsbG8YASABKAsyEy5jcmFmdGFyaWEudjEuSGVsbG9IABInCgRtb3ZlGAIgASgLMhcuY3JhZnRhcmlhLnYxLk1vdmVJbnB1dEgAEiIKBHBpbmcYAyABKAsyEi5jcmFmdGFyaWEudjEuUGluZ0gAEiYKBmdhdGhlchgEIAEoCzIULmNyYWZ0YXJpYS52MS5HYXRoZXJIABIzCg1jYW5jZWxfYWN0aW9uGAUgASgLMhouY3JhZnRhcmlhLnYxLkNhbmNlbEFjdGlvbkgAEigKBWVxdWlwGAYgASgLMhcuY3JhZnRhcmlhLnYxLkVxdWlwSXRlbUgAEisKBWRlYnVnGAcgASgLMhouY3JhZnRhcmlhLnYxLkRlYnVnQ29tbWFuZEgAEjUKDnNldF9hcHBlYXJhbmNlGAggASgLMhsuY3JhZnRhcmlhLnYxLlNldEFwcGVhcmFuY2VIAEIJCgdwYXlsb2FkIjAKBUhlbGxvEg0KBXRva2VuGAEgASgJEhgKEHByb3RvY29sX3ZlcnNpb24YAiABKA0iMAoJTW92ZUlucHV0EgsKA3NlcRgBIAEoDRIKCgJkeBgCIAEoERIKCgJkeRgDIAEoESIeCgRQaW5nEhYKDmNsaWVudF90aW1lX21zGAEgASgEIjUKBkdhdGhlchILCgNzZXEYASABKA0SDgoGdGlsZV94GAIgASgREg4KBnRpbGVfeRgDIAEoESIOCgxDYW5jZWxBY3Rpb24iGQoJRXF1aXBJdGVtEgwKBHNsb3QYASABKA0iPQoNU2V0QXBwZWFyYW5jZRIsCgphcHBlYXJhbmNlGAEgASgLMhguY3JhZnRhcmlhLnYxLkFwcGVhcmFuY2UiOAoKQXBwZWFyYW5jZRIMCgRza2luGAEgASgNEg0KBXNoaXJ0GAIgASgNEg0KBXBhbnRzGAMgASgNInMKDERlYnVnQ29tbWFuZBItCgpncmFudF9pdGVtGAEgASgLMhcuY3JhZnRhcmlhLnYxLkdyYW50SXRlbUgAEikKCGdyYW50X3hwGAIgASgLMhUuY3JhZnRhcmlhLnYxLkdyYW50WHBIAEIJCgdjb21tYW5kIisKCUdyYW50SXRlbRIPCgdpdGVtX2lkGAEgASgJEg0KBWNvdW50GAIgASgNIisKB0dyYW50WHASEAoIc2tpbGxfaWQYASABKAkSDgoGYW1vdW50GAIgASgNIskDCg1TZXJ2ZXJNZXNzYWdlEigKB3dlbGNvbWUYASABKAsyFS5jcmFmdGFyaWEudjEuV2VsY29tZUgAEioKCHNuYXBzaG90GAIgASgLMhYuY3JhZnRhcmlhLnYxLlNuYXBzaG90SAASKAoFY2h1bmsYAyABKAsyFy5jcmFmdGFyaWEudjEuQ2h1bmtEYXRhSAASIgoEcG9uZxgEIAEoCzISLmNyYWZ0YXJpYS52MS5Qb25nSAASKgoFZXJyb3IYBSABKAsyGS5jcmFmdGFyaWEudjEuU2VydmVyRXJyb3JIABIyCglpbnZlbnRvcnkYBiABKAsyHS5jcmFmdGFyaWEudjEuSW52ZW50b3J5VXBkYXRlSAASKgoFc2tpbGwYByABKAsyGS5jcmFmdGFyaWEudjEuU2tpbGxVcGRhdGVIABIrCgZhY3Rpb24YCCABKAsyGS5jcmFmdGFyaWEudjEuQWN0aW9uU3RhdGVIABIoCgR0aWxlGAkgASgLMhguY3JhZnRhcmlhLnYxLlRpbGVVcGRhdGVIABImCgZub3RpY2UYCiABKAsyFC5jcmFmdGFyaWEudjEuTm90aWNlSABCCQoHcGF5bG9hZCLTAQoHV2VsY29tZRIRCglwbGF5ZXJfaWQYASABKAkSEQoJdGlja19yYXRlGAIgASgNEiEKBXNwYXduGAMgASgLMhIuY3JhZnRhcmlhLnYxLlZlYzISKwoFaXRlbXMYBCADKAsyHC5jcmFmdGFyaWEudjEuSXRlbURlZmluaXRpb24SDwoHcGFsZXR0ZRgFIAMoDRITCgtza2luX2NvbG9ycxgGIAMoDRIsCgphcHBlYXJhbmNlGAcgASgLMhguY3JhZnRhcmlhLnYxLkFwcGVhcmFuY2UiPQoOSXRlbURlZmluaXRpb24SCgoCaWQYASABKAkSDAoEbmFtZRgCIAEoCRIRCgltYXhfc3RhY2sYAyABKA0iSwoPSW52ZW50b3J5VXBkYXRlEiYKBXNsb3RzGAEgAygLMhcuY3JhZnRhcmlhLnYxLkl0ZW1TdGFjaxIQCghlcXVpcHBlZBgCIAEoCSIrCglJdGVtU3RhY2sSDwoHaXRlbV9pZBgBIAEoCRINCgVjb3VudBgCIAEoDSJjCgtTa2lsbFVwZGF0ZRIQCghza2lsbF9pZBgBIAEoCRINCgVsZXZlbBgCIAEoDRIKCgJ4cBgDIAEoBBIQCghsZXZlbF94cBgEIAEoBBIVCg1uZXh0X2xldmVsX3hwGAUgASgEImcKC0FjdGlvblN0YXRlEgwKBGtpbmQYASABKAkSDgoGdGlsZV94GAIgASgREg4KBnRpbGVfeRgDIAEoERISCgpzdGFydF90aWNrGAQgASgNEhYKDmR1cmF0aW9uX3RpY2tzGAUgASgNImQKClRpbGVVcGRhdGUSCgoCY3gYASABKBESCgoCY3kYAiABKBESDQoFbGF5ZXIYAyABKAkSDQoFaW5kZXgYBCABKA0SDwoHdGlsZV9pZBgFIAEoDRIPCgdibG9ja2VkGAYgASgIIjAKBk5vdGljZRImCgRjb2RlGAEgASgOMhguY3JhZnRhcmlhLnYxLk5vdGljZUNvZGUiXQoIU25hcHNob3QSDAoEdGljaxgBIAEoDRIWCg5sYXN0X2lucHV0X3NlcRgCIAEoDRIrCghlbnRpdGllcxgDIAMoCzIZLmNyYWZ0YXJpYS52MS5FbnRpdHlTdGF0ZSJtCgtFbnRpdHlTdGF0ZRIKCgJpZBgBIAEoCRIkCghwb3NpdGlvbhgCIAEoCzISLmNyYWZ0YXJpYS52MS5WZWMyEiwKCmFwcGVhcmFuY2UYAyABKAsyGC5jcmFmdGFyaWEudjEuQXBwZWFyYW5jZSIvCglDaHVua0RhdGESIgoFY2h1bmsYASABKAsyEy5jcmFmdGFyaWEudjEuQ2h1bmsiNgoEUG9uZxIWCg5jbGllbnRfdGltZV9tcxgBIAEoBBIWCg5zZXJ2ZXJfdGltZV9tcxgCIAEoBCJFCgtTZXJ2ZXJFcnJvchIlCgRjb2RlGAEgASgOMhcuY3JhZnRhcmlhLnYxLkVycm9yQ29kZRIPCgdtZXNzYWdlGAIgASgJKvsBCgpOb3RpY2VDb2RlEhsKF05PVElDRV9DT0RFX1VOU1BFQ0lGSUVEEAASIQodTk9USUNFX0NPREVfTk9USElOR19UT19HQVRIRVIQARIcChhOT1RJQ0VfQ09ERV9PVVRfT0ZfUkVBQ0gQAhIXChNOT1RJQ0VfQ09ERV9OT19UT09MEAMSHQoZTk9USUNFX0NPREVfVE9PTF9UT09fV0VBSxAEEh0KGU5PVElDRV9DT0RFX0xFVkVMX1RPT19MT1cQBRIeChpOT1RJQ0VfQ09ERV9JTlZFTlRPUllfRlVMTBAGEhgKFE5PVElDRV9DT0RFX0RFUExFVEVEEAcqfwoJRXJyb3JDb2RlEhoKFkVSUk9SX0NPREVfVU5TUEVDSUZJRUQQABIbChdFUlJPUl9DT0RFX1VOQVVUSE9SSVpFRBABEiAKHEVSUk9SX0NPREVfUFJPVE9DT0xfTUlTTUFUQ0gQAhIXChNFUlJPUl9DT0RFX1JFUExBQ0VEEANiBnByb3RvMw", [file_craftaria_v1_map]);
 
 /**
  * Coordinates on the wire are integer sub-pixels (SUBPIXELS_PER_PIXEL = 16)
@@ -90,6 +90,12 @@ export type ClientMessage = Message<"craftaria.v1.ClientMessage"> & {
      */
     value: DebugCommand;
     case: "debug";
+  } | {
+    /**
+     * @generated from field: craftaria.v1.SetAppearance set_appearance = 8;
+     */
+    value: SetAppearance;
+    case: "setAppearance";
   } | { case: undefined; value?: undefined };
 };
 
@@ -237,6 +243,55 @@ export const EquipItemSchema: GenMessage<EquipItem> = /*@__PURE__*/
   messageDesc(file_craftaria_v1_net, 7);
 
 /**
+ * Creates or changes the player's character. Ignored unless every color is
+ * allowed for its part (see Welcome).
+ *
+ * @generated from message craftaria.v1.SetAppearance
+ */
+export type SetAppearance = Message<"craftaria.v1.SetAppearance"> & {
+  /**
+   * @generated from field: craftaria.v1.Appearance appearance = 1;
+   */
+  appearance?: Appearance | undefined;
+};
+
+/**
+ * Describes the message craftaria.v1.SetAppearance.
+ * Use `create(SetAppearanceSchema)` to create a new message.
+ */
+export const SetAppearanceSchema: GenMessage<SetAppearance> = /*@__PURE__*/
+  messageDesc(file_craftaria_v1_net, 8);
+
+/**
+ * How a character looks: one palette index per tinted part.
+ *
+ * @generated from message craftaria.v1.Appearance
+ */
+export type Appearance = Message<"craftaria.v1.Appearance"> & {
+  /**
+   * @generated from field: uint32 skin = 1;
+   */
+  skin: number;
+
+  /**
+   * @generated from field: uint32 shirt = 2;
+   */
+  shirt: number;
+
+  /**
+   * @generated from field: uint32 pants = 3;
+   */
+  pants: number;
+};
+
+/**
+ * Describes the message craftaria.v1.Appearance.
+ * Use `create(AppearanceSchema)` to create a new message.
+ */
+export const AppearanceSchema: GenMessage<Appearance> = /*@__PURE__*/
+  messageDesc(file_craftaria_v1_net, 9);
+
+/**
  * Development only: ignored unless the server enables debug commands.
  *
  * @generated from message craftaria.v1.DebugCommand
@@ -265,7 +320,7 @@ export type DebugCommand = Message<"craftaria.v1.DebugCommand"> & {
  * Use `create(DebugCommandSchema)` to create a new message.
  */
 export const DebugCommandSchema: GenMessage<DebugCommand> = /*@__PURE__*/
-  messageDesc(file_craftaria_v1_net, 8);
+  messageDesc(file_craftaria_v1_net, 10);
 
 /**
  * @generated from message craftaria.v1.GrantItem
@@ -287,7 +342,7 @@ export type GrantItem = Message<"craftaria.v1.GrantItem"> & {
  * Use `create(GrantItemSchema)` to create a new message.
  */
 export const GrantItemSchema: GenMessage<GrantItem> = /*@__PURE__*/
-  messageDesc(file_craftaria_v1_net, 9);
+  messageDesc(file_craftaria_v1_net, 11);
 
 /**
  * @generated from message craftaria.v1.GrantXp
@@ -309,7 +364,7 @@ export type GrantXp = Message<"craftaria.v1.GrantXp"> & {
  * Use `create(GrantXpSchema)` to create a new message.
  */
 export const GrantXpSchema: GenMessage<GrantXp> = /*@__PURE__*/
-  messageDesc(file_craftaria_v1_net, 10);
+  messageDesc(file_craftaria_v1_net, 12);
 
 /**
  * Every frame sent by the server.
@@ -388,7 +443,7 @@ export type ServerMessage = Message<"craftaria.v1.ServerMessage"> & {
  * Use `create(ServerMessageSchema)` to create a new message.
  */
 export const ServerMessageSchema: GenMessage<ServerMessage> = /*@__PURE__*/
-  messageDesc(file_craftaria_v1_net, 11);
+  messageDesc(file_craftaria_v1_net, 13);
 
 /**
  * @generated from message craftaria.v1.Welcome
@@ -415,6 +470,27 @@ export type Welcome = Message<"craftaria.v1.Welcome"> & {
    * @generated from field: repeated craftaria.v1.ItemDefinition items = 4;
    */
   items: ItemDefinition[];
+
+  /**
+   * The game palette as 0xRRGGBB colors; appearances index into it.
+   *
+   * @generated from field: repeated uint32 palette = 5;
+   */
+  palette: number[];
+
+  /**
+   * Palette indexes allowed for skin. Shirt and pants take any other.
+   *
+   * @generated from field: repeated uint32 skin_colors = 6;
+   */
+  skinColors: number[];
+
+  /**
+   * The player's character; unset until they create one.
+   *
+   * @generated from field: craftaria.v1.Appearance appearance = 7;
+   */
+  appearance?: Appearance | undefined;
 };
 
 /**
@@ -422,7 +498,7 @@ export type Welcome = Message<"craftaria.v1.Welcome"> & {
  * Use `create(WelcomeSchema)` to create a new message.
  */
 export const WelcomeSchema: GenMessage<Welcome> = /*@__PURE__*/
-  messageDesc(file_craftaria_v1_net, 12);
+  messageDesc(file_craftaria_v1_net, 14);
 
 /**
  * @generated from message craftaria.v1.ItemDefinition
@@ -451,7 +527,7 @@ export type ItemDefinition = Message<"craftaria.v1.ItemDefinition"> & {
  * Use `create(ItemDefinitionSchema)` to create a new message.
  */
 export const ItemDefinitionSchema: GenMessage<ItemDefinition> = /*@__PURE__*/
-  messageDesc(file_craftaria_v1_net, 13);
+  messageDesc(file_craftaria_v1_net, 15);
 
 /**
  * The player's whole inventory, sent when it changes.
@@ -479,7 +555,7 @@ export type InventoryUpdate = Message<"craftaria.v1.InventoryUpdate"> & {
  * Use `create(InventoryUpdateSchema)` to create a new message.
  */
 export const InventoryUpdateSchema: GenMessage<InventoryUpdate> = /*@__PURE__*/
-  messageDesc(file_craftaria_v1_net, 14);
+  messageDesc(file_craftaria_v1_net, 16);
 
 /**
  * @generated from message craftaria.v1.ItemStack
@@ -501,7 +577,7 @@ export type ItemStack = Message<"craftaria.v1.ItemStack"> & {
  * Use `create(ItemStackSchema)` to create a new message.
  */
 export const ItemStackSchema: GenMessage<ItemStack> = /*@__PURE__*/
-  messageDesc(file_craftaria_v1_net, 15);
+  messageDesc(file_craftaria_v1_net, 17);
 
 /**
  * Progress in one skill, sent when it changes.
@@ -544,7 +620,7 @@ export type SkillUpdate = Message<"craftaria.v1.SkillUpdate"> & {
  * Use `create(SkillUpdateSchema)` to create a new message.
  */
 export const SkillUpdateSchema: GenMessage<SkillUpdate> = /*@__PURE__*/
-  messageDesc(file_craftaria_v1_net, 16);
+  messageDesc(file_craftaria_v1_net, 18);
 
 /**
  * The player's current action. Idle when kind is empty.
@@ -587,7 +663,7 @@ export type ActionState = Message<"craftaria.v1.ActionState"> & {
  * Use `create(ActionStateSchema)` to create a new message.
  */
 export const ActionStateSchema: GenMessage<ActionState> = /*@__PURE__*/
-  messageDesc(file_craftaria_v1_net, 17);
+  messageDesc(file_craftaria_v1_net, 19);
 
 /**
  * One edited tile in a chunk the player has loaded.
@@ -633,7 +709,7 @@ export type TileUpdate = Message<"craftaria.v1.TileUpdate"> & {
  * Use `create(TileUpdateSchema)` to create a new message.
  */
 export const TileUpdateSchema: GenMessage<TileUpdate> = /*@__PURE__*/
-  messageDesc(file_craftaria_v1_net, 18);
+  messageDesc(file_craftaria_v1_net, 20);
 
 /**
  * Something the player should be told, e.g. why gathering stopped.
@@ -652,7 +728,7 @@ export type Notice = Message<"craftaria.v1.Notice"> & {
  * Use `create(NoticeSchema)` to create a new message.
  */
 export const NoticeSchema: GenMessage<Notice> = /*@__PURE__*/
-  messageDesc(file_craftaria_v1_net, 19);
+  messageDesc(file_craftaria_v1_net, 21);
 
 /**
  * Full state of the entities around the player. Entities missing from a
@@ -684,7 +760,7 @@ export type Snapshot = Message<"craftaria.v1.Snapshot"> & {
  * Use `create(SnapshotSchema)` to create a new message.
  */
 export const SnapshotSchema: GenMessage<Snapshot> = /*@__PURE__*/
-  messageDesc(file_craftaria_v1_net, 20);
+  messageDesc(file_craftaria_v1_net, 22);
 
 /**
  * @generated from message craftaria.v1.EntityState
@@ -699,6 +775,13 @@ export type EntityState = Message<"craftaria.v1.EntityState"> & {
    * @generated from field: craftaria.v1.Vec2 position = 2;
    */
   position?: Vec2 | undefined;
+
+  /**
+   * Set for every player who has created their character.
+   *
+   * @generated from field: craftaria.v1.Appearance appearance = 3;
+   */
+  appearance?: Appearance | undefined;
 };
 
 /**
@@ -706,7 +789,7 @@ export type EntityState = Message<"craftaria.v1.EntityState"> & {
  * Use `create(EntityStateSchema)` to create a new message.
  */
 export const EntityStateSchema: GenMessage<EntityState> = /*@__PURE__*/
-  messageDesc(file_craftaria_v1_net, 21);
+  messageDesc(file_craftaria_v1_net, 23);
 
 /**
  * @generated from message craftaria.v1.ChunkData
@@ -723,7 +806,7 @@ export type ChunkData = Message<"craftaria.v1.ChunkData"> & {
  * Use `create(ChunkDataSchema)` to create a new message.
  */
 export const ChunkDataSchema: GenMessage<ChunkData> = /*@__PURE__*/
-  messageDesc(file_craftaria_v1_net, 22);
+  messageDesc(file_craftaria_v1_net, 24);
 
 /**
  * @generated from message craftaria.v1.Pong
@@ -745,7 +828,7 @@ export type Pong = Message<"craftaria.v1.Pong"> & {
  * Use `create(PongSchema)` to create a new message.
  */
 export const PongSchema: GenMessage<Pong> = /*@__PURE__*/
-  messageDesc(file_craftaria_v1_net, 23);
+  messageDesc(file_craftaria_v1_net, 25);
 
 /**
  * @generated from message craftaria.v1.ServerError
@@ -767,7 +850,7 @@ export type ServerError = Message<"craftaria.v1.ServerError"> & {
  * Use `create(ServerErrorSchema)` to create a new message.
  */
 export const ServerErrorSchema: GenMessage<ServerError> = /*@__PURE__*/
-  messageDesc(file_craftaria_v1_net, 24);
+  messageDesc(file_craftaria_v1_net, 26);
 
 /**
  * @generated from enum craftaria.v1.NoticeCode

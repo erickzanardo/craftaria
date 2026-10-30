@@ -40,6 +40,16 @@ changed; don't silently rewrite history.
 - The game consumes **exported PNG sprite sheets**. Animation data (frame
   timings, sequences) is **hardcoded in code**; the author provides the
   values. No Aseprite JSON parsing.
+- Sheets live in `apps/game/assets/images/` and are loaded through Flame's
+  image cache. Characters are 8x8 cells in `characters.png`, drawn with their
+  bottom edge (the feet) on the bottom of the (smaller) hitbox.
+- Character sheets paint tinted parts with **mask colors** (skin `#ffffff`,
+  shirt `#ba46e0`, pants `#b3ff00`; `CharacterMask` in the client). The
+  client recolors the whole sheet once per look and caches it, so every
+  frame of a future animation is tinted the same way.
+- The palette (Apollo, `sprites/apollo.hex`) and which colors each part
+  allows are game rules: the server owns them (`appearance.ts`), validates
+  picks and sends both in `Welcome`. A look travels as palette indexes.
 - Until sprites exist, everything renders as debug colors and rectangles
   behind the `TileRenderer` interface (`packages/world_renderer`).
 
@@ -74,6 +84,10 @@ changed; don't silently rewrite history.
 - One map format for the generator, the planned editor and stored edits:
   32×32-tile chunks with tile layers, a collision bitset, placed entities and
   per-tile state. See [map-format.md](map-format.md).
+- A character's look rides on every `EntityState` (three varints) rather
+  than in a separate join message; fine at this scale. Players without one
+  are still sent, so the local player can reconcile, but clients don't draw
+  them.
 - Auth tokens travel in the first `Hello` message, not the URL, to keep them
   out of logs.
 

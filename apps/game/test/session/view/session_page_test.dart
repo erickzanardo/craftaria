@@ -68,7 +68,8 @@ void main() {
     });
 
     testWidgets('shows the game when connected', (tester) async {
-      final world = ClientWorld(client: mockGameClient(StreamController()));
+      final world = ClientWorld(client: mockGameClient(StreamController()))
+        ..handle(welcome());
       await pump(
         tester,
         SessionState(status: SessionStatus.connected, world: world),

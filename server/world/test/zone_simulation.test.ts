@@ -28,6 +28,24 @@ describe("ZoneSimulation", () => {
     expect(sim.playerCount).toBe(0);
   });
 
+  it("keeps valid appearances across reconnects and shows them to everyone", () => {
+    const sim = new ZoneSimulation(openWorld());
+    sim.addPlayer("a");
+    sim.addPlayer("b");
+    expect(sim.appearance("a")).toBeUndefined();
+    expect(sim.entitiesVisibleTo("b")[0]?.appearance).toBeUndefined();
+
+    sim.setAppearance("a", { skin: 12, shirt: 0, pants: 1 });
+    sim.setAppearance("a", { skin: 0, shirt: 0, pants: 1 });
+    sim.setAppearance("ghost", { skin: 12, shirt: 0, pants: 1 });
+    expect(sim.appearance("ghost")).toBeUndefined();
+    expect(sim.entitiesVisibleTo("b")[0]?.appearance).toEqual({ skin: 12, shirt: 0, pants: 1 });
+
+    sim.removePlayer("a");
+    sim.addPlayer("a");
+    expect(sim.appearance("a")).toEqual({ skin: 12, shirt: 0, pants: 1 });
+  });
+
   it("applies one queued input per tick and tracks the last seq", () => {
     const sim = new ZoneSimulation(openWorld());
     sim.addPlayer("a", { x: 0, y: 0 });

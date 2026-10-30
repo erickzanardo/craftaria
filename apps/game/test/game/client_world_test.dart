@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:typed_data';
 
+import 'package:craftaria/game/character/character_look.dart';
 import 'package:craftaria/game/client_world.dart';
 import 'package:craftaria_map/craftaria_map.dart';
 import 'package:craftaria_protocol/craftaria_protocol.dart';
@@ -163,6 +164,52 @@ void main() {
 
       world.handle(snapshot({'me': (64, 64)}));
       expect(world.remotePlayerIds, isEmpty);
+    });
+
+    test('reads the palette and the created character from the welcome', () {
+      world.handle(welcome());
+      expect(world.status.palette, equals(testPalette));
+      expect(world.status.skinColors, equals(testSkinColors));
+      expect(world.status.look, equals(testLook));
+      expect(world.lookOf('me'), equals(testLook));
+
+      world.handle(welcome(look: null));
+      expect(world.status.look, isNull);
+      expect(world.lookOf('me'), isNull);
+    });
+
+    test('previews a look on the local player, then creates it', () {
+      world.handle(welcome(look: null));
+      const look = CharacterLook(skin: 13, shirt: 2, pants: 3);
+      world.previewLook = look;
+      expect(world.lookOf('me'), equals(look));
+      expect(world.status.look, isNull);
+      verifyNever(() => client.sendAppearance(any()));
+
+      world.createCharacter(look);
+      expect(world.previewLook, isNull);
+      expect(world.status.look, equals(look));
+      expect(world.lookOf('me'), equals(look));
+      verify(() => client.sendAppearance(look.toProto())).called(1);
+    });
+
+    test('shows only remote players who have created their character', () {
+      world
+        ..handle(welcome())
+        ..handle(
+          snapshot({'me': (0, 0), 'new': (0, 0)}, uncreated: {'me', 'new'}),
+        );
+      expect(world.remotePlayerIds, isEmpty);
+      expect(world.lookOf('new'), isNull);
+      // The local player's own look comes from its status.
+      expect(world.lookOf('me'), equals(testLook));
+
+      world.handle(snapshot({'me': (0, 0), 'new': (0, 0)}));
+      expect(world.remotePlayerIds, equals(['new']));
+      expect(world.lookOf('new'), equals(testLook));
+
+      world.handle(snapshot({'me': (0, 0)}));
+      expect(world.lookOf('new'), isNull);
     });
 
     test('listens to the client until disposed', () async {

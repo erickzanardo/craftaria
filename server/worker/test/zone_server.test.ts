@@ -10,7 +10,9 @@ import {
 import {
   CHUNK_VIEW_RADIUS,
   ITEMS,
+  PALETTE,
   PLAYER_SPEED,
+  SKIN_COLORS,
   SPAWN,
   TICK_RATE,
   TileId,
@@ -106,7 +108,35 @@ describe("ZoneServer", () => {
       playerId: "alice",
       tickRate: TICK_RATE,
       spawn: { x: SPAWN.x, y: SPAWN.y },
+      palette: PALETTE,
+      skinColors: SKIN_COLORS,
     });
+    expect(welcome?.payload.value).not.toHaveProperty("appearance.skin");
+  });
+
+  it("creates characters, shows them in snapshots and remembers them", async () => {
+    const connection = host.connect();
+    await server.handleMessage(connection, await hello("alice"));
+    await server.handleMessage(connection, encode({ case: "setAppearance", value: {} }));
+    server.tick();
+    expect(connection.payloads("snapshot").at(-1)?.payload.value).not.toHaveProperty(
+      "entities.0.appearance.skin",
+    );
+
+    const appearance = { skin: 12, shirt: 0, pants: 1 };
+    await server.handleMessage(
+      connection,
+      encode({ case: "setAppearance", value: { appearance } }),
+    );
+    server.tick();
+    expect(connection.payloads("snapshot").at(-1)?.payload.value).toMatchObject({
+      entities: [{ id: "alice", appearance }],
+    });
+
+    server.handleClose(connection);
+    const again = host.connect();
+    await server.handleMessage(again, await hello("alice"));
+    expect(again.payloads("welcome")[0]?.payload.value).toMatchObject({ appearance });
   });
 
   it("accepts ArrayBuffer frames", async () => {
@@ -316,6 +346,7 @@ describe("ZoneServer woodcutting", () => {
       encode({ case: "gather", value: { seq: 1, tileX: 1, tileY: 0 } }),
       encode({ case: "cancelAction", value: {} }),
       encode({ case: "equip", value: { slot: 0 } }),
+      encode({ case: "setAppearance", value: {} }),
     ]) {
       const connection = host.connect();
       await server.handleMessage(connection, frame);

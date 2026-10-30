@@ -135,6 +135,15 @@ const ClientMessage$json = {
       '9': 0,
       '10': 'debug'
     },
+    {
+      '1': 'set_appearance',
+      '3': 8,
+      '4': 1,
+      '5': 11,
+      '6': '.craftaria.v1.SetAppearance',
+      '9': 0,
+      '10': 'setAppearance'
+    },
   ],
   '8': [
     {'1': 'payload'},
@@ -149,7 +158,9 @@ final $typed_data.Uint8List clientMessageDescriptor = $convert.base64Decode(
     'QuY3JhZnRhcmlhLnYxLkdhdGhlckgAUgZnYXRoZXISQQoNY2FuY2VsX2FjdGlvbhgFIAEoCzIa'
     'LmNyYWZ0YXJpYS52MS5DYW5jZWxBY3Rpb25IAFIMY2FuY2VsQWN0aW9uEi8KBWVxdWlwGAYgAS'
     'gLMhcuY3JhZnRhcmlhLnYxLkVxdWlwSXRlbUgAUgVlcXVpcBIyCgVkZWJ1ZxgHIAEoCzIaLmNy'
-    'YWZ0YXJpYS52MS5EZWJ1Z0NvbW1hbmRIAFIFZGVidWdCCQoHcGF5bG9hZA==');
+    'YWZ0YXJpYS52MS5EZWJ1Z0NvbW1hbmRIAFIFZGVidWcSRAoOc2V0X2FwcGVhcmFuY2UYCCABKA'
+    'syGy5jcmFmdGFyaWEudjEuU2V0QXBwZWFyYW5jZUgAUg1zZXRBcHBlYXJhbmNlQgkKB3BheWxv'
+    'YWQ=');
 
 @$core.Deprecated('Use helloDescriptor instead')
 const Hello$json = {
@@ -227,6 +238,41 @@ const EquipItem$json = {
 /// Descriptor for `EquipItem`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List equipItemDescriptor =
     $convert.base64Decode('CglFcXVpcEl0ZW0SEgoEc2xvdBgBIAEoDVIEc2xvdA==');
+
+@$core.Deprecated('Use setAppearanceDescriptor instead')
+const SetAppearance$json = {
+  '1': 'SetAppearance',
+  '2': [
+    {
+      '1': 'appearance',
+      '3': 1,
+      '4': 1,
+      '5': 11,
+      '6': '.craftaria.v1.Appearance',
+      '10': 'appearance'
+    },
+  ],
+};
+
+/// Descriptor for `SetAppearance`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List setAppearanceDescriptor = $convert.base64Decode(
+    'Cg1TZXRBcHBlYXJhbmNlEjgKCmFwcGVhcmFuY2UYASABKAsyGC5jcmFmdGFyaWEudjEuQXBwZW'
+    'FyYW5jZVIKYXBwZWFyYW5jZQ==');
+
+@$core.Deprecated('Use appearanceDescriptor instead')
+const Appearance$json = {
+  '1': 'Appearance',
+  '2': [
+    {'1': 'skin', '3': 1, '4': 1, '5': 13, '10': 'skin'},
+    {'1': 'shirt', '3': 2, '4': 1, '5': 13, '10': 'shirt'},
+    {'1': 'pants', '3': 3, '4': 1, '5': 13, '10': 'pants'},
+  ],
+};
+
+/// Descriptor for `Appearance`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List appearanceDescriptor = $convert.base64Decode(
+    'CgpBcHBlYXJhbmNlEhIKBHNraW4YASABKA1SBHNraW4SFAoFc2hpcnQYAiABKA1SBXNoaXJ0Eh'
+    'QKBXBhbnRzGAMgASgNUgVwYW50cw==');
 
 @$core.Deprecated('Use debugCommandDescriptor instead')
 const DebugCommand$json = {
@@ -425,6 +471,16 @@ const Welcome$json = {
       '6': '.craftaria.v1.ItemDefinition',
       '10': 'items'
     },
+    {'1': 'palette', '3': 5, '4': 3, '5': 13, '10': 'palette'},
+    {'1': 'skin_colors', '3': 6, '4': 3, '5': 13, '10': 'skinColors'},
+    {
+      '1': 'appearance',
+      '3': 7,
+      '4': 1,
+      '5': 11,
+      '6': '.craftaria.v1.Appearance',
+      '10': 'appearance'
+    },
   ],
 };
 
@@ -432,7 +488,10 @@ const Welcome$json = {
 final $typed_data.Uint8List welcomeDescriptor = $convert.base64Decode(
     'CgdXZWxjb21lEhsKCXBsYXllcl9pZBgBIAEoCVIIcGxheWVySWQSGwoJdGlja19yYXRlGAIgAS'
     'gNUgh0aWNrUmF0ZRIoCgVzcGF3bhgDIAEoCzISLmNyYWZ0YXJpYS52MS5WZWMyUgVzcGF3bhIy'
-    'CgVpdGVtcxgEIAMoCzIcLmNyYWZ0YXJpYS52MS5JdGVtRGVmaW5pdGlvblIFaXRlbXM=');
+    'CgVpdGVtcxgEIAMoCzIcLmNyYWZ0YXJpYS52MS5JdGVtRGVmaW5pdGlvblIFaXRlbXMSGAoHcG'
+    'FsZXR0ZRgFIAMoDVIHcGFsZXR0ZRIfCgtza2luX2NvbG9ycxgGIAMoDVIKc2tpbkNvbG9ycxI4'
+    'CgphcHBlYXJhbmNlGAcgASgLMhguY3JhZnRhcmlhLnYxLkFwcGVhcmFuY2VSCmFwcGVhcmFuY2'
+    'U=');
 
 @$core.Deprecated('Use itemDefinitionDescriptor instead')
 const ItemDefinition$json = {
@@ -594,13 +653,22 @@ const EntityState$json = {
       '6': '.craftaria.v1.Vec2',
       '10': 'position'
     },
+    {
+      '1': 'appearance',
+      '3': 3,
+      '4': 1,
+      '5': 11,
+      '6': '.craftaria.v1.Appearance',
+      '10': 'appearance'
+    },
   ],
 };
 
 /// Descriptor for `EntityState`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List entityStateDescriptor = $convert.base64Decode(
     'CgtFbnRpdHlTdGF0ZRIOCgJpZBgBIAEoCVICaWQSLgoIcG9zaXRpb24YAiABKAsyEi5jcmFmdG'
-    'FyaWEudjEuVmVjMlIIcG9zaXRpb24=');
+    'FyaWEudjEuVmVjMlIIcG9zaXRpb24SOAoKYXBwZWFyYW5jZRgDIAEoCzIYLmNyYWZ0YXJpYS52'
+    'MS5BcHBlYXJhbmNlUgphcHBlYXJhbmNl');
 
 @$core.Deprecated('Use chunkDataDescriptor instead')
 const ChunkData$json = {

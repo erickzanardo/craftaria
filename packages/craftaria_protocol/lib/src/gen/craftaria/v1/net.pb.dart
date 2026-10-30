@@ -99,6 +99,7 @@ enum ClientMessage_Payload {
   cancelAction,
   equip,
   debug,
+  setAppearance,
   notSet
 }
 
@@ -112,6 +113,7 @@ class ClientMessage extends $pb.GeneratedMessage {
     CancelAction? cancelAction,
     EquipItem? equip,
     DebugCommand? debug,
+    SetAppearance? setAppearance,
   }) {
     final result = ClientMessage._();
     if (hello != null) result.hello = hello;
@@ -121,6 +123,7 @@ class ClientMessage extends $pb.GeneratedMessage {
     if (cancelAction != null) result.cancelAction = cancelAction;
     if (equip != null) result.equip = equip;
     if (debug != null) result.debug = debug;
+    if (setAppearance != null) result.setAppearance = setAppearance;
     return result;
   }
 
@@ -142,13 +145,14 @@ class ClientMessage extends $pb.GeneratedMessage {
     5: ClientMessage_Payload.cancelAction,
     6: ClientMessage_Payload.equip,
     7: ClientMessage_Payload.debug,
+    8: ClientMessage_Payload.setAppearance,
     0: ClientMessage_Payload.notSet
   };
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(
       _omitMessageNames ? '' : 'ClientMessage',
       package: const $pb.PackageName(_omitMessageNames ? '' : 'craftaria.v1'),
       createEmptyInstance: ClientMessage.$_createMessage)
-    ..oo(0, [1, 2, 3, 4, 5, 6, 7])
+    ..oo(0, [1, 2, 3, 4, 5, 6, 7, 8])
     ..aOM<Hello>(1, _omitFieldNames ? '' : 'hello',
         subBuilder: Hello.$_createMessage)
     ..aOM<MoveInput>(2, _omitFieldNames ? '' : 'move',
@@ -163,6 +167,8 @@ class ClientMessage extends $pb.GeneratedMessage {
         subBuilder: EquipItem.$_createMessage)
     ..aOM<DebugCommand>(7, _omitFieldNames ? '' : 'debug',
         subBuilder: DebugCommand.$_createMessage)
+    ..aOM<SetAppearance>(8, _omitFieldNames ? '' : 'setAppearance',
+        subBuilder: SetAppearance.$_createMessage)
     ..hasRequiredFields = false;
 
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
@@ -194,6 +200,7 @@ class ClientMessage extends $pb.GeneratedMessage {
   @$pb.TagNumber(5)
   @$pb.TagNumber(6)
   @$pb.TagNumber(7)
+  @$pb.TagNumber(8)
   ClientMessage_Payload whichPayload() =>
       _ClientMessage_PayloadByTag[$_whichOneof(0)]!;
   @$pb.TagNumber(1)
@@ -203,6 +210,7 @@ class ClientMessage extends $pb.GeneratedMessage {
   @$pb.TagNumber(5)
   @$pb.TagNumber(6)
   @$pb.TagNumber(7)
+  @$pb.TagNumber(8)
   void clearPayload() => $_clearField($_whichOneof(0));
 
   @$pb.TagNumber(1)
@@ -281,6 +289,17 @@ class ClientMessage extends $pb.GeneratedMessage {
   void clearDebug() => $_clearField(7);
   @$pb.TagNumber(7)
   DebugCommand ensureDebug() => $_ensure(6);
+
+  @$pb.TagNumber(8)
+  SetAppearance get setAppearance => $_getN(7);
+  @$pb.TagNumber(8)
+  set setAppearance(SetAppearance value) => $_setField(8, value);
+  @$pb.TagNumber(8)
+  $core.bool hasSetAppearance() => $_has(7);
+  @$pb.TagNumber(8)
+  void clearSetAppearance() => $_clearField(8);
+  @$pb.TagNumber(8)
+  SetAppearance ensureSetAppearance() => $_ensure(7);
 }
 
 /// First message on a socket. The token is sent here instead of in the URL so
@@ -668,6 +687,148 @@ class EquipItem extends $pb.GeneratedMessage {
   $core.bool hasSlot() => $_has(0);
   @$pb.TagNumber(1)
   void clearSlot() => $_clearField(1);
+}
+
+/// Creates or changes the player's character. Ignored unless every color is
+/// allowed for its part (see Welcome).
+class SetAppearance extends $pb.GeneratedMessage {
+  factory SetAppearance({
+    Appearance? appearance,
+  }) {
+    final result = SetAppearance._();
+    if (appearance != null) result.appearance = appearance;
+    return result;
+  }
+
+  SetAppearance._();
+
+  factory SetAppearance.fromBuffer($core.List<$core.int> data,
+          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
+      SetAppearance()..mergeFromBuffer(data, registry);
+  factory SetAppearance.fromJson($core.String json,
+          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
+      SetAppearance()..mergeFromJson(json, registry);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      _omitMessageNames ? '' : 'SetAppearance',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'craftaria.v1'),
+      createEmptyInstance: SetAppearance.$_createMessage)
+    ..aOM<Appearance>(1, _omitFieldNames ? '' : 'appearance',
+        subBuilder: Appearance.$_createMessage)
+    ..hasRequiredFields = false;
+
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
+  SetAppearance clone() => deepCopy();
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
+  SetAppearance copyWith(void Function(SetAppearance) updates) =>
+      super.copyWith((message) => updates(message as SetAppearance))
+          as SetAppearance;
+
+  @$core.override
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  @$core.Deprecated('Use SetAppearance() / SetAppearance.new instead')
+  static SetAppearance create() => SetAppearance._();
+  static $pb.GeneratedMessage $_createMessage() => SetAppearance._();
+  @$core.override
+  SetAppearance createEmptyInstance() => SetAppearance._();
+  @$core.pragma('dart2js:noInline')
+  static SetAppearance getDefault() =>
+      _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<SetAppearance>(
+          SetAppearance.$_createMessage);
+  static SetAppearance? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  Appearance get appearance => $_getN(0);
+  @$pb.TagNumber(1)
+  set appearance(Appearance value) => $_setField(1, value);
+  @$pb.TagNumber(1)
+  $core.bool hasAppearance() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearAppearance() => $_clearField(1);
+  @$pb.TagNumber(1)
+  Appearance ensureAppearance() => $_ensure(0);
+}
+
+/// How a character looks: one palette index per tinted part.
+class Appearance extends $pb.GeneratedMessage {
+  factory Appearance({
+    $core.int? skin,
+    $core.int? shirt,
+    $core.int? pants,
+  }) {
+    final result = Appearance._();
+    if (skin != null) result.skin = skin;
+    if (shirt != null) result.shirt = shirt;
+    if (pants != null) result.pants = pants;
+    return result;
+  }
+
+  Appearance._();
+
+  factory Appearance.fromBuffer($core.List<$core.int> data,
+          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
+      Appearance()..mergeFromBuffer(data, registry);
+  factory Appearance.fromJson($core.String json,
+          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
+      Appearance()..mergeFromJson(json, registry);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      _omitMessageNames ? '' : 'Appearance',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'craftaria.v1'),
+      createEmptyInstance: Appearance.$_createMessage)
+    ..aI(1, _omitFieldNames ? '' : 'skin', fieldType: $pb.PbFieldType.OU3)
+    ..aI(2, _omitFieldNames ? '' : 'shirt', fieldType: $pb.PbFieldType.OU3)
+    ..aI(3, _omitFieldNames ? '' : 'pants', fieldType: $pb.PbFieldType.OU3)
+    ..hasRequiredFields = false;
+
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
+  Appearance clone() => deepCopy();
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
+  Appearance copyWith(void Function(Appearance) updates) =>
+      super.copyWith((message) => updates(message as Appearance)) as Appearance;
+
+  @$core.override
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  @$core.Deprecated('Use Appearance() / Appearance.new instead')
+  static Appearance create() => Appearance._();
+  static $pb.GeneratedMessage $_createMessage() => Appearance._();
+  @$core.override
+  Appearance createEmptyInstance() => Appearance._();
+  @$core.pragma('dart2js:noInline')
+  static Appearance getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<Appearance>(Appearance.$_createMessage);
+  static Appearance? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $core.int get skin => $_getIZ(0);
+  @$pb.TagNumber(1)
+  set skin($core.int value) => $_setUnsignedInt32(0, value);
+  @$pb.TagNumber(1)
+  $core.bool hasSkin() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearSkin() => $_clearField(1);
+
+  @$pb.TagNumber(2)
+  $core.int get shirt => $_getIZ(1);
+  @$pb.TagNumber(2)
+  set shirt($core.int value) => $_setUnsignedInt32(1, value);
+  @$pb.TagNumber(2)
+  $core.bool hasShirt() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearShirt() => $_clearField(2);
+
+  @$pb.TagNumber(3)
+  $core.int get pants => $_getIZ(2);
+  @$pb.TagNumber(3)
+  set pants($core.int value) => $_setUnsignedInt32(2, value);
+  @$pb.TagNumber(3)
+  $core.bool hasPants() => $_has(2);
+  @$pb.TagNumber(3)
+  void clearPants() => $_clearField(3);
 }
 
 enum DebugCommand_Command { grantItem, grantXp, notSet }
@@ -1152,12 +1313,18 @@ class Welcome extends $pb.GeneratedMessage {
     $core.int? tickRate,
     Vec2? spawn,
     $core.Iterable<ItemDefinition>? items,
+    $core.Iterable<$core.int>? palette,
+    $core.Iterable<$core.int>? skinColors,
+    Appearance? appearance,
   }) {
     final result = Welcome._();
     if (playerId != null) result.playerId = playerId;
     if (tickRate != null) result.tickRate = tickRate;
     if (spawn != null) result.spawn = spawn;
     if (items != null) result.items.addAll(items);
+    if (palette != null) result.palette.addAll(palette);
+    if (skinColors != null) result.skinColors.addAll(skinColors);
+    if (appearance != null) result.appearance = appearance;
     return result;
   }
 
@@ -1180,6 +1347,10 @@ class Welcome extends $pb.GeneratedMessage {
         subBuilder: Vec2.$_createMessage)
     ..pPM<ItemDefinition>(4, _omitFieldNames ? '' : 'items',
         subBuilder: ItemDefinition.$_createMessage)
+    ..p<$core.int>(5, _omitFieldNames ? '' : 'palette', $pb.PbFieldType.KU3)
+    ..p<$core.int>(6, _omitFieldNames ? '' : 'skinColors', $pb.PbFieldType.KU3)
+    ..aOM<Appearance>(7, _omitFieldNames ? '' : 'appearance',
+        subBuilder: Appearance.$_createMessage)
     ..hasRequiredFields = false;
 
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
@@ -1234,6 +1405,26 @@ class Welcome extends $pb.GeneratedMessage {
   /// Display data for every item, so the client never hardcodes content.
   @$pb.TagNumber(4)
   $pb.PbList<ItemDefinition> get items => $_getList(3);
+
+  /// The game palette as 0xRRGGBB colors; appearances index into it.
+  @$pb.TagNumber(5)
+  $pb.PbList<$core.int> get palette => $_getList(4);
+
+  /// Palette indexes allowed for skin. Shirt and pants take any other.
+  @$pb.TagNumber(6)
+  $pb.PbList<$core.int> get skinColors => $_getList(5);
+
+  /// The player's character; unset until they create one.
+  @$pb.TagNumber(7)
+  Appearance get appearance => $_getN(6);
+  @$pb.TagNumber(7)
+  set appearance(Appearance value) => $_setField(7, value);
+  @$pb.TagNumber(7)
+  $core.bool hasAppearance() => $_has(6);
+  @$pb.TagNumber(7)
+  void clearAppearance() => $_clearField(7);
+  @$pb.TagNumber(7)
+  Appearance ensureAppearance() => $_ensure(6);
 }
 
 class ItemDefinition extends $pb.GeneratedMessage {
@@ -1929,10 +2120,12 @@ class EntityState extends $pb.GeneratedMessage {
   factory EntityState({
     $core.String? id,
     Vec2? position,
+    Appearance? appearance,
   }) {
     final result = EntityState._();
     if (id != null) result.id = id;
     if (position != null) result.position = position;
+    if (appearance != null) result.appearance = appearance;
     return result;
   }
 
@@ -1952,6 +2145,8 @@ class EntityState extends $pb.GeneratedMessage {
     ..aOS(1, _omitFieldNames ? '' : 'id')
     ..aOM<Vec2>(2, _omitFieldNames ? '' : 'position',
         subBuilder: Vec2.$_createMessage)
+    ..aOM<Appearance>(3, _omitFieldNames ? '' : 'appearance',
+        subBuilder: Appearance.$_createMessage)
     ..hasRequiredFields = false;
 
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
@@ -1995,6 +2190,18 @@ class EntityState extends $pb.GeneratedMessage {
   void clearPosition() => $_clearField(2);
   @$pb.TagNumber(2)
   Vec2 ensurePosition() => $_ensure(1);
+
+  /// Set for every player who has created their character.
+  @$pb.TagNumber(3)
+  Appearance get appearance => $_getN(2);
+  @$pb.TagNumber(3)
+  set appearance(Appearance value) => $_setField(3, value);
+  @$pb.TagNumber(3)
+  $core.bool hasAppearance() => $_has(2);
+  @$pb.TagNumber(3)
+  void clearAppearance() => $_clearField(3);
+  @$pb.TagNumber(3)
+  Appearance ensureAppearance() => $_ensure(2);
 }
 
 class ChunkData extends $pb.GeneratedMessage {

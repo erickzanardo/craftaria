@@ -1,3 +1,4 @@
+import { type Appearance, isValidAppearance } from "./appearance.ts";
 import { chunkKey, type ChunkCoord } from "./chunk.ts";
 import { itemDef, resourceNodeForTile } from "./content.ts";
 import { CHUNK_SIZE, TILE_SUBPIXELS } from "./constants.ts";
@@ -91,6 +92,8 @@ export interface ZoneWorld {
 export interface EntityView {
   readonly id: string;
   readonly position: Position;
+  /** Unset until the player creates their character. */
+  readonly appearance: Appearance | undefined;
 }
 
 export interface ZoneSimulationOptions {
@@ -102,6 +105,7 @@ export interface ZoneSimulationOptions {
 export class ZoneSimulation {
   readonly #players = new Map<string, PlayerState>();
   readonly #progress = new Map<string, PlayerProgress>();
+  readonly #appearances = new Map<string, Appearance>();
   readonly #nodes: ResourceNodes;
   #tileChanges: TileChange[] = [];
   #tick = 0;
@@ -161,6 +165,24 @@ export class ZoneSimulation {
     if (player.pendingInputs.length >= MAX_QUEUED_INPUTS) return;
 
     player.pendingInputs.push(input);
+  }
+
+  /**
+   * The player's character look, kept across reconnects like progress.
+   * Unset until they create their character.
+   */
+  appearance(id: string): Appearance | undefined {
+    return this.#appearances.get(id);
+  }
+
+  /**
+   * Creates or changes a player's character. Ignored unless the player is
+   * here and every color is allowed for its part.
+   */
+  setAppearance(id: string, appearance: Appearance): void {
+    if (!this.#players.has(id) || !isValidAppearance(appearance)) return;
+    const { skin, shirt, pants } = appearance;
+    this.#appearances.set(id, { skin, shirt, pants });
   }
 
   /** Stops the player's action, if any. */
@@ -256,6 +278,7 @@ export class ZoneSimulation {
     return [...this.#players.values()].map(({ id, position }) => ({
       id,
       position,
+      appearance: this.#appearances.get(id),
     }));
   }
 

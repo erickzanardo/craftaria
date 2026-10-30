@@ -38,7 +38,9 @@ tested by hand in the browser**:
   its logic lives in the fully tested `ZoneServer`.
 - Visibility is "everyone in the zone"; fine for under 50 players.
 - No deploy pipeline; the game only runs locally.
-- No sprites or animation yet (waiting on art).
+- Characters are created by picking skin, shirt and pants colors (debug-styled
+  panel); the sprite is static. Tiles are still debug colors; no animation
+  yet (waiting on art). A character can't be changed in game after creation.
 
 ## Next steps (in no fixed order)
 
@@ -49,5 +51,5 @@ tested by hand in the browser**:
 - More gathering skills on the same model (mining, fishing).
 - Deploy: Worker plus Durable Object, and the web client on Pages.
 - Map editor app (`apps/editor`) and handcrafted hubs.
-- Replace debug rendering once sprites exist.
+- Replace debug tile rendering once tile sprites exist; animate players.
 - Mobile: touch `MovementInput`, platform storage.

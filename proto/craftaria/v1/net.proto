@@ -21,6 +21,7 @@ message ClientMessage {
     CancelAction cancel_action = 5;
     EquipItem equip = 6;
     DebugCommand debug = 7;
+    SetAppearance set_appearance = 8;
   }
 }
 
@@ -57,6 +58,19 @@ message CancelAction {}
 // Equip the tool in an inventory slot.
 message EquipItem {
   uint32 slot = 1;
+}
+
+// Creates or changes the player's character. Ignored unless every color is
+// allowed for its part (see Welcome).
+message SetAppearance {
+  Appearance appearance = 1;
+}
+
+// How a character looks: one palette index per tinted part.
+message Appearance {
+  uint32 skin = 1;
+  uint32 shirt = 2;
+  uint32 pants = 3;
 }
 
 // Development only: ignored unless the server enables debug commands.
@@ -100,6 +114,15 @@ message Welcome {
 
   // Display data for every item, so the client never hardcodes content.
   repeated ItemDefinition items = 4;
+
+  // The game palette as 0xRRGGBB colors; appearances index into it.
+  repeated uint32 palette = 5;
+
+  // Palette indexes allowed for skin. Shirt and pants take any other.
+  repeated uint32 skin_colors = 6;
+
+  // The player's character; unset until they create one.
+  Appearance appearance = 7;
 }
 
 message ItemDefinition {
@@ -185,6 +208,8 @@ message Snapshot {
 message EntityState {
   string id = 1;
   Vec2 position = 2;
+  // Set for every player who has created their character.
+  Appearance appearance = 3;
 }
 
 message ChunkData {

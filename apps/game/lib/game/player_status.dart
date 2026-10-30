@@ -1,3 +1,4 @@
+import 'package:craftaria/game/character/character_look.dart';
 import 'package:craftaria_protocol/craftaria_protocol.dart';
 import 'package:equatable/equatable.dart';
 
@@ -73,16 +74,35 @@ class SkillProgress extends Equatable {
   List<Object> get props => [level, xp, levelXp, nextLevelXp];
 }
 
-/// The local player's items, skills and action, as told by the server.
+/// The local player's character, items, skills and action, as told by the
+/// server.
 class PlayerStatus extends Equatable {
   /// Creates a [PlayerStatus].
   const PlayerStatus({
+    this.palette = const [],
+    this.skinColors = const [],
+    this.look,
     this.items = const {},
     this.slots = const [],
     this.equipped,
     this.skills = const {},
     this.gathering = false,
   });
+
+  /// The game palette as 0xRRGGBB colors; looks index into it.
+  final List<int> palette;
+
+  /// Palette indexes allowed for skin.
+  final List<int> skinColors;
+
+  /// The player's character, or null until they create one.
+  final CharacterLook? look;
+
+  /// Palette indexes allowed for shirts and pants: every non-skin color.
+  List<int> get clothingColors => [
+    for (var index = 0; index < palette.length; index++)
+      if (!skinColors.contains(index)) index,
+  ];
 
   /// Display data for every item, by id.
   final Map<String, ItemInfo> items;
@@ -104,12 +124,18 @@ class PlayerStatus extends Equatable {
 
   /// A copy with the given fields replaced.
   PlayerStatus copyWith({
+    List<int>? palette,
+    List<int>? skinColors,
+    CharacterLook? Function()? look,
     Map<String, ItemInfo>? items,
     List<ItemSlot?>? slots,
     String? Function()? equipped,
     Map<String, SkillProgress>? skills,
     bool? gathering,
   }) => PlayerStatus(
+    palette: palette ?? this.palette,
+    skinColors: skinColors ?? this.skinColors,
+    look: look != null ? look() : this.look,
     items: items ?? this.items,
     slots: slots ?? this.slots,
     equipped: equipped != null ? equipped() : this.equipped,
@@ -118,5 +144,14 @@ class PlayerStatus extends Equatable {
   );
 
   @override
-  List<Object?> get props => [items, slots, equipped, skills, gathering];
+  List<Object?> get props => [
+    palette,
+    skinColors,
+    look,
+    items,
+    slots,
+    equipped,
+    skills,
+    gathering,
+  ];
 }

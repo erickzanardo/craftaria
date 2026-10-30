@@ -19,6 +19,8 @@ import {
   ALL_SKILLS,
   isSkillId,
   ITEMS,
+  PALETTE,
+  SKIN_COLORS,
   Notice,
   type PlayerState,
   progressFor,
@@ -154,6 +156,11 @@ export class ZoneServer {
       case "equip":
         this.sim.equip(playerId, payload.value.slot);
         return;
+      case "setAppearance":
+        if (payload.value.appearance !== undefined) {
+          this.sim.setAppearance(playerId, payload.value.appearance);
+        }
+        return;
       case "debug":
         if (this.options.debugCommands === true) {
           this.#debug(playerId, payload.value);
@@ -197,6 +204,7 @@ export class ZoneServer {
           entities: this.sim.entitiesVisibleTo(playerId).map((entity) => ({
             id: entity.id,
             position: create(Vec2Schema, entity.position),
+            appearance: entity.appearance,
           })),
         }),
       });
@@ -237,6 +245,9 @@ export class ZoneServer {
         tickRate: TICK_RATE,
         spawn: create(Vec2Schema, player.position),
         items: ITEMS.map(({ id, name, maxStack }) => ({ id, name, maxStack })),
+        palette: [...PALETTE],
+        skinColors: [...SKIN_COLORS],
+        appearance: this.sim.appearance(claims.sub),
       },
     });
     this.#send(connection, { case: "inventory", value: inventoryUpdate(player) });

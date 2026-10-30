@@ -63,6 +63,11 @@ class GameClient {
   void sendEquip(int slot) =>
       _send(ClientMessage(equip: EquipItem(slot: slot)));
 
+  /// Creates or changes the player's character.
+  void sendAppearance(Appearance appearance) => _send(
+    ClientMessage(setAppearance: SetAppearance(appearance: appearance)),
+  );
+
   /// Development only: asks for [count] of [itemId].
   void sendDebugGrantItem(String itemId, int count) => _send(
     ClientMessage(
