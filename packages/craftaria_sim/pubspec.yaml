@@ -12,5 +12,5 @@ dependencies:
     path: ../craftaria_map
   equatable: ^3.0.0
 dev_dependencies:
-  test: ^1.31.1
+  test: ^1.32.0
   very_good_analysis: ^11.0.0
